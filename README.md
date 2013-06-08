@@ -12,14 +12,11 @@ Here's a slightly modified version that takes the following arguments:
 		      name = "",         # what to call the node color legend
 		      scheme = NULL,     # color classes for the nodes
 		      labels = FALSE,    # add vertex names in small print
-		      legend.position = "right", # cosmetics
-					arrow.size = 0.25)         # cosmetics
+		      legend.position = "right", arrow.size = 0.25) # cosmetics
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
-The function is not (yet) robust to omitting some of the options above, but as long as you have an object of class `network` with something to color the nodes, you should be fine.
-
-If you need to convert an object of class `igraph` or whatever else you use, have a look at the [`intergraph`][ig] package.
+The function is not (yet) robust to omitting some of the options above, but as long as you have an object of class `network` with something to color the nodes, you should be fine. If you have networks objects in different classes than `network`, have a look at the [`intergraph`][ig] package to handle conversion.
 
 [ig]: http://intergraph.r-forge.r-project.org/
 
