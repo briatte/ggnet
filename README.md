@@ -1,6 +1,6 @@
 # ggnet: simple network plots with ggplot2
 
-A while ago, Moritz Marbach coded the `plotg()` function to [visualize networks with ggplot2 in R][mm]. 
+A while ago, Moritz Marbach coded the [`plotg()`][mm] function to visualize networks with `ggplot2` in R. 
 
 Here's a slightly modified version that takes the following arguments:
 
@@ -17,9 +17,9 @@ Here's a slightly modified version that takes the following arguments:
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
-The function is not (yet) robust to omitting much of the options above, but as long as you have an object of class `network` with something to color the nodes, you should be fine.
+The function is not (yet) robust to omitting some of the options above, but as long as you have an object of class `network` with something to color the nodes, you should be fine.
 
-If you need to convert an object of class `igraph` or whatever else you use, have a look at the [`intergraph` package][ig].
+If you need to convert an object of class `igraph` or whatever else you use, have a look at the [`intergraph`][ig] package.
 
 [ig]: http://intergraph.r-forge.r-project.org/
 
@@ -29,7 +29,7 @@ Comments welcome!
 
 ![French MPs on Twitter](example.png)
 
-A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups. Data assembled by scraping a few web sources with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. Inspired by [Baptiste Coulmont][bc].
+A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. Data assembled by scraping a few web sources with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. Inspired by [Baptiste Coulmont][bc].
 
 [bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
 [jc]: http://laspic.hypotheses.org/
