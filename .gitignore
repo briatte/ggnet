@@ -1,2 +1,5 @@
 .DS_Store
 .gitignore
+.Rhistory
+.Rproj.user
+ggnet.Rproj
