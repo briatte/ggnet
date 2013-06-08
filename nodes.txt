@@ -1,0 +1,578 @@
+"Sexe"	"Prénom"	"Nom"	"Groupe"	"Département.d.élection"	"Num.circonscription"	"Commission.permanente"	"Twitter"
+"M."	"Alain"	"Bocquet"	"GDR"	"Nord"	20	"Affaires étrangères"	NA
+"M."	"Alain"	"Calmette"	"SRC"	"Cantal"	1	"Développement durable"	NA
+"M."	"Alain"	"Chrétien"	"UMP"	"Haute-Saône"	1	"Défense"	"alainchretien"
+"M."	"Alain"	"Claeys"	"SRC"	"Vienne"	1	"Finances"	NA
+"M."	"Alain"	"Fauré"	"SRC"	"Ariège"	2	"Finances"	NA
+"M."	"Alain"	"Gest"	"UMP"	"Somme"	4	"Développement durable"	"alain_gest"
+"M."	"Alain"	"Leboeuf"	"UMP"	"Vendée"	1	"Développement durable"	"a_leboeuf"
+"M."	"Alain"	"Marc"	"UMP"	"Aveyron"	3	"Affaires économiques"	NA
+"M."	"Alain"	"Marleix"	"UMP"	"Cantal"	2	"Défense"	"marleixalain"
+"M."	"Alain"	"Marsaud"	"UMP"	"Français établis hors de France"	10	"Affaires étrangères"	"alain_marsaud"
+"M."	"Alain"	"Marty"	"UMP"	"Moselle"	4	"Défense"	NA
+"M."	"Alain"	"Moyne-Bressand"	"UMP"	"Isère"	6	"Défense"	"moyne_bressand"
+"M."	"Alain"	"Rodet"	"SRC"	"Haute-Vienne"	1	"Finances"	NA
+"M."	"Alain"	"Rousset"	"SRC"	"Gironde"	7	"Défense"	"al_rousset"
+"M."	"Alain"	"Suguenot"	"UMP"	"Côte-d'Or"	5	"Affaires économiques"	"A_Suguenot"
+"M."	"Alain"	"Tourret"	"RRDP"	"Calvados"	6	"Lois"	"AlainTourret"
+"M."	"Alexis"	"Bachelay"	"SRC"	"Hauts-de-Seine"	1	"Développement durable"	"ABachelay"
+"M."	"Alfred"	"Marie-Jeanne"	"GDR"	"Martinique"	1	"Lois"	NA
+"M."	"André"	"Chassaigne"	"GDR"	"Puy-de-Dôme"	5	"Affaires économiques"	"AndreChassaigne"
+"M."	"André"	"Santini"	"UDI"	"Hauts-de-Seine"	10	"Affaires étrangères"	"ASantini_UDI"
+"M."	"André"	"Schneider"	"UMP"	"Bas-Rhin"	3	"Affaires étrangères"	NA
+"Mme"	"Anne"	"Grommerch"	"UMP"	"Moselle"	9	"Affaires économiques"	"annegrommerch"
+"Mme"	"Anne-Lise"	"Dufour-Tonini"	"SRC"	"Nord"	19	"Affaires culturelles et éducation"	NA
+"Mme"	"Anne-Yvonne"	"Le Dain"	"SRC"	"Hérault"	2	"Lois"	"Ayledain"
+"Mme"	"Annick"	"Girardin"	"RRDP"	"Saint-Pierre-et-Miquelon"	1	"Finances"	NA
+"Mme"	"Annick"	"Lepetit"	"SRC"	"Paris"	3	"Affaires économiques"	"Annick_Lepetit"
+"Mme"	"Annick"	"Le Loch"	"SRC"	"Finistère"	7	"Affaires économiques"	"annick_leloch"
+"Mme"	"Annie"	"Genevard"	"UMP"	"Doubs"	5	"Affaires culturelles et éducation"	NA
+"Mme"	"Annie"	"Le Houerou"	"SRC"	"Côtes-d'Armor"	4	"Affaires sociales"	NA
+"M."	"Antoine"	"Herth"	"UMP"	"Bas-Rhin"	5	"Affaires économiques"	NA
+"Mme"	"Arlette"	"Grosskost"	"UMP"	"Haut-Rhin"	5	"Finances"	"agrosskost"
+"M."	"Armand"	"Jung"	"SRC"	"Bas-Rhin"	1	"Affaires économiques"	NA
+"M."	"Arnaud"	"Leroy"	"SRC"	"Français établis hors de France"	5	"Développement durable"	"ar_leroy"
+"M."	"Arnaud"	"Richard"	"UDI"	"Yvelines"	7	"Affaires sociales"	"ArnaudRichard_"
+"M."	"Arnaud"	"Robinet"	"UMP"	"Marne"	1	"Affaires sociales"	"DeputeARobinet"
+"M."	"Ary"	"Chalus"	"RRDP"	"Guadeloupe"	3	"Affaires culturelles et éducation"	NA
+"Mme"	"Audrey"	"Linkenheld"	"SRC"	"Nord"	2	"Affaires économiques"	NA
+"M."	"Avi"	"Assouly"	"SRC"	"Bouches-du-Rhône"	5	"Affaires étrangères"	NA
+"M."	"Axel"	"Poniatowski"	"UMP"	"Val-d'Oise"	2	"Affaires étrangères"	"AxelPoniatowski"
+"Mme"	"Axelle"	"Lemaire"	"SRC"	"Français établis hors de France"	3	"Lois"	"axellelemaire"
+"Mme"	"Barbara"	"Pompili"	"Ecolo"	"Somme"	2	"Affaires culturelles et éducation"	"PompiliBarbara"
+"Mme"	"Barbara"	"Romagnan"	"SRC"	"Doubs"	1	"Affaires sociales"	"bromagnan"
+"Mme"	"Béatrice"	"Santais"	"SRC"	"Savoie"	3	"Affaires économiques"	NA
+"M."	"Benoist"	"Apparu"	"UMP"	"Marne"	4	"Affaires culturelles et éducation"	"benoistapparu"
+"Mme"	"Bérengère"	"Poletti"	"UMP"	"Ardennes"	1	"Affaires sociales"	NA
+"Mme"	"Bernadette"	"Laclais"	"SRC"	"Savoie"	4	"Affaires sociales"	NA
+"M."	"Bernard"	"Accoyer"	"UMP"	"Haute-Savoie"	1	"Affaires sociales"	"BernardAccoyer"
+"M."	"Bernard"	"Brochand"	"UMP"	"Alpes-Maritimes"	8	"Affaires culturelles et éducation"	NA
+"M."	"Bernard"	"Debré"	"UMP"	"Paris"	4	"Affaires culturelles et éducation"	"bernard_debre"
+"M."	"Bernard"	"Deflesselles"	"UMP"	"Bouches-du-Rhône"	9	"Défense"	NA
+"M."	"Bernard"	"Gérard"	"UMP"	"Nord"	9	"Lois"	"bgerard59"
+"M."	"Bernard"	"Lesterlin"	"SRC"	"Allier"	2	"Lois"	"BLesterlin"
+"M."	"Bernard"	"Perrut"	"UMP"	"Rhône"	9	"Affaires sociales"	"B_Perrut"
+"M."	"Bernard"	"Reynès"	"UMP"	"Bouches-du-Rhône"	15	"Affaires économiques"	"bernardreynes"
+"M."	"Bernard"	"Roman"	"SRC"	"Nord"	1	"Lois"	"bernardroman59"
+"M."	"Bertrand"	"Pancher"	"UDI"	"Meuse"	1	"Développement durable"	"bertrandpancher"
+"M."	"Boinali"	"Said"	"SRC"	"Mayotte"	1	"Affaires étrangères"	NA
+"Mme"	"Brigitte"	"Allain"	"Ecolo"	"Dordogne"	2	"Affaires économiques"	"BrigitteAllain"
+"Mme"	"Brigitte"	"Bourguignon"	"SRC"	"Pas-de-Calais"	6	"Affaires culturelles et éducation"	"BourguignonBrig"
+"M."	"Bruno"	"Le Maire"	"UMP"	"Eure"	1	"Finances"	"Bruno_LeMaire"
+"M."	"Bruno Nestor"	"Azerot"	"GDR"	"Martinique"	2	"Affaires économiques"	NA
+"M."	"Bruno"	"Le Roux"	"SRC"	"Seine-Saint-Denis"	1	"Défense"	"BrunoLeRoux"
+"M."	"Camille"	"de Rocca Serra"	"UMP"	"Corse-du-Sud"	2	"Finances"	"CdeRoccaSerra"
+"M."	"Carlos"	"Da Silva"	"SRC"	"Essonne"	1	"Lois"	"DaSilvaCarlos91"
+"Mme"	"Carole"	"Delga"	"SRC"	"Haute-Garonne"	8	"Finances"	"CaroleDelga"
+"Mme"	"Catherine"	"Beaubatie"	"SRC"	"Haute-Vienne"	3	"Développement durable"	NA
+"Mme"	"Catherine"	"Coutelle"	"SRC"	"Vienne"	2	"Défense"	"CCoutelle"
+"Mme"	"Catherine"	"Lemorton"	"SRC"	"Haute-Garonne"	1	"Affaires sociales"	"CathLEMORTON"
+"Mme"	"Catherine"	"Quéré"	"SRC"	"Charente-Maritime"	3	"Développement durable"	NA
+"Mme"	"Catherine"	"Troallic"	"SRC"	"Seine-Maritime"	8	"Affaires économiques"	"CaTroallic"
+"Mme"	"Catherine"	"Vautrin"	"UMP"	"Marne"	2	"Affaires économiques"	"cavautrin"
+"Mme"	"Cécile"	"Untermaier"	"SRC"	"Saône-et-Loire"	4	"Lois"	NA
+"M."	"Céleste"	"Lett"	"UMP"	"Moselle"	5	"Affaires sociales"	NA
+"Mme"	"Chantal"	"Berthelot"	"SRC"	"Guyane"	2	"Développement durable"	NA
+"Mme"	"Chantal"	"Guittet"	"SRC"	"Finistère"	5	"Affaires étrangères"	"chantalguittet"
+"M."	"Charles"	"de Courson"	"UDI"	"Marne"	5	"Finances"	"c_decourson"
+"M."	"Charles"	"de La Verpillière"	"UMP"	"Ain"	2	"Défense"	"delaverpilliere"
+"M."	"Charles-Ange"	"Ginesy"	"UMP"	"Alpes-Maritimes"	2	"Développement durable"	"ca_ginesy"
+"Mme"	"Chaynesse"	"Khirouni"	"SRC"	"Meurthe-et-Moselle"	1	"Affaires sociales"	NA
+"M."	"Christian"	"Assaf"	"SRC"	"Hérault"	8	"Développement durable"	"assaf2012"
+"M."	"Christian"	"Bataille"	"SRC"	"Nord"	12	"Affaires étrangères"	NA
+"M."	"Christian"	"Eckert"	"SRC"	"Meurthe-et-Moselle"	3	"Finances"	"CECKERT56"
+"M."	"Christian"	"Estrosi"	"UMP"	"Alpes-Maritimes"	5	"Finances"	"cestrosi"
+"M."	"Christian"	"Franqueville"	"SRC"	"Vosges"	4	"Affaires économiques"	NA
+"M."	"Christian"	"Hutin"	"SRC"	"Nord"	13	"Affaires sociales"	NA
+"M."	"Christian"	"Jacob"	"UMP"	"Seine-et-Marne"	4	"Développement durable"	NA
+"M."	"Christian"	"Kert"	"UMP"	"Bouches-du-Rhône"	11	"Affaires culturelles et éducation"	"christian_kert"
+"M."	"Christian"	"Paul"	"SRC"	"Nièvre"	2	"Affaires sociales"	"christianpaul58"
+"Mme"	"Christine"	"Pires Beaune"	"SRC"	"Puy-de-Dôme"	2	"Finances"	"cpiresbeaune"
+"M."	"Christophe"	"Borgel"	"SRC"	"Haute-Garonne"	9	"Affaires économiques"	"chborgel"
+"M."	"Christophe"	"Bouillon"	"SRC"	"Seine-Maritime"	5	"Développement durable"	"Chris_Bouillon"
+"M."	"Christophe"	"Caresche"	"SRC"	"Paris"	18	"Finances"	"CCaresche"
+"M."	"Christophe"	"Castaner"	"SRC"	"Alpes-de-Haute-Provence"	2	"Finances"	"CCastaner"
+"M."	"Christophe"	"Cavard"	"Ecolo"	"Gard"	6	"Affaires sociales"	"ccavard"
+"M."	"Christophe"	"Guilloteau"	"UMP"	"Rhône"	10	"Défense"	NA
+"M."	"Christophe"	"Léonard"	"SRC"	"Ardennes"	2	"Défense"	"Ch_Leonard"
+"M."	"Christophe"	"Priou"	"UMP"	"Loire-Atlantique"	7	"Développement durable"	NA
+"M."	"Christophe"	"Sirugue"	"SRC"	"Saône-et-Loire"	5	"Affaires sociales"	NA
+"M."	"Claude"	"de Ganay"	"UMP"	"Loiret"	3	"Développement durable"	"cdganay"
+"M."	"Claude"	"Bartolone"	"SRC"	"Seine-Saint-Denis"	9	"Défense"	"claudebartolone"
+"M."	"Claude"	"Goasguen"	"UMP"	"Paris"	14	"Finances"	"claudegoasguen"
+"Mme"	"Claude"	"Greff"	"UMP"	"Indre-et-Loire"	2	"Affaires culturelles et éducation"	"claudegreff"
+"M."	"Claude"	"Sturni"	"UMP"	"Bas-Rhin"	9	"Affaires culturelles et éducation"	NA
+"Mme"	"Claudine"	"Schmid"	"UMP"	"Français établis hors de France"	6	"Affaires culturelles et éducation"	"Claudine_Schmid"
+"Mme"	"Clotilde"	"Valter"	"SRC"	"Calvados"	3	"Affaires économiques"	"ClotildeValter"
+"Mme"	"Colette"	"Capdevielle"	"SRC"	"Pyrénées-Atlantiques"	5	"Lois"	"c_capdevielle"
+"Mme"	"Colette"	"Langlade"	"SRC"	"Dordogne"	3	"Affaires culturelles et éducation"	"langladecolette"
+"Mme"	"Conchita"	"Lacuey"	"SRC"	"Gironde"	4	"Affaires sociales"	"ConchitaLacuey"
+"Mme"	"Corinne"	"Erhel"	"SRC"	"Côtes-d'Armor"	5	"Affaires économiques"	"c_erhel_deputee"
+"Mme"	"Corinne"	"Narassiguin"	"SRC"	"Français établis hors de France"	1	"Lois"	"CorinneNara"
+"M."	"Damien"	"Abad"	"UMP"	"Ain"	5	"Affaires économiques"	"damienabad"
+"M."	"Damien"	"Meslot"	"UMP"	"Territoire-de-Belfort"	1	"Défense"	NA
+"M."	"Daniel"	"Boisserie"	"SRC"	"Haute-Vienne"	2	"Défense"	NA
+"M."	"Daniel"	"Fasquelle"	"UMP"	"Pas-de-Calais"	4	"Affaires économiques"	"dfasquelle"
+"M."	"Daniel"	"Gibbs"	"UMP"	"Saint-Barthélemy et Saint-Martin"	1	"Lois"	"GIBBS_SXM"
+"M."	"Daniel"	"Goldberg"	"SRC"	"Seine-Saint-Denis"	10	"Affaires économiques"	"goldbergdaniel"
+"M."	"Daniel"	"Vaillant"	"SRC"	"Paris"	17	"Lois"	"danielvaillant"
+"Mme"	"Danièle"	"Hoffman-Rispal"	"SRC"	"Paris"	6	"Défense"	"Dhoffmanrispal"
+"Mme"	"Danielle"	"Auroi"	"Ecolo"	"Puy-de-Dôme"	3	"Affaires étrangères"	NA
+"Mme"	"Daphna"	"Poznanski-Benhamou"	"SRC"	"Français établis hors de France"	8	"Défense"	"DaphnaPoznanski"
+"M."	"David"	"Douillet"	"UMP"	"Yvelines"	12	"Développement durable"	"ddouillet"
+"M."	"David"	"Habib"	"SRC"	"Pyrénées-Atlantiques"	3	"Affaires économiques"	NA
+"M."	"David"	"Vergé"	"SRC"	"Wallis-et-Futuna"	1	"Développement durable"	NA
+"M."	"Denis"	"Baupin"	"Ecolo"	"Paris"	10	"Développement durable"	"Denis_Baupin"
+"M."	"Denis"	"Jacquat"	"UMP"	"Moselle"	2	"Affaires sociales"	NA
+"M."	"Denys"	"Robiliard"	"SRC"	"Loir-et-Cher"	1	"Affaires sociales"	NA
+"M."	"Didier"	"Quentin"	"UMP"	"Charente-Maritime"	5	"Lois"	NA
+"M."	"Dino"	"Cinieri"	"UMP"	"Loire"	4	"Affaires économiques"	NA
+"M."	"Dominique"	"Baert"	"SRC"	"Nord"	8	"Finances"	NA
+"M."	"Dominique"	"Bussereau"	"UMP"	"Charente-Maritime"	4	"Lois"	"Dbussereau"
+"Mme"	"Dominique"	"Chauvel"	"SRC"	"Seine-Maritime"	10	"Affaires culturelles et éducation"	"deputeeChauvel"
+"M."	"Dominique"	"Dord"	"UMP"	"Savoie"	1	"Affaires sociales"	"DominiqueDord"
+"M."	"Dominique"	"Lefebvre"	"SRC"	"Val-d'Oise"	10	"Finances"	NA
+"M."	"Dominique"	"Le Mèner"	"UMP"	"Sarthe"	5	"Affaires culturelles et éducation"	"lemenerdom"
+"Mme"	"Dominique"	"Nachury"	"UMP"	"Rhône"	4	"Affaires culturelles et éducation"	NA
+"Mme"	"Dominique"	"Orliac"	"RRDP"	"Lot"	1	"Affaires sociales"	NA
+"M."	"Dominique"	"Potier"	"SRC"	"Meurthe-et-Moselle"	5	"Affaires économiques"	"PotierDominique"
+"M."	"Dominique"	"Raimbourg"	"SRC"	"Loire-Atlantique"	4	"Lois"	"Raimbourg2012"
+"M."	"Dominique"	"Tian"	"UMP"	"Bouches-du-Rhône"	2	"Affaires sociales"	"Dominique_TIAN"
+"Mme"	"Edith"	"Gueugneau"	"SRC"	"Saône-et-Loire"	2	"Défense"	NA
+"M."	"Édouard"	"Courtial"	"UMP"	"Oise"	7	"Affaires étrangères"	"edouardcourtial"
+"M."	"Édouard"	"Fritch"	"UDI"	"Polynésie Française"	1	"Lois"	NA
+"M."	"Edouard"	"Philippe"	"UMP"	"Seine-Maritime"	7	"Développement durable"	"ephilippe2000"
+"M."	"Eduardo"	"Rihan Cypel"	"SRC"	"Seine-et-Marne"	8	"Défense"	"Rihan_Cypel"
+"M."	"Élie"	"Aboud"	"UMP"	"Hérault"	6	"Affaires sociales"	"Elie_ABOUD"
+"Mme"	"Élisabeth"	"Guigou"	"SRC"	"Seine-Saint-Denis"	6	"Affaires étrangères"	"elisabethguigou"
+"Mme"	"Elisabeth"	"Pochon"	"SRC"	"Seine-Saint-Denis"	8	"Lois"	"ElisabethPochon"
+"M."	"Emeric"	"Bréhier"	"SRC"	"Seine-et-Marne"	10	"Affaires culturelles et éducation"	NA
+"Mme"	"Émilienne"	"Poumirol"	"SRC"	"Haute-Garonne"	10	"Défense"	NA
+"M."	"Éric"	"Alauzet"	"Ecolo"	"Doubs"	2	"Finances"	"ericalauzet"
+"M."	"Éric"	"Ciotti"	"UMP"	"Alpes-Maritimes"	1	"Lois"	"ECiotti"
+"M."	"Éric"	"Jalton"	"SRC"	"Guadeloupe"	1	"Défense"	"EricJALTON"
+"M."	"Éric"	"Straumann"	"UMP"	"Haut-Rhin"	1	"Affaires économiques"	"ericstraumann"
+"M."	"Éric"	"Woerth"	"UMP"	"Oise"	4	"Finances"	"woertheric"
+"Mme"	"Ericka"	"Bareigts"	"SRC"	"Réunion"	1	"Affaires économiques"	"ebareigts"
+"M."	"Erwann"	"Binet"	"SRC"	"Isère"	8	"Lois"	"ErwannBinet"
+"Mme"	"Estelle"	"Grelier"	"SRC"	"Seine-Maritime"	9	"Affaires étrangères"	"EstelleGrelier"
+"M."	"Étienne"	"Blanc"	"UMP"	"Ain"	3	"Finances"	"blanc_etienne"
+"Mme"	"Eva"	"Sas"	"Ecolo"	"Essonne"	7	"Finances"	"EvaSasAN"
+"M."	"Fabrice"	"Verdier"	"SRC"	"Gard"	4	"Affaires économiques"	"F_Verdier"
+"Mme"	"Fanélie"	"Carrey-Conte"	"SRC"	"Paris"	15	"Affaires sociales"	"FCarreyConte"
+"Mme"	"Fanny"	"Dombre Coste"	"SRC"	"Hérault"	3	"Développement durable"	"fdc2012"
+"M."	"Fernand"	"Siré"	"UMP"	"Pyrénées-Orientales"	2	"Affaires sociales"	NA
+"Mme"	"Florence"	"Delaunay"	"SRC"	"Landes"	1	"Développement durable"	NA
+"M."	"Florent"	"Boudié"	"SRC"	"Gironde"	10	"Développement durable"	"florent_boudie"
+"M."	"Francis"	"Hillmeyer"	"UDI"	"Haut-Rhin"	6	"Défense"	NA
+"M."	"Francis"	"Vercamer"	"UDI"	"Nord"	7	"Affaires sociales"	NA
+"M."	"Franck"	"Gilard"	"UMP"	"Eure"	5	"Affaires économiques"	NA
+"M."	"Franck"	"Marlin"	"UMP"	"Essonne"	2	"Développement durable"	"franckmarlin"
+"M."	"Franck"	"Reynier"	"UDI"	"Drôme"	2	"Affaires économiques"	"franckreynier"
+"M."	"Franck"	"Riester"	"UMP"	"Seine-et-Marne"	5	"Affaires culturelles et éducation"	"franckriester"
+"M."	"François"	"de Mazières"	"UMP"	"Yvelines"	1	"Affaires culturelles et éducation"	NA
+"M."	"François"	"de Rugy"	"Ecolo"	"Loire-Atlantique"	1	"Défense"	"fderugy"
+"M."	"François"	"André"	"SRC"	"Ille-et-Vilaine"	3	"Défense"	"francoisandre35"
+"M."	"François"	"Asensi"	"GDR"	"Seine-Saint-Denis"	11	"Affaires étrangères"	NA
+"M."	"François"	"Baroin"	"UMP"	"Aube"	3	"Finances"	"francoisbaroin"
+"M."	"François"	"Brottes"	"SRC"	"Isère"	5	"Affaires économiques"	NA
+"M."	"François"	"Cornut-Gentille"	"UMP"	"Haute-Marne"	2	"Finances"	NA
+"M."	"François"	"Fillon"	"UMP"	"Paris"	2	"Affaires étrangères"	"FrancoisFillon"
+"M."	"François"	"Loncle"	"SRC"	"Eure"	4	"Affaires étrangères"	NA
+"M."	"François"	"Pupponi"	"SRC"	"Val-d'Oise"	8	"Affaires économiques"	"fpupponi"
+"M."	"François"	"Rochebloine"	"UDI"	"Loire"	3	"Affaires étrangères"	NA
+"M."	"François"	"Sauvadet"	"UDI"	"Côte-d'Or"	4	"Affaires économiques"	"sauvadet"
+"M."	"François"	"Scellier"	"UMP"	"Val-d'Oise"	6	"Affaires étrangères"	NA
+"M."	"François"	"Vannson"	"UMP"	"Vosges"	3	"Lois"	"fvannson"
+"Mme"	"Françoise"	"Descamps-Crosnier"	"SRC"	"Yvelines"	8	"Lois"	NA
+"Mme"	"Françoise"	"Dubois"	"SRC"	"Sarthe"	1	"Développement durable"	"fdubois2012"
+"Mme"	"Françoise"	"Dumas"	"SRC"	"Gard"	1	"Affaires culturelles et éducation"	"Fr_Dumas"
+"Mme"	"Françoise"	"Guégot"	"UMP"	"Seine-Maritime"	2	"Lois"	"fguegot"
+"Mme"	"Françoise"	"Imbert"	"SRC"	"Haute-Garonne"	5	"Affaires étrangères"	NA
+"M."	"François-Michel"	"Lambert"	"Ecolo"	"Bouches-du-Rhône"	10	"Développement durable"	"fm_lambert"
+"M."	"François-Xavier"	"Villain"	"UDI"	"Nord"	18	"Lois"	"fxvillain"
+"M."	"Frédéric"	"Barbier"	"SRC"	"Doubs"	4	"Affaires économiques"	"Fred_Barbier"
+"M."	"Frédéric"	"Reiss"	"UMP"	"Bas-Rhin"	8	"Affaires culturelles et éducation"	NA
+"M."	"Frédéric"	"Roig"	"SRC"	"Hérault"	4	"Affaires économiques"	NA
+"Mme"	"Frédérique"	"Massat"	"SRC"	"Ariège"	1	"Affaires économiques"	"fredariege"
+"M."	"Gabriel"	"Serville"	"GDR"	"Guyane"	1	"Développement durable"	NA
+"Mme"	"Gabrielle"	"Louis-Carabin"	"SRC"	"Guadeloupe"	2	"Affaires sociales"	NA
+"M."	"Gaby"	"Charroux"	"GDR"	"Bouches-du-Rhône"	13	"Finances"	NA
+"Mme"	"Geneviève"	"Gaillard"	"SRC"	"Deux-Sèvres"	1	"Développement durable"	"gaillard2012"
+"Mme"	"Geneviève"	"Gosselin"	"SRC"	"Manche"	4	"Défense"	NA
+"Mme"	"Geneviève"	"Levy"	"UMP"	"Var"	1	"Affaires sociales"	NA
+"M."	"Georges"	"Fenech"	"UMP"	"Rhône"	11	"Lois"	"GeorgesFENECH"
+"M."	"Georges"	"Ginesta"	"UMP"	"Var"	5	"Affaires économiques"	NA
+"M."	"Gérald"	"Darmanin"	"UMP"	"Nord"	10	"Affaires culturelles et éducation"	"gdarmanin"
+"M."	"Gérard"	"Bapt"	"SRC"	"Haute-Garonne"	2	"Affaires sociales"	NA
+"M."	"Gérard"	"Charasse"	"RRDP"	"Allier"	3	"Affaires étrangères"	NA
+"M."	"Gérard"	"Cherpion"	"UMP"	"Vosges"	2	"Affaires sociales"	"GerardCherpion"
+"M."	"Gérard"	"Sebaoun"	"SRC"	"Val-d'Oise"	4	"Affaires sociales"	"GerardSebaoun"
+"M."	"Gérard"	"Terrier"	"SRC"	"Moselle"	1	"Affaires étrangères"	NA
+"M."	"Germinal"	"Peiro"	"SRC"	"Dordogne"	4	"Affaires économiques"	"GerminalPeiro"
+"M."	"Gilbert"	"Le Bris"	"SRC"	"Finistère"	8	"Défense"	"GilbertLebris"
+"M."	"Gilbert"	"Collard"	"NI"	"Gard"	2	"Lois"	"GilbertCollard"
+"M."	"Gilbert"	"Sauvan"	"SRC"	"Alpes-de-Haute-Provence"	1	"Développement durable"	NA
+"M."	"Gilles"	"Bourdouleix"	"UDI"	"Maine-et-Loire"	5	"Lois"	"GBOURDOULEIX"
+"M."	"Gilles"	"Carrez"	"UMP"	"Val-de-Marne"	5	"Finances"	"GillesCarrez"
+"M."	"Gilles"	"Lurton"	"UMP"	"Ille-et-Vilaine"	7	"Affaires sociales"	"gilleslurton"
+"M."	"Gilles"	"Savary"	"SRC"	"Gironde"	9	"Développement durable"	NA
+"Mme"	"Gisèle"	"Biémouret"	"SRC"	"Gers"	2	"Affaires sociales"	"GiseleBiemouret"
+"M."	"Guénhaël"	"Huet"	"UMP"	"Manche"	2	"Affaires culturelles et éducation"	NA
+"M."	"Guillaume"	"Bachelay"	"SRC"	"Seine-Maritime"	4	"Finances"	"GBachelay"
+"M."	"Guillaume"	"Chevrollier"	"UMP"	"Mayenne"	2	"Développement durable"	"gchevrollier"
+"M."	"Guillaume"	"Larrivé"	"UMP"	"Yonne"	1	"Lois"	"glarrive"
+"M."	"Guy"	"Chambefort"	"SRC"	"Allier"	1	"Défense"	"guychambefort"
+"M."	"Guy"	"Delcourt"	"SRC"	"Pas-de-Calais"	3	"Affaires sociales"	"Guy_Delcourt"
+"M."	"Guy"	"Geoffroy"	"UMP"	"Seine-et-Marne"	9	"Lois"	NA
+"M."	"Guy"	"Teissier"	"UMP"	"Bouches-du-Rhône"	6	"Affaires étrangères"	"guyteissier"
+"M."	"Guy-Michel"	"Chauveau"	"SRC"	"Sarthe"	3	"Affaires étrangères"	"GMChauveau"
+"M."	"Gwendal"	"Rouillard"	"SRC"	"Morbihan"	5	"Défense"	"G_ROUILLARD"
+"M."	"Gwenegan"	"Bui"	"SRC"	"Finistère"	4	"Affaires étrangères"	NA
+"Mme"	"Hélène"	"Geoffroy"	"SRC"	"Rhône"	7	"Affaires sociales"	NA
+"Mme"	"Hélène"	"Vainqueur-Christophe"	"SRC"	"Guadeloupe"	4	"Finances"	NA
+"M."	"Henri"	"Emmanuelli"	"SRC"	"Landes"	3	"Finances"	NA
+"M."	"Henri"	"Guaino"	"UMP"	"Yvelines"	3	"Affaires sociales"	NA
+"M."	"Henri"	"Jibrayel"	"SRC"	"Bouches-du-Rhône"	7	"Affaires économiques"	"henrijibrayel"
+"M."	"Hervé"	"Féron"	"SRC"	"Meurthe-et-Moselle"	2	"Affaires culturelles et éducation"	NA
+"M."	"Hervé"	"Gaymard"	"UMP"	"Savoie"	2	"Affaires étrangères"	"HGaymard"
+"M."	"Hervé"	"Mariton"	"UMP"	"Drôme"	3	"Finances"	"HerveMariton"
+"M."	"Hervé"	"Morin"	"UDI"	"Eure"	3	"Affaires sociales"	"Herve_Morin"
+"M."	"Hervé"	"Pellois"	"SRC"	"Morbihan"	1	"Affaires économiques"	"HervePellois"
+"M."	"Hugues"	"Fourage"	"SRC"	"Vendée"	5	"Lois"	"HuguesFourage"
+"Mme"	"Huguette"	"Bello"	"GDR"	"Réunion"	2	"Affaires culturelles et éducation"	NA
+"M."	"Ibrahim"	"Aboubacar"	"SRC"	"Mayotte"	2	"Défense"	NA
+"Mme"	"Isabelle"	"Attard"	"Ecolo"	"Calvados"	5	"Affaires culturelles et éducation"	"TeamIsaAttard"
+"Mme"	"Isabelle"	"Bruneau"	"SRC"	"Indre"	2	"Affaires culturelles et éducation"	"IsabelleBrunea1"
+"Mme"	"Isabelle"	"Le Callennec"	"UMP"	"Ille-et-Vilaine"	5	"Affaires sociales"	"lecallennec"
+"Mme"	"Jacqueline"	"Fraysse"	"GDR"	"Hauts-de-Seine"	4	"Affaires sociales"	NA
+"Mme"	"Jacqueline"	"Maquet"	"SRC"	"Pas-de-Calais"	2	"Affaires économiques"	NA
+"M."	"Jacques Alain"	"Bénisti"	"UMP"	"Val-de-Marne"	4	"Développement durable"	NA
+"M."	"Jacques"	"Bompard"	"NI"	"Vaucluse"	4	"Lois"	"JacquesBompard"
+"M."	"Jacques"	"Cresta"	"SRC"	"Pyrénées-Orientales"	1	"Affaires étrangères"	NA
+"M."	"Jacques"	"Kossowski"	"UMP"	"Hauts-de-Seine"	3	"Développement durable"	"jakossowski"
+"M."	"Jacques"	"Krabal"	"RRDP"	"Aisne"	5	"Développement durable"	NA
+"M."	"Jacques"	"Lamblin"	"UMP"	"Meurthe-et-Moselle"	4	"Défense"	NA
+"M."	"Jacques"	"Moignard"	"RRDP"	"Tarn-et-Garonne"	2	"Défense"	NA
+"M."	"Jacques"	"Myard"	"UMP"	"Yvelines"	5	"Affaires étrangères"	NA
+"M."	"Jacques"	"Pélissard"	"UMP"	"Jura"	1	"Lois"	"pelissard"
+"M."	"Jacques"	"Valax"	"SRC"	"Tarn"	2	"Lois"	"jvalax"
+"M."	"Jean"	"Glavany"	"SRC"	"Hautes-Pyrénées"	1	"Affaires étrangères"	NA
+"M."	"Jean"	"Grellier"	"SRC"	"Deux-Sèvres"	3	"Affaires économiques"	"Jean_Grellier"
+"M."	"Jean Jacques"	"Vlody"	"SRC"	"Réunion"	3	"Affaires culturelles et éducation"	"jvlody"
+"M."	"Jean"	"Lassalle"	"NI"	"Pyrénées-Atlantiques"	4	"Finances"	"jeanlassalle"
+"M."	"Jean"	"Launay"	"SRC"	"Lot"	2	"Finances"	NA
+"M."	"Jean"	"Leonetti"	"UMP"	"Alpes-Maritimes"	7	"Affaires sociales"	"jeanleonetti"
+"M."	"Jean-Charles"	"Taugourdeau"	"UMP"	"Maine-et-Loire"	3	"Affaires économiques"	"JCTaugourdeau"
+"M."	"Jean-Christophe"	"Cambadélis"	"SRC"	"Paris"	16	"Affaires étrangères"	"jccambadelis"
+"M."	"Jean-Christophe"	"Fromantin"	"UDI"	"Hauts-de-Seine"	6	"Développement durable"	"JCFromantin"
+"M."	"Jean-Christophe"	"Lagarde"	"UDI"	"Seine-Saint-Denis"	5	"Finances"	"jclagarde"
+"M."	"Jean-Claude"	"Bouchet"	"UMP"	"Vaucluse"	2	"Affaires sociales"	"jcbouchet"
+"M."	"Jean-Claude"	"Buisine"	"SRC"	"Somme"	3	"Affaires étrangères"	"Buisine2012"
+"M."	"Jean-Claude"	"Fruteau"	"SRC"	"Réunion"	5	"Finances"	NA
+"M."	"Jean-Claude"	"Gouget"	"SRC"	"Lot-et-Garonne"	3	"Défense"	NA
+"M."	"Jean-Claude"	"Guibal"	"UMP"	"Alpes-Maritimes"	4	"Affaires étrangères"	"jcguibal"
+"M."	"Jean-Claude"	"Mathis"	"UMP"	"Aube"	2	"Affaires économiques"	NA
+"M."	"Jean-Claude"	"Mignon"	"UMP"	"Seine-et-Marne"	1	"Affaires étrangères"	"DeputeMIGNON"
+"M."	"Jean-Claude"	"Perez"	"SRC"	"Aude"	1	"Défense"	NA
+"M."	"Jean-David"	"Ciot"	"SRC"	"Bouches-du-Rhône"	14	"Défense"	"jdciot"
+"M."	"Jean-François"	"Copé"	"UMP"	"Seine-et-Marne"	6	"Affaires culturelles et éducation"	"jf_cope"
+"M."	"Jean-François"	"Lamour"	"UMP"	"Paris"	13	"Finances"	"jf_lamour"
+"M."	"Jean-François"	"Mancel"	"UMP"	"Oise"	2	"Finances"	"jfmancel"
+"M."	"Jean-Frédéric"	"Poisson"	"UMP"	"Yvelines"	10	"Lois"	"jfpoisson78"
+"Mme"	"Jeanine"	"Dubié"	"RRDP"	"Hautes-Pyrénées"	2	"Affaires économiques"	NA
+"M."	"Jean-Jacques"	"Bridey"	"SRC"	"Val-de-Marne"	7	"Défense"	NA
+"M."	"Jean-Jacques"	"Candelier"	"GDR"	"Nord"	16	"Défense"	"jjcandelier"
+"M."	"Jean-Jacques"	"Cottel"	"SRC"	"Pas-de-Calais"	1	"Développement durable"	"cotteljj"
+"M."	"Jean-Jacques"	"Guillet"	"UMP"	"Hauts-de-Seine"	8	"Affaires étrangères"	"jjguillet"
+"M."	"Jean-Jacques"	"Urvoas"	"SRC"	"Finistère"	1	"Lois"	"JJUrvoas"
+"M."	"Jean-Louis"	"Borloo"	"UDI"	"Nord"	21	"Affaires culturelles et éducation"	"JLBorloo"
+"M."	"Jean-Louis"	"Bricout"	"SRC"	"Aisne"	3	"Développement durable"	"BricoutDeputePS"
+"M."	"Jean-Louis"	"Christ"	"UMP"	"Haut-Rhin"	2	"Affaires étrangères"	NA
+"M."	"Jean-Louis"	"Destans"	"SRC"	"Eure"	2	"Affaires étrangères"	"JLDestans"
+"M."	"Jean-Louis"	"Dumont"	"SRC"	"Meuse"	2	"Finances"	NA
+"M."	"Jean-Louis"	"Gagnaire"	"SRC"	"Loire"	2	"Finances"	"JLGagnaire"
+"M."	"Jean-Louis"	"Roumegas"	"Ecolo"	"Hérault"	1	"Affaires sociales"	"jlroumegas"
+"M."	"Jean-Louis"	"Touraine"	"SRC"	"Rhône"	3	"Affaires sociales"	NA
+"M."	"Jean-Luc"	"Bleunven"	"SRC"	"Finistère"	3	"Affaires étrangères"	"JeanLucBleunven"
+"M."	"Jean-Luc"	"Drapeau"	"SRC"	"Deux-Sèvres"	2	"Affaires étrangères"	NA
+"M."	"Jean-Luc"	"Laurent"	"SRC"	"Val-de-Marne"	10	"Affaires économiques"	NA
+"M."	"Jean-Luc"	"Moudenc"	"UMP"	"Haute-Garonne"	3	"Développement durable"	"jlmoudenc"
+"M."	"Jean-Luc"	"Reitzer"	"UMP"	"Haut-Rhin"	3	"Affaires étrangères"	NA
+"M."	"Jean-Luc"	"Warsmann"	"UMP"	"Ardennes"	3	"Lois"	"warsmann"
+"M."	"Jean-Marc"	"Germain"	"SRC"	"Hauts-de-Seine"	12	"Affaires sociales"	"jmgermain"
+"M."	"Jean-Marie"	"Beffara"	"SRC"	"Indre-et-Loire"	3	"Finances"	"jmbeffara"
+"M."	"Jean-Marie"	"Le Guen"	"SRC"	"Paris"	9	"Affaires étrangères"	"jm_leguen"
+"M."	"Jean-Marie"	"Sermier"	"UMP"	"Jura"	3	"Développement durable"	NA
+"M."	"Jean-Marie"	"Tetart"	"UMP"	"Yvelines"	9	"Affaires économiques"	"jeanmarietetart"
+"M."	"Jean-Michel"	"Clément"	"SRC"	"Vienne"	3	"Lois"	"jmclement86"
+"M."	"Jean-Michel"	"Couve"	"UMP"	"Var"	4	"Affaires économiques"	"jmcouve"
+"M."	"Jean-Michel"	"Villaumé"	"SRC"	"Haute-Saône"	2	"Défense"	NA
+"M."	"Jean-Noël"	"Carpentier"	"RRDP"	"Val-d'Oise"	3	"Affaires sociales"	NA
+"M."	"Jean-Patrick"	"Gille"	"SRC"	"Indre-et-Loire"	1	"Affaires sociales"	"jp_gille"
+"M."	"Jean-Paul"	"Bacquet"	"SRC"	"Puy-de-Dôme"	4	"Affaires étrangères"	"jpbacquet"
+"M."	"Jean-Paul"	"Chanteguet"	"SRC"	"Indre"	1	"Développement durable"	NA
+"M."	"Jean-Paul"	"Dupré"	"SRC"	"Aude"	3	"Affaires étrangères"	NA
+"M."	"Jean-Paul"	"Tuaiva"	"UDI"	"Polynésie Française"	3	"Affaires économiques"	NA
+"M."	"Jean-Philippe"	"Mallé"	"SRC"	"Yvelines"	11	"Affaires culturelles et éducation"	"JpmMALLE"
+"M."	"Jean-Philippe"	"Nilor"	"GDR"	"Martinique"	4	"Affaires sociales"	NA
+"M."	"Jean-Pierre"	"Allossery"	"SRC"	"Nord"	15	"Affaires culturelles et éducation"	NA
+"M."	"Jean-Pierre"	"Barbier"	"UMP"	"Isère"	7	"Défense"	NA
+"M."	"Jean-Pierre"	"Blazy"	"SRC"	"Val-d'Oise"	9	"Lois"	"jpblazy"
+"M."	"Jean-Pierre"	"Decool"	"UMP"	"Nord"	14	"Lois"	"jpdecool"
+"M."	"Jean-Pierre"	"Door"	"UMP"	"Loiret"	4	"Affaires sociales"	"doorjean"
+"M."	"Jean-Pierre"	"Dufau"	"SRC"	"Landes"	2	"Affaires étrangères"	NA
+"M."	"Jean-Pierre"	"Fougerat"	"SRC"	"Loire-Atlantique"	3	"Défense"	NA
+"M."	"Jean-Pierre"	"Giran"	"UMP"	"Var"	3	"Affaires culturelles et éducation"	"jeanpierregiran"
+"M."	"Jean-Pierre"	"Gorges"	"UMP"	"Eure-et-Loir"	1	"Finances"	NA
+"M."	"Jean-Pierre"	"Maggi"	"SRC"	"Bouches-du-Rhône"	8	"Défense"	"jpmaggi_depute"
+"M."	"Jean-Pierre"	"Le Roch"	"SRC"	"Morbihan"	3	"Affaires culturelles et éducation"	NA
+"M."	"Jean-Pierre"	"Vigier"	"UMP"	"Haute-Loire"	2	"Développement durable"	NA
+"M."	"Jean-René"	"Marsac"	"SRC"	"Ille-et-Vilaine"	4	"Affaires étrangères"	NA
+"M."	"Jean-Sébastien"	"Vialatte"	"UMP"	"Var"	7	"Affaires sociales"	"JS_Vialatte"
+"M."	"Jean-Yves"	"Le Bouillonnec"	"SRC"	"Val-de-Marne"	11	"Lois"	NA
+"M."	"Jean-Yves"	"Caullet"	"SRC"	"Yonne"	2	"Développement durable"	"JYCaullet"
+"M."	"Jean-Yves"	"Le Déaut"	"SRC"	"Meurthe-et-Moselle"	6	"Défense"	NA
+"M."	"Jérôme"	"Chartier"	"UMP"	"Val-d'Oise"	7	"Finances"	"jechartier"
+"M."	"Jérôme"	"Guedj"	"SRC"	"Essonne"	6	"Affaires sociales"	NA
+"M."	"Jérôme"	"Lambert"	"SRC"	"Charente"	3	"Finances"	NA
+"M."	"Joaquim"	"Pueyo"	"SRC"	"Orne"	1	"Défense"	"JoaquimPueyo"
+"M."	"Joël"	"Giraud"	"RRDP"	"Hautes-Alpes"	2	"Affaires économiques"	NA
+"Mme"	"Joëlle"	"Huillier"	"SRC"	"Isère"	10	"Affaires sociales"	"Joellehuillier"
+"M."	"Jonas"	"Tahuaitu"	"UDI"	"Polynésie Française"	2	"Affaires sociales"	NA
+"Mme"	"Josette"	"Pons"	"UMP"	"Var"	6	"Affaires économiques"	"josettepons"
+"Mme"	"Julie"	"Sommaruga"	"SRC"	"Hauts-de-Seine"	11	"Affaires culturelles et éducation"	"JulieSOMMARUGA"
+"M."	"Julien"	"Aubert"	"UMP"	"Vaucluse"	5	"Développement durable"	"JulienAubert84"
+"Mme"	"Karine"	"Berger"	"SRC"	"Hautes-Alpes"	1	"Finances"	"Karine_Berger"
+"Mme"	"Kheira"	"Bouziane"	"SRC"	"Côte-d'Or"	3	"Affaires sociales"	"KBouziane"
+"M."	"Kléber"	"Mesquida"	"SRC"	"Hérault"	5	"Affaires économiques"	NA
+"Mme"	"Laure"	"de La Raudière"	"UMP"	"Eure-et-Loir"	3	"Affaires économiques"	"lauredlr"
+"Mme"	"Laurence"	"Abeille"	"Ecolo"	"Val-de-Marne"	6	"Développement durable"	"LaurenceAbeille"
+"Mme"	"Laurence"	"Dumont"	"SRC"	"Calvados"	2	"Lois"	NA
+"M."	"Laurent"	"Baumel"	"SRC"	"Indre-et-Loire"	4	"Finances"	"laurentbaumel"
+"M."	"Laurent"	"Cathala"	"SRC"	"Val-de-Marne"	2	"Défense"	NA
+"M."	"Laurent"	"Furst"	"UMP"	"Bas-Rhin"	6	"Développement durable"	NA
+"M."	"Laurent"	"Grandguillaume"	"SRC"	"Côte-d'Or"	1	"Finances"	"LGRANDGUILLAUME"
+"M."	"Laurent"	"Kalinowski"	"SRC"	"Moselle"	6	"Affaires étrangères"	NA
+"M."	"Laurent"	"Marcangeli"	"UMP"	"Corse-du-Sud"	1	"Affaires sociales"	"lmarcangeli"
+"M."	"Laurent"	"Wauquiez"	"UMP"	"Haute-Loire"	1	"Finances"	"laurentwauquiez"
+"Mme"	"Linda"	"Gourjade"	"SRC"	"Tarn"	3	"Affaires sociales"	"Linda_Gourjade"
+"M."	"Lionel"	"Tardy"	"UMP"	"Haute-Savoie"	2	"Affaires économiques"	"DeputeTardy"
+"M."	"Lionnel"	"Luca"	"UMP"	"Alpes-Maritimes"	6	"Affaires étrangères"	"lionnelluca06"
+"M."	"Luc"	"Belot"	"SRC"	"Maine-et-Loire"	1	"Affaires culturelles et éducation"	"LucBELOT"
+"M."	"Luc"	"Chatel"	"UMP"	"Haute-Marne"	1	"Défense"	"LucChatel"
+"Mme"	"Luce"	"Pane"	"SRC"	"Seine-Maritime"	3	"Affaires sociales"	NA
+"Mme"	"Lucette"	"Lousteau"	"SRC"	"Lot-et-Garonne"	1	"Affaires culturelles et éducation"	"LucetteLousteau"
+"M."	"Lucien"	"Degauchy"	"UMP"	"Oise"	5	"Défense"	NA
+"M."	"Malek"	"Boutih"	"SRC"	"Essonne"	10	"Affaires culturelles et éducation"	NA
+"M."	"Marc"	"Dolez"	"GDR"	"Nord"	17	"Lois"	NA
+"M."	"Marc"	"Francina"	"UMP"	"Haute-Savoie"	5	"Finances"	NA
+"M."	"Marc"	"Le Fur"	"UMP"	"Côtes-d'Armor"	3	"Finances"	"marclefur"
+"M."	"Marc"	"Goua"	"SRC"	"Maine-et-Loire"	2	"Finances"	NA
+"M."	"Marc"	"Laffineur"	"UMP"	"Maine-et-Loire"	7	"Défense"	"marclaffineur"
+"M."	"Marcel"	"Bonnot"	"UMP"	"Doubs"	3	"Lois"	NA
+"M."	"Marcel"	"Rogemont"	"SRC"	"Ille-et-Vilaine"	8	"Affaires culturelles et éducation"	"marcelrogemont"
+"M."	"Marc-Philippe"	"Daubresse"	"UMP"	"Nord"	4	"Lois"	"daubresse_mp"
+"Mme"	"Marianne"	"Dubois"	"UMP"	"Loiret"	5	"Défense"	"DuboisMarianne"
+"Mme"	"Marie"	"Récalde"	"SRC"	"Gironde"	6	"Défense"	NA
+"Mme"	"Marie-Anne"	"Chapdelaine"	"SRC"	"Ille-et-Vilaine"	1	"Lois"	"ma_chapdelaine"
+"Mme"	"Marie-Christine"	"Dalloz"	"UMP"	"Jura"	2	"Finances"	NA
+"Mme"	"Marie-Françoise"	"Bechtel"	"SRC"	"Aisne"	4	"Lois"	"MFBechtel"
+"Mme"	"Marie-Françoise"	"Clergeau"	"SRC"	"Loire-Atlantique"	2	"Affaires sociales"	"clergeaumf"
+"Mme"	"Marie-George"	"Buffet"	"GDR"	"Seine-Saint-Denis"	4	"Affaires culturelles et éducation"	NA
+"Mme"	"Marie-Hélène"	"Fabre"	"SRC"	"Aude"	2	"Affaires économiques"	"mhfabre"
+"Mme"	"Marie-Jo"	"Zimmermann"	"UMP"	"Moselle"	3	"Lois"	NA
+"Mme"	"Marie-Line"	"Reynaud"	"SRC"	"Charente"	2	"Développement durable"	"MLReynaud16"
+"Mme"	"Marie-Lou"	"Marcel"	"SRC"	"Aveyron"	2	"Affaires économiques"	"mloumarcel"
+"Mme"	"Marie-Louise"	"Fort"	"UMP"	"Yonne"	3	"Affaires étrangères"	NA
+"Mme"	"Marie-Noëlle"	"Battistel"	"SRC"	"Isère"	4	"Affaires économiques"	NA
+"Mme"	"Marie-Odile"	"Bouillé"	"SRC"	"Loire-Atlantique"	8	"Affaires culturelles et éducation"	NA
+"Mme"	"Marietta"	"Karamanli"	"SRC"	"Sarthe"	2	"Lois"	"karamanli72"
+"Mme"	"Marion"	"Maréchal-Le Pen"	"NI"	"Vaucluse"	3	"Affaires culturelles et éducation"	"Marion_M_Le_Pen"
+"M."	"Martial"	"Saddier"	"UMP"	"Haute-Savoie"	3	"Développement durable"	NA
+"Mme"	"Martine"	"Carrillon-Couvreur"	"SRC"	"Nièvre"	1	"Affaires sociales"	NA
+"Mme"	"Martine"	"Faure"	"SRC"	"Gironde"	12	"Affaires culturelles et éducation"	"MartineFaure"
+"Mme"	"Martine"	"Lignières-Cassou"	"SRC"	"Pyrénées-Atlantiques"	1	"Développement durable"	"Lignierescassou"
+"Mme"	"Martine"	"Martinel"	"SRC"	"Haute-Garonne"	4	"Affaires culturelles et éducation"	"MartineMartinel"
+"Mme"	"Martine"	"Pinville"	"SRC"	"Charente"	1	"Affaires sociales"	"deputepinville"
+"M."	"Mathieu"	"Hanotin"	"SRC"	"Seine-Saint-Denis"	2	"Affaires culturelles et éducation"	"MathieuHanotin"
+"M."	"Matthias"	"Fekl"	"SRC"	"Lot-et-Garonne"	2	"Lois"	"MatthiasFekl"
+"Mme"	"Maud"	"Olivier"	"SRC"	"Essonne"	5	"Affaires culturelles et éducation"	"OlivierMaud"
+"M."	"Maurice"	"Leroy"	"UDI"	"Loir-et-Cher"	3	"Défense"	"MauriceLeroy"
+"M."	"Michel"	"Destot"	"SRC"	"Isère"	3	"Affaires étrangères"	"mdestot"
+"M."	"Michel"	"Françaix"	"SRC"	"Oise"	3	"Affaires culturelles et éducation"	"michelfrancaix"
+"M."	"Michel"	"Heinrich"	"UMP"	"Vosges"	1	"Développement durable"	NA
+"M."	"Michel"	"Herbillon"	"UMP"	"Val-de-Marne"	8	"Affaires culturelles et éducation"	NA
+"M."	"Michel"	"Issindou"	"SRC"	"Isère"	2	"Affaires sociales"	NA
+"M."	"Michel"	"Lefait"	"SRC"	"Pas-de-Calais"	8	"Affaires économiques"	"MLEFAIT"
+"M."	"Michel"	"Lesage"	"SRC"	"Côtes-d'Armor"	1	"Développement durable"	NA
+"M."	"Michel"	"Liebgott"	"SRC"	"Moselle"	8	"Affaires sociales"	"MichelLiebgott"
+"M."	"Michel"	"Ménard"	"SRC"	"Loire-Atlantique"	5	"Affaires culturelles et éducation"	"Michel_MENARD"
+"M."	"Michel"	"Pajon"	"SRC"	"Seine-Saint-Denis"	3	"Finances"	NA
+"M."	"Michel"	"Piron"	"UMP"	"Maine-et-Loire"	4	"Affaires économiques"	"MPironDepute"
+"M."	"Michel"	"Pouzol"	"SRC"	"Essonne"	3	"Affaires culturelles et éducation"	"MichelPouzol"
+"M."	"Michel"	"Sordi"	"UMP"	"Haut-Rhin"	4	"Affaires économiques"	"Michel_Sordi"
+"M."	"Michel"	"Terrot"	"UMP"	"Rhône"	12	"Affaires étrangères"	NA
+"M."	"Michel"	"Vauzelle"	"SRC"	"Bouches-du-Rhône"	16	"Affaires étrangères"	"Vauzelle"
+"M."	"Michel"	"Vergnier"	"SRC"	"Creuse"	1	"Finances"	"MichelVERGNIER"
+"M."	"Michel"	"Voisin"	"UMP"	"Ain"	4	"Défense"	NA
+"M."	"Michel"	"Zumkeller"	"UDI"	"Territoire-de-Belfort"	2	"Affaires étrangères"	"michelzumkeller"
+"Mme"	"Michèle"	"Bonneton"	"Ecolo"	"Isère"	9	"Affaires économiques"	NA
+"Mme"	"Michèle"	"Fournier-Armand"	"SRC"	"Vaucluse"	1	"Affaires culturelles et éducation"	"fournier_armand"
+"Mme"	"Michèle"	"Tabarot"	"UMP"	"Alpes-Maritimes"	9	"Affaires culturelles et éducation"	"MTabarot"
+"Mme"	"Monique"	"Iborra"	"SRC"	"Haute-Garonne"	6	"Affaires sociales"	"MoniqueIborra"
+"Mme"	"Monique"	"Orphé"	"SRC"	"Réunion"	6	"Affaires sociales"	"moniqueorphe"
+"Mme"	"Monique"	"Rabin"	"SRC"	"Loire-Atlantique"	9	"Finances"	"MoniqueRabin"
+"Mme"	"Nathalie"	"Appéré"	"SRC"	"Ille-et-Vilaine"	2	"Lois"	"nathalieappere"
+"Mme"	"Nathalie"	"Chabanne"	"SRC"	"Pyrénées-Atlantiques"	2	"Défense"	"Chabanne_Nat"
+"Mme"	"Nathalie"	"Kosciusko-Morizet"	"UMP"	"Essonne"	4	"Lois"	"nk_m"
+"Mme"	"Nathalie"	"Nieson"	"SRC"	"Drôme"	4	"Lois"	"nnieson"
+"M."	"Nicolas"	"Bays"	"SRC"	"Pas-de-Calais"	12	"Défense"	"nicolasbays"
+"M."	"Nicolas"	"Dhuicq"	"UMP"	"Aube"	1	"Défense"	NA
+"M."	"Nicolas"	"Dupont-Aignan"	"NI"	"Essonne"	8	"Affaires étrangères"	"dupontaignan"
+"M."	"Nicolas"	"Sansu"	"GDR"	"Cher"	2	"Finances"	NA
+"Mme"	"Nicole"	"Ameline"	"UMP"	"Calvados"	4	"Affaires étrangères"	"nicoleameline"
+"M."	"Noël"	"Mamère"	"Ecolo"	"Gironde"	3	"Affaires étrangères"	"noelmamere"
+"Mme"	"Odile"	"Saugues"	"SRC"	"Puy-de-Dôme"	1	"Affaires étrangères"	NA
+"M."	"Olivier"	"Audibert-Troin"	"UMP"	"Var"	8	"Défense"	"olivieraudibert"
+"M."	"Olivier"	"Carré"	"UMP"	"Loiret"	1	"Finances"	"olivier_carre"
+"M."	"Olivier"	"Dassault"	"UMP"	"Oise"	1	"Finances"	"ODassault"
+"M."	"Olivier"	"Dussopt"	"SRC"	"Ardèche"	2	"Lois"	"olivierdussopt"
+"M."	"Olivier"	"Falorni"	"RRDP"	"Charente-Maritime"	1	"Développement durable"	"OlivierFalorni"
+"M."	"Olivier"	"Faure"	"SRC"	"Seine-et-Marne"	11	"Finances"	"faureolivier"
+"M."	"Olivier"	"Marleix"	"UMP"	"Eure-et-Loir"	2	"Développement durable"	NA
+"M."	"Olivier"	"Véran"	"SRC"	"Isère"	1	"Affaires sociales"	"olivierveran"
+"Mme"	"Paola"	"Zanetti"	"SRC"	"Moselle"	7	"Défense"	NA
+"M."	"Pascal"	"Cherki"	"SRC"	"Paris"	11	"Finances"	"pascalcherki"
+"M."	"Pascal"	"Deguilhem"	"SRC"	"Dordogne"	1	"Affaires culturelles et éducation"	NA
+"M."	"Pascal"	"Popelin"	"SRC"	"Seine-Saint-Denis"	12	"Lois"	"pascalpopelin"
+"M."	"Pascal"	"Terrasse"	"SRC"	"Ardèche"	1	"Finances"	"pterrasse"
+"Mme"	"Pascale"	"Boistard"	"SRC"	"Somme"	1	"Affaires étrangères"	"pascaleboistard"
+"Mme"	"Pascale"	"Crozon"	"SRC"	"Rhône"	6	"Lois"	"aveccrozon"
+"Mme"	"Pascale"	"Got"	"SRC"	"Gironde"	5	"Affaires économiques"	NA
+"M."	"Patrice"	"Carvalho"	"GDR"	"Oise"	6	"Développement durable"	NA
+"M."	"Patrice"	"Martin-Lalande"	"UMP"	"Loir-et-Cher"	2	"Affaires étrangères"	NA
+"M."	"Patrice"	"Prat"	"SRC"	"Gard"	3	"Affaires économiques"	"PatricePrat"
+"M."	"Patrice"	"Verchère"	"UMP"	"Rhône"	8	"Lois"	NA
+"Mme"	"Patricia"	"Adam"	"SRC"	"Finistère"	2	"Défense"	NA
+"M."	"Patrick"	"Balkany"	"UMP"	"Hauts-de-Seine"	5	"Affaires étrangères"	"Patrick_Balkany"
+"M."	"Patrick"	"Bloche"	"SRC"	"Paris"	7	"Affaires culturelles et éducation"	"pbloche"
+"M."	"Patrick"	"Devedjian"	"UMP"	"Hauts-de-Seine"	13	"Lois"	"DevedjianP"
+"M."	"Patrick"	"Hetzel"	"UMP"	"Bas-Rhin"	7	"Affaires culturelles et éducation"	NA
+"M."	"Patrick"	"Labaune"	"UMP"	"Drôme"	1	"Défense"	"PatrickLABAUNE"
+"M."	"Patrick"	"Lebreton"	"SRC"	"Réunion"	4	"Finances"	NA
+"M."	"Patrick"	"Lemasle"	"SRC"	"Haute-Garonne"	7	"Finances"	NA
+"M."	"Patrick"	"Mennucci"	"SRC"	"Bouches-du-Rhône"	4	"Lois"	"patrickmennucci"
+"M."	"Patrick"	"Ollier"	"UMP"	"Hauts-de-Seine"	7	"Finances"	"patrick_ollier"
+"M."	"Patrick"	"Vignal"	"SRC"	"Hérault"	9	"Développement durable"	"PatrickVignal"
+"M."	"Paul"	"Giacobbi"	"RRDP"	"Haute-Corse"	2	"Affaires étrangères"	"pgiacobbi"
+"M."	"Paul"	"Molac"	"Ecolo"	"Morbihan"	4	"Lois"	"Paul_Molac"
+"M."	"Paul"	"Salen"	"UMP"	"Loire"	6	"Affaires culturelles et éducation"	NA
+"M."	"Philip"	"Cordery"	"SRC"	"Français établis hors de France"	4	"Affaires étrangères"	"PhilipCordery"
+"M."	"Philippe Armand"	"Martin"	"UMP"	"Marne"	3	"Affaires économiques"	"DeputeMartin"
+"M."	"Philippe"	"Baumel"	"SRC"	"Saône-et-Loire"	3	"Affaires étrangères"	"philippebaumel"
+"M."	"Philippe"	"Bies"	"SRC"	"Bas-Rhin"	2	"Développement durable"	"PhilippeBIES"
+"M."	"Philippe"	"Briand"	"UMP"	"Indre-et-Loire"	5	"Défense"	NA
+"M."	"Philippe"	"Cochet"	"UMP"	"Rhône"	5	"Affaires étrangères"	"philippecochet"
+"M."	"Philippe"	"Doucet"	"SRC"	"Val-d'Oise"	5	"Lois"	"pdoucet"
+"M."	"Philippe"	"Duron"	"SRC"	"Calvados"	1	"Développement durable"	"PhilippeDuron"
+"M."	"Philippe"	"Folliot"	"UDI"	"Tarn"	1	"Défense"	"philippefolliot"
+"M."	"Philippe"	"Gomes"	"UDI"	"Nouvelle-Calédonie"	2	"Affaires étrangères"	"PhilippeGomesCE"
+"M."	"Philippe"	"Gosselin"	"UMP"	"Manche"	1	"Lois"	"phgosselin"
+"M."	"Philippe"	"Goujon"	"UMP"	"Paris"	12	"Lois"	"Philippe_Goujon"
+"M."	"Philippe"	"Houillon"	"UMP"	"Val-d'Oise"	1	"Lois"	"PHouillon"
+"M."	"Philippe"	"Kemel"	"SRC"	"Pas-de-Calais"	11	"Affaires économiques"	"philippekemel"
+"M."	"Philippe"	"Martin"	"SRC"	"Gers"	1	"Développement durable"	NA
+"M."	"Philippe"	"Meunier"	"UMP"	"Rhône"	13	"Défense"	"meunierph"
+"M."	"Philippe"	"Nauche"	"SRC"	"Corrèze"	2	"Défense"	"PhilippeNauche"
+"M."	"Philippe"	"Noguès"	"SRC"	"Morbihan"	6	"Développement durable"	"PhilippeNogues"
+"M."	"Philippe"	"Plisson"	"SRC"	"Gironde"	11	"Développement durable"	"plisson2012"
+"M."	"Philippe"	"Le Ray"	"UMP"	"Morbihan"	2	"Affaires économiques"	"PhilippeLERAY56"
+"M."	"Philippe"	"Vigier"	"UDI"	"Eure-et-Loir"	4	"Finances"	"VigierPhilippe"
+"M."	"Philippe"	"Vitel"	"UMP"	"Var"	2	"Défense"	"fefe8355"
+"M."	"Pierre"	"Aylagas"	"SRC"	"Pyrénées-Orientales"	4	"Affaires sociales"	NA
+"M."	"Pierre"	"Léautey"	"SRC"	"Seine-Maritime"	1	"Affaires culturelles et éducation"	NA
+"M."	"Pierre"	"Lellouche"	"UMP"	"Paris"	1	"Affaires étrangères"	"lellouchepierre"
+"M."	"Pierre"	"Lequiller"	"UMP"	"Yvelines"	4	"Affaires étrangères"	NA
+"M."	"Pierre"	"Morange"	"UMP"	"Yvelines"	6	"Affaires sociales"	"pierremorange"
+"M."	"Pierre"	"Morel-A-L'Huissier"	"UMP"	"Lozère"	1	"Lois"	"MORELPIERRE"
+"M."	"Pierre-Alain"	"Muet"	"SRC"	"Rhône"	2	"Finances"	"pierrealainmuet"
+"M."	"Pierre-Yves"	"Le Borgn'"	"SRC"	"Français établis hors de France"	7	"Lois"	"pyleborgn"
+"M."	"Pouria"	"Amirshahi"	"SRC"	"Français établis hors de France"	9	"Affaires étrangères"	"PouriaAmirshahi"
+"M."	"Razzy"	"Hammadi"	"SRC"	"Seine-Saint-Denis"	7	"Affaires économiques"	"RHammadi"
+"M."	"Régis"	"Juanico"	"SRC"	"Loire"	1	"Finances"	"regisjuanico"
+"M."	"Rémi"	"Delatte"	"UMP"	"Côte-d'Or"	2	"Affaires sociales"	NA
+"M."	"Rémi"	"Pauvros"	"SRC"	"Nord"	3	"Développement durable"	NA
+"M."	"René"	"Dosière"	"SRC"	"Aisne"	1	"Lois"	NA
+"M."	"René"	"Rouquet"	"SRC"	"Val-de-Marne"	9	"Affaires étrangères"	NA
+"M."	"Richard"	"Ferrand"	"SRC"	"Finistère"	6	"Défense"	"RichardFerrand"
+"M."	"Roger-Gérard"	"Schwartzenberg"	"RRDP"	"Val-de-Marne"	3	"Lois"	NA
+"M."	"Rudy"	"Salles"	"UDI"	"Alpes-Maritimes"	3	"Affaires culturelles et éducation"	"rudysalles"
+"Mme"	"Sabine"	"Buis"	"SRC"	"Ardèche"	3	"Développement durable"	NA
+"Mme"	"Sandrine"	"Doucet"	"SRC"	"Gironde"	1	"Affaires culturelles et éducation"	"Doucet_Sandrine"
+"Mme"	"Sandrine"	"Hurel"	"SRC"	"Seine-Maritime"	6	"Affaires sociales"	"SandrineHurel"
+"Mme"	"Sandrine"	"Mazetier"	"SRC"	"Paris"	8	"Finances"	"S_Mazetier"
+"M."	"Sauveur"	"Gandolfi-Scheit"	"UMP"	"Haute-Corse"	1	"Défense"	NA
+"M."	"Sébastien"	"Denaja"	"SRC"	"Hérault"	7	"Lois"	"SebastienDenaja"
+"M."	"Sébastien"	"Huyghe"	"UMP"	"Nord"	5	"Lois"	"sebastienhuyghe"
+"M."	"Sébastien"	"Pietrasanta"	"SRC"	"Hauts-de-Seine"	2	"Lois"	"S_PIETRASANTA"
+"Mme"	"Ségolène"	"Neuville"	"SRC"	"Pyrénées-Orientales"	3	"Affaires sociales"	"S_Neuville"
+"M."	"Serge"	"Bardy"	"SRC"	"Maine-et-Loire"	6	"Développement durable"	"bardyserge"
+"M."	"Serge"	"Grouard"	"UMP"	"Loiret"	2	"Défense"	NA
+"M."	"Serge"	"Janquin"	"SRC"	"Pas-de-Calais"	10	"Affaires étrangères"	NA
+"M."	"Serge"	"Letchimy"	"SRC"	"Martinique"	3	"Affaires économiques"	"Sergeletchimy"
+"M."	"Sergio"	"Coronado"	"Ecolo"	"Français établis hors de France"	2	"Lois"	"sergiocoronado"
+"Mme"	"Seybah"	"Dagoma"	"SRC"	"Paris"	5	"Affaires étrangères"	"SeybahDagoma"
+"Mme"	"Sonia"	"Lagarde"	"UDI"	"Nouvelle-Calédonie"	1	"Affaires culturelles et éducation"	"SoniaLagarde"
+"Mme"	"Sophie"	"Dessus"	"SRC"	"Corrèze"	1	"Affaires culturelles et éducation"	"SophieDessus"
+"Mme"	"Sophie"	"Dion"	"UMP"	"Haute-Savoie"	6	"Affaires culturelles et éducation"	"SophieDionBaud"
+"Mme"	"Sophie"	"Errante"	"SRC"	"Loire-Atlantique"	10	"Développement durable"	"SophieErrante"
+"Mme"	"Sophie"	"Rohfritsch"	"UMP"	"Bas-Rhin"	4	"Développement durable"	NA
+"M."	"Stéphane"	"Demilly"	"UDI"	"Somme"	5	"Développement durable"	NA
+"M."	"Stéphane"	"Saint-André"	"RRDP"	"Pas-de-Calais"	9	"Défense"	"AndrSaint"
+"M."	"Stéphane"	"Travert"	"SRC"	"Manche"	3	"Affaires culturelles et éducation"	"StTravert"
+"Mme"	"Suzanne"	"Tallard"	"SRC"	"Charente-Maritime"	2	"Développement durable"	"SuzanneTallard"
+"M."	"Sylvain"	"Berrios"	"UMP"	"Val-de-Marne"	1	"Défense"	"sy_berrios"
+"Mme"	"Sylviane"	"Alaux"	"SRC"	"Pyrénées-Atlantiques"	6	"Développement durable"	NA
+"Mme"	"Sylviane"	"Bulteau"	"SRC"	"Vendée"	2	"Affaires sociales"	"SylvianeBulteau"
+"Mme"	"Sylvie"	"Andrieux"	"SRC"	"Bouches-du-Rhône"	3	"Affaires étrangères"	"andrieux_sylvie"
+"Mme"	"Sylvie"	"Pichot"	"SRC"	"Mayenne"	1	"Défense"	"SylviePichot"
+"Mme"	"Sylvie"	"Tolmont"	"SRC"	"Sarthe"	4	"Affaires culturelles et éducation"	"SylvieTolmont"
+"Mme"	"Thérèse"	"Guilbert"	"SRC"	"Pas-de-Calais"	5	"Affaires étrangères"	NA
+"M."	"Thierry"	"Benoit"	"UDI"	"Ille-et-Vilaine"	6	"Affaires économiques"	NA
+"M."	"Thierry"	"Braillard"	"RRDP"	"Rhône"	1	"Affaires culturelles et éducation"	"Th_Braillard"
+"M."	"Thierry"	"Lazaro"	"UMP"	"Nord"	6	"Affaires économiques"	NA
+"M."	"Thierry"	"Mandon"	"SRC"	"Essonne"	9	"Finances"	"mandonthierry"
+"M."	"Thierry"	"Mariani"	"UMP"	"Français établis hors de France"	11	"Affaires étrangères"	"ThierryMARIANI"
+"M."	"Thierry"	"Robert"	"RRDP"	"Réunion"	7	"Finances"	"trobert974"
+"M."	"Thierry"	"Solère"	"UMP"	"Hauts-de-Seine"	9	"Développement durable"	"solere92"
+"M."	"Thomas"	"Thévenoud"	"SRC"	"Saône-et-Loire"	1	"Finances"	"tthevenoud"
+"Mme"	"Valérie"	"Boyer"	"UMP"	"Bouches-du-Rhône"	1	"Affaires sociales"	"valerieboyer13"
+"Mme"	"Valérie"	"Corre"	"SRC"	"Loiret"	6	"Affaires culturelles et éducation"	"ValCorre2012"
+"Mme"	"Valérie"	"Lacroute"	"UMP"	"Seine-et-Marne"	2	"Développement durable"	"VLacroute"
+"Mme"	"Valérie"	"Pecresse"	"UMP"	"Yvelines"	2	"Finances"	"vpecresse"
+"Mme"	"Valérie"	"Rabault"	"SRC"	"Tarn-et-Garonne"	1	"Finances"	"Valerie_Rabault"
+"Mme"	"Véronique"	"Besse"	"NI"	"Vendée"	4	"Affaires sociales"	NA
+"Mme"	"Véronique"	"Louwagie"	"UMP"	"Orne"	2	"Affaires sociales"	NA
+"Mme"	"Véronique"	"Massonneau"	"Ecolo"	"Vienne"	4	"Affaires sociales"	"VMassonneau"
+"M."	"Vincent"	"Burroni"	"SRC"	"Bouches-du-Rhône"	12	"Développement durable"	NA
+"M."	"Vincent"	"Feltesse"	"SRC"	"Gironde"	2	"Affaires culturelles et éducation"	"VincentFeltesse"
+"Mme"	"Virginie"	"Duby-Muller"	"UMP"	"Haute-Savoie"	4	"Affaires culturelles et éducation"	"DubyMuller"
+"Mme"	"Viviane"	"Le Dissez"	"SRC"	"Côtes-d'Armor"	2	"Développement durable"	NA
+"M."	"William"	"Dumas"	"SRC"	"Gard"	5	"Affaires étrangères"	"william_dumas"
+"M."	"Xavier"	"Bertrand"	"UMP"	"Aisne"	2	"Finances"	"xavierbertrand"
+"M."	"Xavier"	"Breton"	"UMP"	"Ain"	1	"Affaires culturelles et éducation"	"bretonxavier"
+"M."	"Yann"	"Capet"	"SRC"	"Pas-de-Calais"	7	"Développement durable"	NA
+"M."	"Yann"	"Galut"	"SRC"	"Cher"	3	"Lois"	"yanngalut"
+"M."	"Yannick"	"Favennec"	"UDI"	"Mayenne"	3	"Développement durable"	"yfavennec"
+"M."	"Yannick"	"Moreau"	"NI"	"Vendée"	3	"Affaires économiques"	"yannickmoreau"
+"M."	"Yves"	"Albarello"	"UMP"	"Seine-et-Marne"	7	"Développement durable"	"yvesalbarello"
+"M."	"Yves"	"Blein"	"SRC"	"Rhône"	14	"Affaires économiques"	NA
+"M."	"Yves"	"Censi"	"UMP"	"Aveyron"	1	"Finances"	NA
+"M."	"Yves"	"Daniel"	"SRC"	"Loire-Atlantique"	6	"Affaires culturelles et éducation"	NA
+"M."	"Yves"	"Durand"	"SRC"	"Nord"	11	"Affaires culturelles et éducation"	NA
+"M."	"Yves"	"Foulon"	"UMP"	"Gironde"	8	"Défense"	NA
+"M."	"Yves"	"Fromion"	"UMP"	"Cher"	1	"Défense"	NA
+"M."	"Yves"	"Goasdoue"	"SRC"	"Orne"	3	"Lois"	NA
+"M."	"Yves"	"Jégo"	"UDI"	"Seine-et-Marne"	3	"Finances"	"yvesjego"
+"M."	"Yves"	"Nicolin"	"UMP"	"Loire"	5	"Affaires économiques"	"ynicolin"
