@@ -18,5 +18,5 @@ mps.class <- merge(mps, ids, by = "Twitter")$Groupe
 mps.color <- brewer.pal(9, "Set1")[c(3, 1, 9, 6, 8, 5, 2)]
 
 # plot
-ggnet(net, classes = mps.class, name = "Groupe", scheme = mps.color, 
-      value = 12, weight = "sum", quartiles = T, labels = F)
+ggnet(net, size = 12, classes = mps.class, name = "Groupe", palette = mps.color, 
+      weight = "degree", quartiles = T, labels = F)

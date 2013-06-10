@@ -1,13 +1,32 @@
+#' ggnet - Plot a network with ggplot2
+#' 
+#' Function for making a network plot starting from an object of class \code{network}, using ggplot2. The function builds on code by Moritz Marbach.
+#' 
+#' @export
+#' @param net an object of class \code{network}. See the \link{intergraph} package for conversion between objects of class \code{network} and \code{igraph}.
+#' @param mode a placement method from the list of modes provided in the \link{sna} package. Defaults to the Fruchterman-Reingold force-directed algorithm.
+#' @param size maximum node size. Defaults to 12.
+#' @param palette a ColorBrewer palette to be used for coloring the node groups. Defaults to \code{"Set1"}.
+#' @param legend.position Location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
+#' @param arrow.size Size of the vertex arrows, drawn with the \link{grid} package. Defaults to 0.25.
+#' @seealso \code{\link{gplot}} in the \link{sna} package
+#' @author Moritz Marbach, François Briatte \email{f.briatte@@ed.ac.uk}
+#' @examples
+#' # Links between the Twitter accounts of French MPs in 2013.
+#' net <- 
+#' ggnet(net, )
+
 ## Adapted from Moritz Marbach:
 ## http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
 ggnet <- function(net, # an object of class network
-                  value = 12,        # base node size
-                  weight = "sum",    # also accepts indegree and outdegree
+                  mode = "fruchtermanreingold", # placement algorithm
+                  size = 12,         # maximum node size
+                  weight = "degree", # also accepts indegree and outdegree
                   quartiles = FALSE, # break weights to quartiles
                   classes = NULL,    # what to color the nodes with
                   name = "",         # what to call the node color legend
-                  scheme = NULL,     # color classes for the nodes
+                  palette = NULL,    # color classes for the nodes
                   labels = FALSE,    # add vertex names in small print
                   legend.position = "right", arrow.size = 0.25) # cosmetics
   {
@@ -20,8 +39,11 @@ ggnet <- function(net, # an object of class network
   set.vertex.attribute(net, "elements", as.character(classes))
   # get sociomatrix
   m <- as.matrix.network.adjacency(net)
-  # get coordinates from Fruchterman-Reingold force-directed placement algorithm
-  plotcord <- data.frame(gplot.layout.fruchtermanreingold(m, NULL)) 
+  # get coordinates placement algorithm
+  placement <- paste0("gplot.layout.", mode)
+  if(!exists(placement)) stop("Invalid placement method.")
+  plotcord <- do.call(placement, list(m, NULL))
+  plotcord <- data.frame(plotcord)
   colnames(plotcord) = c("X1", "X2")
   # get edgelist
   edglist <- as.matrix.network.edgelist(net)
@@ -30,11 +52,11 @@ ggnet <- function(net, # an object of class network
   
   # weights
   degrees <- data.frame(id = network.vertex.names(net), 
-                        indegree = sapply(net$iel, length), 
+                        indegree  = sapply(net$iel, length), 
                         outdegree = sapply(net$oel, length))
-  degrees$sum <- with(degrees, indegree + outdegree)
+  degrees$degree <- with(degrees, indegree + outdegree)
   plotcord$weight <- degrees[, which(names(degrees) == weight)]
-  sizer <- scale_size_area("Connexions", max_size = value)
+  sizer <- scale_size_area("Connexions", max_size = size)
   
   cat(nrow(plotcord), "nodes, weighted by", weight, ":\n")
   print(head(degrees[order(-degrees[weight]), ]))
@@ -46,25 +68,25 @@ ggnet <- function(net, # an object of class network
                                  include.lowest = TRUE, ordered = TRUE)
     plotcord$weight <- as.integer(plotcord$weight.label)
     sizer <- scale_size_area("Connexions", 
-                             max_size = value, 
+                             max_size = size, 
                              labels = levels(plotcord$weight.label))
   }
   
   # labels
   labelizer <- NULL
   if(labels) labelizer <- geom_text(aes(X1, X2), 
-                                    data = plotcord, 
+                                    data  = plotcord, 
                                     label = degrees$id, 
-                                    size = 4)
+                                    size  = 4) # should be readable
   
-  colnames(edges) <- c("X1","Y1","X2","Y2")
+  colnames(edges) <- c("X1", "Y1", "X2", "Y2")
 
   # get vertice midpoints (not used later on)
   edges$midX  <- (edges$X1 + edges$X2) / 2
   edges$midY  <- (edges$Y1 + edges$Y2) / 2
   
   # default color scheme
-  if(is.null(scheme)) scheme = brewer.pal(length(unique(classes)), "Set1")
+  if(is.null(palette)) palette = brewer.pal(length(unique(classes)), "Set1")
   
   # plot the network
   pnet <- ggplot()  + 
@@ -77,12 +99,10 @@ ggnet <- function(net, # an object of class network
     geom_point(aes(X1, X2, colour = elements, size = weight),
                data = plotcord, alpha = 0.75) +
     # color the nodes
-    scale_colour_manual(name, 
-                        values = scheme, 
-                        guide = guide_legend(override.aes = list(size = sqrt(value)))) +
+    scale_colour_manual(name, values = palette) +
     scale_x_continuous(breaks = NULL) + 
-    scale_y_continuous(breaks = NULL) +
-    labelizer + sizer +
+    scale_y_continuous(breaks = NULL) + 
+    labelizer + sizer + 
     # discard default grid + titles in ggplot2
     theme(
       panel.background = element_rect(fill = "white"),
@@ -91,5 +111,5 @@ ggnet <- function(net, # an object of class network
       legend.key = element_rect(colour = "white"),
       legend.position = legend.position
     )
-  return(print(pnet))
+  return(pnet)
 }
