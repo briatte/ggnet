@@ -4,18 +4,18 @@ A while ago, Moritz Marbach coded the [`plotg()`][mm] function to visualize netw
 
 Here's a slightly modified version that takes the following arguments:
 
-		ggnet(net,                      # an object of class network
-		      size = 12,                # node size
-					alpha = .75,							# transparency
-					arrow.size = .25,         #
-					segment.size = .25,       #
-		      weight.method = "sum",    # weight nodes by "degree", "indegree", "outdegree" or "none" (unweighted)
-		      weight.quartiles = FALSE, # break weights to quartiles
-		      node.group = NULL,        # what to color the nodes with
-		      node.colors = NULL,       # what colors to use for the node classes
-		      names = c("", ""),        # what to call the node color and node weight legends
-		      label.nodes = FALSE,      # add vertex names in small print
-		      legend.position = "right")
+    ggnet(net,                      # an object of class network
+          size = 12,                # node size
+          alpha = .75,              # transparency
+          weight.method = "sum",    # weight nodes by "degree", "indegree", "outdegree" or "none" (unweighted)
+          weight.quartiles = FALSE, # break weights to quartiles
+          node.group = NULL,        # what to color the nodes with
+          node.colors = NULL,       # what colors to use for the node classes
+          names = c("", ""),        # what to call the node color and node weight legends
+          label.nodes = FALSE,      # add vertex names in small print
+          segment.size = .25,       
+          arrow.size = .25,         
+          legend.position = "right")
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
