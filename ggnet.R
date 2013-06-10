@@ -17,11 +17,11 @@
 #' @param legend.position Location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
 #' @param names A character vector of two elements to label the node groups and node weights with in the plot legend. Defaults to empty strings.
 #' @seealso \code{\link{gplot}} in the \link{sna} package
-#' @author Moritz Marbach \email{}, François Briatte \email{f.briatte@@ed.ac.uk}
+#' @author Moritz Marbach \email{mmarbach@@mail.uni-mannheim.de}, François Briatte \email{f.briatte@@ed.ac.uk}
 #' @examples
 #' # Links between the Twitter accounts of French MPs in 2013.
-#' net <- 
-#' ggnet(net, )
+#' require(downloader)
+#' source_url("https://raw.github.com/briatte/ggnet/master/plot.R")
 
 ggnet <- function(net, # an object of class network
                   mode = "fruchtermanreingold", # placement algorithm
