@@ -1,7 +1,7 @@
 require(network)
 require(RColorBrewer)
 
-setwd("~/Documents/Code/R/twitterpol/")
+setwd("~/Documents/Code/R/ggnet/")
 
 source("ggnet.R")
 
