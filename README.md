@@ -1,6 +1,6 @@
 # ggnet: simple network plots with ggplot2
 
-A while ago, Moritz Marbach coded the [`plotg()`][mm] function to visualize networks with `ggplot2` in R. 
+A while ago, Moritz Marbach coded the [`plotg()`][mm] function to visualize networks with `ggplot2` in R.
 
 Here's a slightly modified version that takes the following arguments:
 
@@ -29,8 +29,14 @@ Comments welcome!
 
 ![French MPs on Twitter](example.png)
 
-A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. Inspired by [Baptiste Coulmont][bc].
+A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].
 
 [bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
 [jc]: http://laspic.hypotheses.org/
 [rc]: http://www.regardscitoyens.org/
+[eg]: http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes
+
+See the [descriptives.R][fn] script for a few exploratory functions, and [my blog post at Polit'bistro][pb] for data construction details.
+
+[fn]: descriptives.R
+[pb]: http://politbistro.hypotheses.org/1752

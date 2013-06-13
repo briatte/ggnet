@@ -3,14 +3,8 @@ require(RColorBrewer)
 
 setwd("~/Documents/Code/R/ggnet/")
 
+source("data.R")
 source("ggnet.R")
-
-# data
-ids = read.csv("nodes.txt", sep = "\t")
-names(ids)
-
-net = read.csv("network.txt", sep = "\t")
-names(net)
 
 # network
 net = network(net)
