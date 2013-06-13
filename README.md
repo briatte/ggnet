@@ -36,7 +36,7 @@ A plot of Twitter connexions between 339 French MPs currently in office, colored
 [rc]: http://www.regardscitoyens.org/
 [eg]: http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes
 
-See the [descriptives.R][fn] script for a few exploratory functions, and [my blog post at Polit'bistro][pb] for data construction details.
+See the [`descriptives.R`][fn] script for a few exploratory functions, and [my blog post at Polit'bistro][pb] for data construction details.
 
 [fn]: descriptives.R
 [pb]: http://politbistro.hypotheses.org/1752
