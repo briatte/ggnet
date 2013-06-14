@@ -43,7 +43,7 @@ ggnet <- function(net, # an object of class network
   require(grid)          # arrows
   require(intergraph)    # igraph conversion
   require(network)       # vertex attributes
-  require(RColorBrewer)  # default color scheme
+  require(RColorBrewer)  # default colors
   require(sna)           # placement algorithm
 
   # support for igraph objects
@@ -53,14 +53,11 @@ ggnet <- function(net, # an object of class network
   # alpha default
   inherit <- function(x) ifelse(is.null(x), alpha, x)
 
-  # arrow size
-  if(isTRUE(arrow.size)) arrow.size = segment.size
-  
-  # node weights
+  # options
   weight = weight.method
   quartiles = quantize.weights
   labels = label.nodes
-    
+
   set.vertex.attribute(net, "elements", as.character(node.group))
   # get sociomatrix
   m <- as.matrix.network.adjacency(net)
