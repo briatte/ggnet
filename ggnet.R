@@ -1,6 +1,6 @@
 #' ggnet - Plot a network with ggplot2
 #' 
-#' Function for making a network plot from an object of class \code{network} or \class{igraph}, using ggplot2.
+#' Function for making a network plot from an object of class \code{network} or \code{igraph}, using ggplot2.
 #' 
 #' @export
 #' @param net an object of class \code{igraph} or \code{network}. If the object is of class \code{igraph}, the \link{intergraph} package is used to convert it to class \code{network}.
@@ -23,6 +23,7 @@
 #' @seealso \code{\link{gplot}} in the \link{sna} package
 #' @author Moritz Marbach \email{mmarbach@@mail.uni-mannheim.de} and François Briatte \email{f.briatte@@ed.ac.uk}
 #' @examples
+#' require(ergm)
 #' # random network
 #' rnd = network(10)
 #' ggnet(rnd, label = TRUE, alpha = 1, color = "white", segment.color = "grey10")
