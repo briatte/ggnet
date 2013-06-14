@@ -1,8 +1,19 @@
 # ggnet: simple network plots with ggplot2
 
-A while ago, Moritz Marbach coded the [`plotg()`][mm] function to visualize networks with `ggplot2` in R.
+![French MPs on Twitter](example1.png)
 
-Here's a slightly modified version that takes the following arguments:
+A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. See [`functions.R`][fn] for network exploration routines. Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. My [blog post at Polit'bistro][pb] has more details.
+
+[bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
+[jc]: http://laspic.hypotheses.org/
+[rc]: http://www.regardscitoyens.org/
+[eg]: http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes
+[fn]: functions.R
+[pb]: http://politbistro.hypotheses.org/1752
+
+# Syntax
+
+The functions builds on Moritz Marbach's [`plotg()`][mm] function and accepts the following arguments:
 
 		ggnet(net,                      # an object of class network
 		  mode = "fruchtermanreingold", # placement algorithm
@@ -23,24 +34,10 @@ Here's a slightly modified version that takes the following arguments:
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
-The function needs an object of class `network` and automatically handles the conversion of objects of class `igraph` by calling the [`intergraph`][ig] package. It supports all placement algorithms available through the `sna` package.
+The function needs an object of class `network` and automatically handles the conversion of objects of class `igraph` by calling the [`intergraph`][ig] package. It supports all placement algorithms available through the `sna` package. The code has been submitted to the [`GGally`][gg] package.
 
 [ig]: http://intergraph.r-forge.r-project.org/
-
-Comments welcome!
-
-# Example
-
-![French MPs on Twitter](example1.png)
-
-A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. See [`functions.R`][fn] for network exploration routines. Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. My [blog post at Polit'bistro][pb] has more details.
-
-[bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
-[jc]: http://laspic.hypotheses.org/
-[rc]: http://www.regardscitoyens.org/
-[eg]: http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes
-[fn]: functions.R
-[pb]: http://politbistro.hypotheses.org/1752
+[gg]: https://github.com/ggobi/ggally
 
 # Options
 
