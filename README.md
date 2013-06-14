@@ -51,14 +51,14 @@ The `ggnet()` function returns a `ggplot` object in which nodes are represented 
 		ggnet(net, size = 6, segment.size = 0, weight = "indegree", legend = "none") + 
 		  geom_density2d()
 
-The node colors are set through a group variable colored by a discrete palette. Node groups can be any vector containing as many items as there are nodes in the network. Hence, to verify that the dual structure shown above corresponds to the left-right party divide:
+The node colors are set through a group variable colored by a discrete palette. Node groups can be any vector containing as many items as there are nodes in the network. Hence, to verify that the dual structure shown above corresponds to the left-right party divide, we group nodes by a logical value and let the function select from the default `Set1` scheme to discriminate them:
 
 ![](example3.png)
 
 		rightwing = ifelse(mp.groups == "NI", NA, mp.groups %in% c("UDI", "UMP"))
 		ggnet(net, node.group = rightwing, alpha = .25, name = "Rightwing group")
 
-The function can label all or a selection of nodes, identified by vertex names. See, for example, how party polarization is much less obvious when you look at a single individual's network:
+Node colors and weights are optional and apply to all nodes. The function can also label all or a selection of nodes, identified by vertex names. See, for example, how party polarization is much less obvious when you look at a single individual's network (Nathalie Kosciusko-Morizet in this example, the rightwing candidate for the mayor of Paris in the next municipal election):
 
 ![](example4.png)
 
