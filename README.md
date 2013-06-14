@@ -4,7 +4,7 @@ A while ago, Moritz Marbach coded the [`plotg()`][mm] function to visualize netw
 
 Here's a slightly modified version that takes the following arguments:
 
-		ggnet(net,                          # an object of class network
+		ggnet(net,                      # an object of class network
 		  mode = "fruchtermanreingold", # placement algorithm
 		  size = 12,                 # node size
 		  alpha = .75,               # transparency
@@ -33,9 +33,7 @@ Comments welcome!
 
 ![French MPs on Twitter](example1.png)
 
-A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. See [`functions.R`][fn] for network exploration routines.
-
-Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. My [blog post at Polit'bistro][pb] has more details.
+A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. See [`functions.R`][fn] for network exploration routines. Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. My [blog post at Polit'bistro][pb] has more details.
 
 [bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
 [jc]: http://laspic.hypotheses.org/

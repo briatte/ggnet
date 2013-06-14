@@ -1,32 +1,26 @@
 #' ggnet - Plot a network with ggplot2
 #' 
-#' Function for making a network plot starting from an object of class \code{network}, using ggplot2. The function builds on code by Moritz Marbach.
+#' Function for making a network plot from an object of class \code{network} or \class{igraph}, using ggplot2.
 #' 
 #' @export
 #' @param net an object of class \code{igraph} or \code{network}. If the object is of class \code{igraph}, the \link{intergraph} package is used to convert it to class \code{network}.
 #' @param mode a placement method from the list of modes provided in the \link{sna} package. Defaults to the Fruchterman-Reingold force-directed algorithm.
-#' @param size Size of the network nodes. Defaults to 12. If the nodes are weighted, \code{size} is passed to \code{scale_size_area} in \link{ggplot2} to scale their areas proportionally.
+#' @param size size of the network nodes. Defaults to 12. If the nodes are weighted, \code{size} is passed to \code{scale_size_area} in \link{ggplot2} to scale their areas proportionally.
 #' @param alpha a level of transparency for all plot elements (nodes, vertices and arrows). Defaults to 0.75.
-#' @param weight.method a weighting method for the nodes. Accepts "indegree", "outdegree" or "degree" (the default). Set to "none" or any unsupported character string to plot unweighted nodes.
+#' @param weight.method a weighting method for the nodes. Accepts "indegree", "outdegree" or "degree" (the default). Set to "none" to plot unweighted nodes.
+#' @param names a character vector of two elements to label the node groups and node weights with in the plot legend. Defaults to empty strings.
 #' @param node.group a vector of character strings to label the nodes with, of the same length and order as the vertex names. Factors are converted to strings prior to plotting.
 #' @param node.color a vector of character strings to color the nodes with, holding as many colors as there are levels in the \code{node.group}. Tries to default to "Set1" if missing.
-#' @param node.alpha Transparency of the nodes. Inherits from \code{alpha}.
-#' @param segment.alpha Transparency of the vertex links. Inherits from \code{alpha}.
-#' @param segment.color Color of the vertex links. Defaults to "grey".
-#' @param segment.size Size of the vertex links. Defaults to 0.25.
-#' @param arrow.size Size of the vertex arrows, assuming that the plot is directed. Defaults to 0. If set to \code{TRUE}, inherits from \code{segment.size}.
-#' @param classes a vector of attributes to color the nodes with.
-#' @param palette a ColorBrewer palette to be used for coloring the node groups. Defaults to \code{"Set1"} if the network has 2 to 9 classes, "#999999" otherwise.
-#' @param label.nodes Label the nodes with their vertex attributes.
-#' @param quantize.weights Break node weights to quartiles.
-#' @param legend.position Location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
-#' @param names A character vector of two elements to label the node groups and node weights with in the plot legend. Defaults to empty strings.
+#' @param node.alpha transparency of the nodes. Inherits from \code{alpha}.
+#' @param segment.alpha transparency of the vertex links. Inherits from \code{alpha}.
+#' @param segment.color color of the vertex links. Defaults to "grey".
+#' @param segment.size size of the vertex links. Defaults to 0.25.
+#' @param arrow.size size of the vertex arrows for directed network plotting. Defaults to 0.
+#' @param label.nodes label nodes with their vertex attributes. If set to \code{TRUE}, all nodes are labelled. Also accepts a vector of character strings to match with vertex names.
+#' @param quantize.weights Break node weights to quartiles. Might fail if quartiles do not uniquely identify nodes.
+#' @param legend.position location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
 #' @seealso \code{\link{gplot}} in the \link{sna} package
 #' @author Moritz Marbach \email{mmarbach@@mail.uni-mannheim.de}, François Briatte \email{f.briatte@@ed.ac.uk}
-#' @examples
-#' # Links between the Twitter accounts of French MPs in 2013.
-#' require(downloader)
-#' source_url("https://raw.github.com/briatte/ggnet/master/plot.R")
 
 ggnet <- function(net, # an object of class network
   mode = "fruchtermanreingold", # placement algorithm
