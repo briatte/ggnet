@@ -15,22 +15,23 @@ A plot of Twitter connexions between 339 French MPs currently in office, colored
 
 The functions builds on Moritz Marbach's [`plotg()`][mm] function and accepts the following arguments:
 
-		ggnet(net,                      # an object of class network
-		  mode = "fruchtermanreingold", # placement algorithm
-		  size = 12,                 # node size
-		  alpha = .75,               # transparency
-		  weight.method = "none",    # what to weight the nodes with: "degree", "indegree", "outdegree"
-		  names = c("", ""),         # what to call the node color and node weight legends
-		  node.group = NULL,         # what to color the nodes with
-		  node.color = NULL,         # what colors to use for the node classes
-		  node.alpha = NULL,         # transparency for nodes (inherits from alpha)
-		  segment.alpha = NULL,      # transparency for links (inherits from alpha)
-		  segment.color = "grey",    # default links are rgb(190, 190, 190)
-		  segment.size  = .25,       # set to 0 to remove from plot
-		  arrow.size = 0,            # set to 0 to remove from plot
-		  label.nodes = FALSE,       # add vertex names in small print; can be a list of vertex names
-		  quantize.weights = FALSE,  # break weights to quartiles
-		  legend.position = "right") # set to "none" to remove from plot
+    ggnet(net,                      # an object of class network
+      mode = "fruchtermanreingold", # placement algorithm
+      size = 12,                 # node size
+      alpha = .75,               # transparency
+      weight.method = "none",    # what to weight the nodes with: "degree", "indegree", "outdegree"
+      names = c("", ""),         # what to call the node color and node weight legends
+      node.group = NULL,         # what to color the nodes with
+      node.color = NULL,         # what colors to use for the node classes
+      node.alpha = NULL,         # transparency for nodes (inherits from alpha)
+      segment.alpha = NULL,      # transparency for links (inherits from alpha)
+      segment.color = "grey",    # default links are rgb(190, 190, 190)
+      segment.size  = .25,       # set to 0 to remove from plot
+      arrow.size = 0,            # set to 0 to remove from plot
+      label.nodes = FALSE,       # add vertex names in small print; can be a list of vertex names
+      quantize.weights = FALSE,  # break weights to quartiles
+      legend.position = "right", # set to "none" to remove from plot
+      ...)                       # arguments passed to node labels with geom_text()
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
@@ -45,21 +46,22 @@ The `ggnet()` function returns a `ggplot` object in which nodes are represented 
 
 ![](example2.png)
 
-		ggnet(net, size = 6, segment.size = 0, weight = "indegree", legend = "none") + 
-		  geom_density2d()
+    ggnet(net, size = 6, segment.size = 0, weight = "indegree", legend = "none") + 
+      geom_density2d()
 
 The node colors are set through a group variable colored by a discrete palette. Node groups can be any vector containing as many items as there are nodes in the network. Hence, to verify that the dual structure shown above corresponds to the left-right party divide, we group nodes by a logical value and let the function select from the default `Set1` scheme to discriminate them:
 
 ![](example3.png)
 
-		rightwing = ifelse(mp.groups == "NI", NA, mp.groups %in% c("UDI", "UMP"))
-		ggnet(net, node.group = rightwing, alpha = .25, name = "Rightwing group")
+    rightwing = ifelse(mp.groups == "NI", NA, mp.groups %in% c("UDI", "UMP"))
+    ggnet(net, node.group = rightwing, alpha = .25, name = "Rightwing group")
 
-Node colors and weights are optional and apply to all nodes. The function can also label all or a selection of nodes, identified by vertex names. See, for example, how party polarization is much less obvious when you look at a single individual's network (Nathalie Kosciusko-Morizet in this example, the rightwing candidate for the mayor of Paris in the next municipal election):
+The function can also label all or a selection of nodes, identified by vertex names. See, for example, how party polarization is much less obvious when you look at a single individual's network (Nathalie Kosciusko-Morizet in this example, the rightwing candidate for the mayor of Paris in the next municipal election):
 
 ![](example4.png)
 
-		nkm = list("nk_m", ids$Twitter %in% who.follows(df, "nk_m"))
-		ggnet(net, size = 6, label = nkm[[1]], node.group = nkm[[2]], alpha = .25, name = "Follows NKM")
+    nkm = list("nk_m", ids$Twitter %in% who.follows(df, "nk_m"))
+    ggnet(net, size = 6, node.group = nkm[[2]], alpha = .25, name = "Follows NKM",
+          label = nkm[[1]], color = "black")
 
 Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].

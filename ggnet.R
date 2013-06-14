@@ -5,22 +5,30 @@
 #' @export
 #' @param net an object of class \code{igraph} or \code{network}. If the object is of class \code{igraph}, the \link{intergraph} package is used to convert it to class \code{network}.
 #' @param mode a placement method from the list of modes provided in the \link{sna} package. Defaults to the Fruchterman-Reingold force-directed algorithm.
-#' @param size size of the network nodes. Defaults to 12. If the nodes are weighted, \code{size} is passed to \code{scale_size_area} in \link{ggplot2} to scale their areas proportionally.
-#' @param alpha a level of transparency for all plot elements (nodes, vertices and arrows). Defaults to 0.75.
-#' @param weight.method a weighting method for the nodes. Accepts "indegree", "outdegree" or "degree" (the default). Set to "none" to plot unweighted nodes.
-#' @param names a character vector of two elements to label the node groups and node weights with in the plot legend. Defaults to empty strings.
+#' @param size size of the network nodes. Defaults to 12. If the nodes are weighted, their area is proportionally scaled up to the size set by \code{size}.
+#' @param alpha a level of transparency for nodes, vertices and arrows. Defaults to 0.75.
+#' @param weight.method a weighting method for the nodes. Accepts \code{"indegree"}, \code{"outdegree"} or \code{"degree"} (the default). Set to \code{"none"} to plot unweighted nodes.
+#' @param names a character vector of two elements to use as legend titles for the node groups and node weights. Defaults to empty strings.
 #' @param node.group a vector of character strings to label the nodes with, of the same length and order as the vertex names. Factors are converted to strings prior to plotting.
-#' @param node.color a vector of character strings to color the nodes with, holding as many colors as there are levels in the \code{node.group}. Tries to default to "Set1" if missing.
+#' @param node.color a vector of character strings to color the nodes with, holding as many colors as there are levels in \code{node.group}. Tries to default to \code{"Set1"} if missing.
 #' @param node.alpha transparency of the nodes. Inherits from \code{alpha}.
 #' @param segment.alpha transparency of the vertex links. Inherits from \code{alpha}.
-#' @param segment.color color of the vertex links. Defaults to "grey".
+#' @param segment.color color of the vertex links. Defaults to \code{"grey"}.
 #' @param segment.size size of the vertex links. Defaults to 0.25.
 #' @param arrow.size size of the vertex arrows for directed network plotting. Defaults to 0.
 #' @param label.nodes label nodes with their vertex attributes. If set to \code{TRUE}, all nodes are labelled. Also accepts a vector of character strings to match with vertex names.
 #' @param quantize.weights Break node weights to quartiles. Might fail if quartiles do not uniquely identify nodes.
 #' @param legend.position location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
+#' @param ... other arguments supplied to geom_text for the node labels. Arguments pertaining to the title or other items can be achieved through ggplot2 methods.
 #' @seealso \code{\link{gplot}} in the \link{sna} package
-#' @author Moritz Marbach \email{mmarbach@@mail.uni-mannheim.de}, François Briatte \email{f.briatte@@ed.ac.uk}
+#' @author Moritz Marbach \email{mmarbach@@mail.uni-mannheim.de} and François Briatte \email{f.briatte@@ed.ac.uk}
+#' @examples
+#' # random network
+#' rnd = network(10)
+#' ggnet(rnd, label = TRUE, alpha = 1, color = "white", segment.color = "grey10")
+#' # adding groups
+#' cat = LETTERS[rbinom(10, 4, .5)]
+#' ggnet(rnd, label = TRUE, color = "white", segment.color = "grey10", node.group = cat)
 
 ggnet <- function(net, # an object of class network
   mode = "fruchtermanreingold", # placement algorithm
@@ -37,7 +45,8 @@ ggnet <- function(net, # an object of class network
   arrow.size = 0,           # set to 0 to remove from plot
   label.nodes = FALSE,      # add vertex names in small print; can be a list of vertex names
   quantize.weights = FALSE, # break weights to quartiles
-  legend.position = "right")# set to "none" to remove from plot
+  legend.position = "right",# set to "none" to remove from plot
+  ...)                      # passed to geom_text for node labels
   {
   require(ggplot2)       # plot
   require(grid)          # arrows
@@ -134,7 +143,7 @@ ggnet <- function(net, # an object of class network
   
   # default colors
   n = length(unique(node.group))
-  if(length(node.color) != n) {
+  if(length(node.color) != n &!is.null(node.group)) {
     warning("Node groups and node colors are of unequal length; using default colors.")
     if(n > 0 & n < 10) node.color = brewer.pal(9, "Set1")[1:n]
   }
@@ -146,7 +155,7 @@ ggnet <- function(net, # an object of class network
                         guide = guide_legend(override.aes = list(size = sqrt(size)))) 
 
   # add text labels
-  pnet <- pnet + geom_text(aes(label = id), color = "black")
+  pnet <- pnet + geom_text(aes(label = id), ...)
 
   # finalize: remove grid, axes and scales
   pnet <- pnet +

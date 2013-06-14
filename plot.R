@@ -34,5 +34,6 @@ ggnet(net, node.group = rightwing, alpha = .25, name = "Rightwing group")
 
 # followers of NKM
 nkm = list("nk_m", ids$Twitter %in% who.follows(df, "nk_m"))
-ggnet(net, size = 6, label = nkm[[1]], node.group = nkm[[2]], alpha = .25, name = "Follows NKM")
+ggnet(net, size = 6, node.group = nkm[[2]], alpha = .25, name = "Follows NKM",
+      label = nkm[[1]], color = "black")
 ## ggsave(file = "example4.png")
