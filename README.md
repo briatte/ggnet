@@ -4,32 +4,32 @@ A while ago, Moritz Marbach coded the [`plotg()`][mm] function to visualize netw
 
 Here's a slightly modified version that takes the following arguments:
 
-    ggnet(net,                       # an object of class network
-				  mode = "fruchtermanreingold", # placement algorithm
-				  size = 12,                # node size
-				  alpha = .75,              # transparency
-				  weight.method = "none",   # what to weight the nodes with: "degree", "indegree", "outdegree"
-				  names = c("", ""),        # what to call the node color and node weight legends
-				  node.group = NULL,        # what to color the nodes with
-				  node.color = NULL,        # what colors to use for the node classes
-				  node.alpha = NULL,        # transparency for nodes (inherits from alpha)
-				  segment.alpha = NULL,     # transparency for links (inherits from alpha)
-				  segment.color = "grey",   # default links are rgb(190, 190, 190)
-				  segment.size  = .25,      # set to 0 to remove from plot
-				  arrow.size = 0,           # set to 0 to remove from plot
-				  label.nodes = FALSE,      # add vertex names in small print; can be a list of vertex names
-				  quantize.weights = FALSE, # break weights to quartiles
-				  legend.position = "right")# set to "none" to remove from plot
+		ggnet(net,                          # an object of class network
+		  mode = "fruchtermanreingold", # placement algorithm
+		  size = 12,                 # node size
+		  alpha = .75,               # transparency
+		  weight.method = "none",    # what to weight the nodes with: "degree", "indegree", "outdegree"
+		  names = c("", ""),         # what to call the node color and node weight legends
+		  node.group = NULL,         # what to color the nodes with
+		  node.color = NULL,         # what colors to use for the node classes
+		  node.alpha = NULL,         # transparency for nodes (inherits from alpha)
+		  segment.alpha = NULL,      # transparency for links (inherits from alpha)
+		  segment.color = "grey",    # default links are rgb(190, 190, 190)
+		  segment.size  = .25,       # set to 0 to remove from plot
+		  arrow.size = 0,            # set to 0 to remove from plot
+		  label.nodes = FALSE,       # add vertex names in small print; can be a list of vertex names
+		  quantize.weights = FALSE,  # break weights to quartiles
+		  legend.position = "right") # set to "none" to remove from plot
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
-The function needs an object of class `network` and automatically handles the conversion of objects of class `igraph` by calling the [`intergraph`][ig] package.
+The function needs an object of class `network` and automatically handles the conversion of objects of class `igraph` by calling the [`intergraph`][ig] package. It supports all placement algorithms available through the `sna` package.
 
 [ig]: http://intergraph.r-forge.r-project.org/
 
 Comments welcome!
 
-# Examples
+# Example
 
 ![French MPs on Twitter](example1.png)
 
@@ -44,7 +44,9 @@ Data assembled by scraping a few web sources in May 2013 with the help of [Jonat
 [fn]: functions.R
 [pb]: http://politbistro.hypotheses.org/1752
 
-The `ggnet()` function returns a `ggplot` object in which nodes are represented by points that can be colored and/or weighted. The network above can therefore be set to look like this when the nodes are weighted by indegree:
+# Options
+
+The `ggnet()` function returns a `ggplot` object in which nodes are represented by points that can be colored and/or weighted using proportional scaling. The network above can therefore be set to look like this when the segments are not drawn and the nodes are weighted by indegree and left uncolored:
 
 ![](example2.png)
 
