@@ -4,39 +4,67 @@ A while ago, Moritz Marbach coded the [`plotg()`][mm] function to visualize netw
 
 Here's a slightly modified version that takes the following arguments:
 
-    ggnet(net,                      # an object of class network
-          size = 12,                # node size
-          alpha = .75,              # transparency
-          weight.method = "sum",    # weight nodes by "degree", "indegree", "outdegree" or "none" (unweighted)
-          weight.quartiles = FALSE, # break weights to quartiles
-          node.group = NULL,        # what to color the nodes with
-          node.colors = NULL,       # what colors to use for the node classes
-          names = c("", ""),        # what to call the node color and node weight legends
-          label.nodes = FALSE,      # add vertex names in small print
-          segment.size = .25,       
-          arrow.size = .25,         
-          legend.position = "right")
+    ggnet(net,                       # an object of class network
+				  mode = "fruchtermanreingold", # placement algorithm
+				  size = 12,                # node size
+				  alpha = .75,              # transparency
+				  weight.method = "none",   # what to weight the nodes with: "degree", "indegree", "outdegree"
+				  names = c("", ""),        # what to call the node color and node weight legends
+				  node.group = NULL,        # what to color the nodes with
+				  node.color = NULL,        # what colors to use for the node classes
+				  node.alpha = NULL,        # transparency for nodes (inherits from alpha)
+				  segment.alpha = NULL,     # transparency for links (inherits from alpha)
+				  segment.color = "grey",   # default links are rgb(190, 190, 190)
+				  segment.size  = .25,      # set to 0 to remove from plot
+				  arrow.size = 0,           # set to 0 to remove from plot
+				  label.nodes = FALSE,      # add vertex names in small print; can be a list of vertex names
+				  quantize.weights = FALSE, # break weights to quartiles
+				  legend.position = "right")# set to "none" to remove from plot
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
-The function is not (yet) robust to omitting some of the options above, but as long as you have an object of class `network` with something to color the nodes, you should be fine. If you have networks objects in different classes than `network`, have a look at the [`intergraph`][ig] package to handle conversion.
+The function needs an object of class `network` and automatically handles the conversion of objects of class `igraph` by calling the [`intergraph`][ig] package.
 
 [ig]: http://intergraph.r-forge.r-project.org/
 
 Comments welcome!
 
-# Example
+# Examples
 
-![French MPs on Twitter](example.png)
+![French MPs on Twitter](example1.png)
 
-A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].
+A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree.
+
+Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc].
+
+See [my blog post at Polit'bistro][pb] for data construction details and [`functions.R`][fn] for a few exploratory tools.
 
 [bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
 [jc]: http://laspic.hypotheses.org/
 [rc]: http://www.regardscitoyens.org/
 [eg]: http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes
-
-See the [`descriptives.R`][fn] script for a few exploratory functions, and [my blog post at Polit'bistro][pb] for data construction details.
-
 [fn]: descriptives.R
 [pb]: http://politbistro.hypotheses.org/1752
+
+The `ggnet()` function returns a `ggplot` object, in which nodes are represented by points that can be colored and/or weighted. The network above can therefore be set to look like this:
+
+![](example2.png)
+
+		ggnet(net, size = 6, segment.size = 0, weight = "indegree", legend = "none") + 
+		  geom_density2d()
+
+The node groups can be any vector containing as many items as there are nodes in the network. Hence, to verify that the dual structure shown above corresponds to the left-right party divide:
+
+![](example3.png)
+
+		rightwing = ifelse(mp.groups == "NI", NA, mp.groups %in% c("UDI", "UMP"))
+		ggnet(net, node.group = rightwing, alpha = .25, name = "Rightwing group")
+
+The function can label all or a selection of nodes, identified by vertex names. See, for example, how party polarization is much less obvious when you look at a single individual's network:
+
+![](example4.png)
+
+		nkm = list("nk_m", ids$Twitter %in% who.follows(df, "nk_m"))
+		ggnet(net, size = 6, label = nkm[[1]], node.group = nkm[[2]], alpha = .25, name = "Follows NKM")
+
+Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].

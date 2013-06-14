@@ -5,5 +5,5 @@
 ids = read.csv("nodes.txt", sep = "\t")
 names(ids)
 
-net = read.csv("network.txt", sep = "\t")
-names(net)
+df = read.csv("network.txt", sep = "\t")
+names(df)
