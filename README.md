@@ -33,27 +33,25 @@ Comments welcome!
 
 ![French MPs on Twitter](example1.png)
 
-A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree.
+A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. See [`functions.R`][fn] for network exploration routines.
 
-Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc].
-
-See [my blog post at Polit'bistro][pb] for data construction details and [`functions.R`][fn] for a few exploratory tools.
+Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. My [blog post at Polit'bistro][pb] has more details.
 
 [bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
 [jc]: http://laspic.hypotheses.org/
 [rc]: http://www.regardscitoyens.org/
 [eg]: http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes
-[fn]: descriptives.R
+[fn]: functions.R
 [pb]: http://politbistro.hypotheses.org/1752
 
-The `ggnet()` function returns a `ggplot` object, in which nodes are represented by points that can be colored and/or weighted. The network above can therefore be set to look like this:
+The `ggnet()` function returns a `ggplot` object in which nodes are represented by points that can be colored and/or weighted. The network above can therefore be set to look like this when the nodes are weighted by indegree:
 
 ![](example2.png)
 
 		ggnet(net, size = 6, segment.size = 0, weight = "indegree", legend = "none") + 
 		  geom_density2d()
 
-The node groups can be any vector containing as many items as there are nodes in the network. Hence, to verify that the dual structure shown above corresponds to the left-right party divide:
+The node colors are set through a group variable colored by a discrete palette. Node groups can be any vector containing as many items as there are nodes in the network. Hence, to verify that the dual structure shown above corresponds to the left-right party divide:
 
 ![](example3.png)
 
