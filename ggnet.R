@@ -59,54 +59,61 @@ ggnet <- function(net, # an object of class network
   quantize.weights = FALSE, # break weights to quartiles
   legend.position = "right",# set to "none" to remove from plot
   ...)                      # passed to geom_text for node labels
-  {
+{
   require(ggplot2)       # plot
   require(grid)          # arrows
   require(intergraph)    # igraph conversion
   require(network)       # vertex attributes
   require(RColorBrewer)  # default colors
   require(sna)           # placement algorithm
-
+  
   # support for igraph objects
   if(class(net) == "igraph") net = asNetwork(net)
-  if(class(net) != "network") stop("net must be a network object of class 'network' or 'igraph'")
+  if(class(net) != "network")
+    stop("net must be a network object of class 'network' or 'igraph'")
   
   # alpha default
   inherit <- function(x) ifelse(is.null(x), alpha, x)
-
+  
   # options
   weight = weight.method
   quartiles = quantize.weights
   labels = label.nodes
-
-  set.vertex.attribute(net, "elements", as.character(node.group))
+  
   # get sociomatrix
   m <- as.matrix.network.adjacency(net)
+  
   # get coordinates placement algorithm
   placement <- paste0("gplot.layout.", mode)
   if(!exists(placement)) stop("Unsupported placement method.")
   plotcord <- do.call(placement, list(m, NULL))
   plotcord <- data.frame(plotcord)
   colnames(plotcord) = c("X1", "X2")
+  
   # get edgelist
   edglist <- as.matrix.network.edgelist(net)
   edges <- data.frame(plotcord[edglist[,1],], plotcord[edglist[,2],])
-  plotcord$group <- as.factor(get.vertex.attribute(net, "elements"))
   
-  # get weights
+  # get node groups
+  if(!is.null(node.group)) {
+    set.vertex.attribute(net, "elements", as.character(node.group))
+    plotcord$group <- as.factor(get.vertex.attribute(net, "elements"))
+  }
+  
+  # get node weights
   degrees <- data.frame(id = network.vertex.names(net), 
                         indegree  = sapply(net$iel, length), 
                         outdegree = sapply(net$oel, length))
   degrees$degree <- with(degrees, indegree + outdegree)
   
   colnames(edges) <- c("X1", "Y1", "X2", "Y2")
-
+  
   # set vertex names
   plotcord$id <- as.character(degrees$id)
   if(is.logical(labels)) {
     if(!labels) plotcord$id = ""
   } else plotcord$id[-which(plotcord$id %in% labels)] = ""
-
+  
   # get vertice midpoints (not used later on)
   edges$midX  <- (edges$X1 + edges$X2) / 2
   edges$midY  <- (edges$Y1 + edges$Y2) / 2
@@ -121,7 +128,7 @@ ggnet <- function(net, # an object of class network
                  alpha = inherit(segment.alpha),
                  arrow = arrow(type = "closed", 
                                length = unit(arrow.size, "cm")))
-
+  
   # null weighting
   if(!weight %in% c("degree", "indegree", "outdegree")) {
     if(weight != "none") warning("Unsupported weighting method; plotting unweigthed nodes.")
@@ -133,7 +140,7 @@ ggnet <- function(net, # an object of class network
     # show top weights
     cat(nrow(plotcord), "nodes, weighted by", weight, "\n\n")
     print(head(degrees[order(-degrees[weight]), ]))    
-
+    
     # proportional scaling
     sizer <- scale_size_area(names[2], max_size = size)
     
@@ -159,16 +166,16 @@ ggnet <- function(net, # an object of class network
     warning("Node groups and node colors are of unequal length; using default colors.")
     if(n > 0 & n < 10) node.color = brewer.pal(9, "Set1")[1:n]
   }
-    
+  
   # color the nodes
   if(!is.null(node.group)) pnet <- pnet + 
     aes(colour = group) +
     scale_colour_manual(names[1], values = node.color,
                         guide = guide_legend(override.aes = list(size = sqrt(size)))) 
-
+  
   # add text labels
   pnet <- pnet + geom_text(aes(label = id), ...)
-
+  
   # finalize: remove grid, axes and scales
   pnet <- pnet +
     scale_x_continuous(breaks = NULL) + 
@@ -180,6 +187,6 @@ ggnet <- function(net, # an object of class network
       legend.key = element_rect(colour = "white"),
       legend.position = legend.position
     )
-
+  
   return(pnet)
 }
