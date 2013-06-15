@@ -31,6 +31,7 @@
 #' cat = LETTERS[rbinom(10, 4, .5)]
 #' ggnet(rnd, label = TRUE, color = "white", segment.color = "grey10", node.group = cat)
 #' 
+#' require(network)
 #' # City and service firms data from the UCIrvine Network Data Repository.
 #' url = url("http://networkdata.ics.uci.edu/netdata/data/cities.RData")
 #' print(load(url))
