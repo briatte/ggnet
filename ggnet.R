@@ -92,7 +92,7 @@ ggnet <- function(net, # an object of class network
   
   # get edgelist
   edglist <- as.matrix.network.edgelist(net)
-  edges <- data.frame(plotcord[edglist[,1],], plotcord[edglist[,2],])
+  edges <- data.frame(plotcord[edglist[, 1], ], plotcord[edglist[, 2], ])
   
   # get node groups
   if(!is.null(node.group)) {
