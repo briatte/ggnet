@@ -18,6 +18,7 @@
 #' @param arrow.size size of the vertex arrows for directed network plotting. Defaults to 0.
 #' @param label.nodes label nodes with their vertex attributes. If set to \code{TRUE}, all nodes are labelled. Also accepts a vector of character strings to match with vertex names.
 #' @param top8.nodes use the top 8 nodes as node groups, colored with \code{"Set1"}. The rest of the network will be plotted as the ninth (grey) group. Experimental.
+#' @param trim.labels removes '@', 'http://', 'www.' and the ending '/' from vertex names. Cleans up labels for website and Twitter networks. Defaults to \code{TRUE}.
 #' @param quantize.weights break node weights to quartiles. Fails when quartiles do not uniquely identify nodes.
 #' @param subset.threshold delete nodes prior to plotting, based on \code{weight.method} < \code{subset.threshold}. If \code{weight.method} is unspecified, total degree (Freeman's measure) is used. Defaults to 0 (no subsetting).
 #' @param legend.position location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
@@ -58,7 +59,7 @@ ggnet <- function(net, # an object of class network
   arrow.size = 0,           # set to 0 to remove from plot
   label.nodes = FALSE,      # add vertex names in small print; can be a list of vertex names
   top8.nodes  = FALSE,      # color the top 8 nodes by weighting method with ColorBrewer Set1
-  trim.labels = TRUE,       # remove '@', 'http://' and 'www.' from vertex names
+  trim.labels = TRUE,       # clean vertex names
   quantize.weights = FALSE, # break weights to quartiles
   subset.threshold = 0,     # what nodes to exclude, based on weight.method ≥ subset
   legend.position = "right",# set to "none" to remove from plot
@@ -70,7 +71,7 @@ ggnet <- function(net, # an object of class network
   require(network)       # vertex attributes
   require(RColorBrewer)  # default colors
   require(sna)           # placement algorithm
-
+  
   # get arguments
   weight = c("indegree", "outdegree")
   weight = ifelse(weight.method %in% weight, weight.method, "freeman")
@@ -79,12 +80,12 @@ ggnet <- function(net, # an object of class network
   
   # alpha default
   inherit <- function(x) ifelse(is.null(x), alpha, x)
-
+  
   # support for igraph objects
   if(class(net) == "igraph") net = asNetwork(net)
   if(class(net) != "network")
     stop("net must be a network object of class 'network' or 'igraph'")
-
+  
   # subset
   if(subset.threshold > 0)
     delete.vertices(net, which(degree(net, cmode = weight) < subset.threshold))
@@ -108,13 +109,13 @@ ggnet <- function(net, # an object of class network
     set.vertex.attribute(net, "elements", as.character(node.group))
     plotcord$group <- as.factor(get.vertex.attribute(net, "elements"))
   }
-    
+  
   # get node weights
   degrees <- data.frame(id = network.vertex.names(net), 
                         indegree  = sapply(net$iel, length), 
                         outdegree = sapply(net$oel, length))
   degrees$freeman <- with(degrees, indegree + outdegree)
-
+  
   # trim vertex names
   if(trim.labels) degrees$id = gsub("@|http://|www.|/$", "", degrees$id)
   
@@ -136,7 +137,7 @@ ggnet <- function(net, # an object of class network
   if(is.logical(labels)) {
     if(!labels) plotcord$id = ""
   } else plotcord$id[-which(plotcord$id %in% labels)] = ""
-    
+  
   # get vertice midpoints (not -yet- used later on)
   edges$midX  <- (edges$X1 + edges$X2) / 2
   edges$midY  <- (edges$Y1 + edges$Y2) / 2
@@ -188,7 +189,7 @@ ggnet <- function(net, # an object of class network
     warning("Node groups and node colors are of unequal length; using default colors.")
     if(n > 0 & n < 10) node.color = brewer.pal(9, "Set1")[1:n]
   }
-    
+  
   # color the nodes
   if(!is.null(node.group)) pnet <- pnet + 
     aes(colour = group) +
