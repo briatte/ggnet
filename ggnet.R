@@ -17,20 +17,21 @@
 #' @param segment.size size of the vertex links. Defaults to 0.25.
 #' @param arrow.size size of the vertex arrows for directed network plotting. Defaults to 0.
 #' @param label.nodes label nodes with their vertex attributes. If set to \code{TRUE}, all nodes are labelled. Also accepts a vector of character strings to match with vertex names.
-#' @param quantize.weights Break node weights to quartiles. Might fail if quartiles do not uniquely identify nodes.
+#' @param top8.nodes use the top 8 nodes as node groups, colored with \code{"Set1"}. The rest of the network will be plotted as the ninth (grey) group. Experimental.
+#' @param quantize.weights break node weights to quartiles. Fails when quartiles do not uniquely identify nodes.
+#' @param subset.threshold delete nodes prior to plotting, based on \code{weight.method} < \code{subset.threshold}. If \code{weight.method} is unspecified, total degree (Freeman's measure) is used. Defaults to 0 (no subsetting).
 #' @param legend.position location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
 #' @param ... other arguments supplied to geom_text for the node labels. Arguments pertaining to the title or other items can be achieved through ggplot2 methods.
 #' @seealso \code{\link{gplot}} in the \link{sna} package
 #' @author Moritz Marbach \email{mmarbach@@mail.uni-mannheim.de} and François Briatte \email{f.briatte@@ed.ac.uk}
 #' @examples
 #' # random network
-#' rnd = network::network.initialize(10)
+#' rnd = network::network(10)
 #' ggnet(rnd, label = TRUE, alpha = 1, color = "white", segment.color = "grey10")
 #' # random groups
 #' cat = LETTERS[rbinom(10, 4, .5)]
 #' ggnet(rnd, label = TRUE, color = "white", segment.color = "grey10", node.group = cat)
 #' 
-#' require(network)
 #' # City and service firms data from the UCIrvine Network Data Repository.
 #' url = url("http://networkdata.ics.uci.edu/netdata/data/cities.RData")
 #' print(load(url))
@@ -46,7 +47,7 @@ ggnet <- function(net, # an object of class network
   mode = "fruchtermanreingold", # placement algorithm
   size = 12,                # node size
   alpha = .75,              # transparency
-  weight.method = "none",   # what to weight the nodes with: "degree", "indegree", "outdegree"
+  weight.method = "none",   # what to weight the nodes with: "freeman", "indegree", "outdegree"
   names = c("", ""),        # what to call the node color and node weight legends
   node.group = NULL,        # what to color the nodes with
   node.color = NULL,        # what colors to use for the node classes
@@ -56,7 +57,10 @@ ggnet <- function(net, # an object of class network
   segment.size  = .25,      # set to 0 to remove from plot
   arrow.size = 0,           # set to 0 to remove from plot
   label.nodes = FALSE,      # add vertex names in small print; can be a list of vertex names
+  top8.nodes  = FALSE,      # color the top 8 nodes by weighting method with ColorBrewer Set1
+  trim.labels = TRUE,       # remove '@', 'http://' and 'www.' from vertex names
   quantize.weights = FALSE, # break weights to quartiles
+  subset.threshold = 0,     # what nodes to exclude, based on degree(weight.method) ≥ subset
   legend.position = "right",# set to "none" to remove from plot
   ...)                      # passed to geom_text for node labels
 {
@@ -66,19 +70,24 @@ ggnet <- function(net, # an object of class network
   require(network)       # vertex attributes
   require(RColorBrewer)  # default colors
   require(sna)           # placement algorithm
+
+  # get arguments
+  weight = c("indegree", "outdegree")
+  weight = ifelse(weight.method %in% weight, weight.method, "freeman")
+  quartiles = quantize.weights
+  labels = label.nodes
   
+  # alpha default
+  inherit <- function(x) ifelse(is.null(x), alpha, x)
+
   # support for igraph objects
   if(class(net) == "igraph") net = asNetwork(net)
   if(class(net) != "network")
     stop("net must be a network object of class 'network' or 'igraph'")
-  
-  # alpha default
-  inherit <- function(x) ifelse(is.null(x), alpha, x)
-  
-  # options
-  weight = weight.method
-  quartiles = quantize.weights
-  labels = label.nodes
+
+  # subset
+  if(subset.threshold > 0)
+    delete.vertices(net, which(degree(net, cmode = weight) < subset.threshold))
   
   # get sociomatrix
   m <- as.matrix.network.adjacency(net)
@@ -99,12 +108,26 @@ ggnet <- function(net, # an object of class network
     set.vertex.attribute(net, "elements", as.character(node.group))
     plotcord$group <- as.factor(get.vertex.attribute(net, "elements"))
   }
-  
+    
   # get node weights
   degrees <- data.frame(id = network.vertex.names(net), 
                         indegree  = sapply(net$iel, length), 
                         outdegree = sapply(net$oel, length))
-  degrees$degree <- with(degrees, indegree + outdegree)
+  degrees$freeman <- with(degrees, indegree + outdegree)
+
+  # trim vertex names
+  if(trim.labels) degrees$id = gsub("@|http://|www.|/$", "", degrees$id)
+  
+  # set top 8 nodes as groups
+  if(top8.nodes) {
+    all = degrees[, weight]
+    top = degrees$id[order(all, decreasing = TRUE)[1:8]]
+    top = which(degrees$id %in% top)
+    plotcord$group = as.character(degrees$id)
+    plotcord$group[-top] = paste0("(", weight, " ≥ ", subset.threshold, ")")
+    node.group = plotcord$group
+    node.color = brewer.pal(9, "Set1")[c(9, 1:8)]
+  }
   
   colnames(edges) <- c("X1", "Y1", "X2", "Y2")
   
@@ -113,8 +136,8 @@ ggnet <- function(net, # an object of class network
   if(is.logical(labels)) {
     if(!labels) plotcord$id = ""
   } else plotcord$id[-which(plotcord$id %in% labels)] = ""
-  
-  # get vertice midpoints (not used later on)
+    
+  # get vertice midpoints (not -yet- used later on)
   edges$midX  <- (edges$X1 + edges$X2) / 2
   edges$midY  <- (edges$Y1 + edges$Y2) / 2
   
@@ -130,8 +153,7 @@ ggnet <- function(net, # an object of class network
                                length = unit(arrow.size, "cm")))
   
   # null weighting
-  if(!weight %in% c("degree", "indegree", "outdegree")) {
-    if(weight != "none") warning("Unsupported weighting method; plotting unweigthed nodes.")
+  if(weight.method == "none") {
     pnet <- pnet + geom_point(data = plotcord, alpha = inherit(node.alpha), size = size)
   }
   else {
@@ -166,7 +188,7 @@ ggnet <- function(net, # an object of class network
     warning("Node groups and node colors are of unequal length; using default colors.")
     if(n > 0 & n < 10) node.color = brewer.pal(9, "Set1")[1:n]
   }
-  
+    
   # color the nodes
   if(!is.null(node.group)) pnet <- pnet + 
     aes(colour = group) +
