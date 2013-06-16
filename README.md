@@ -15,23 +15,23 @@ A plot of Twitter connexions between 339 French MPs currently in office, colored
 
 The functions builds on Moritz Marbach's [`plotg()`][mm] function and accepts the following arguments:
 
-    ggnet(net,                      # an object of class network
-      mode = "fruchtermanreingold", # placement algorithm
-      size = 12,                 # node size
-      alpha = .75,               # transparency
-      weight.method = "none",    # what to weight the nodes with: "degree", "indegree", "outdegree"
-      names = c("", ""),         # what to call the node color and node weight legends
-      node.group = NULL,         # what to color the nodes with
-      node.color = NULL,         # what colors to use for the node classes
-      node.alpha = NULL,         # transparency for nodes (inherits from alpha)
-      segment.alpha = NULL,      # transparency for links (inherits from alpha)
-      segment.color = "grey",    # default links are rgb(190, 190, 190)
-      segment.size  = .25,       # set to 0 to remove from plot
-      arrow.size = 0,            # set to 0 to remove from plot
-      label.nodes = FALSE,       # add vertex names in small print; can be a list of vertex names
-      quantize.weights = FALSE,  # break weights to quartiles
-      legend.position = "right", # set to "none" to remove from plot
-      ...)                       # arguments passed to node labels with geom_text()
+    ggnet(net,                          # an object of class network
+          mode = "fruchtermanreingold", # placement algorithm
+          size = 12,                    # node size
+          alpha = .75,                  # transparency
+          weight.method = "none",       # what to weight the nodes with: "degree", "indegree", "outdegree"
+          names = c("", ""),            # what to call the node color and node weight legends
+          node.group = NULL,            # what to color the nodes with
+          node.color = NULL,            # what colors to use for the node classes
+          node.alpha = NULL,            # transparency for nodes (inherits from alpha)
+          segment.alpha = NULL,         # transparency for links (inherits from alpha)
+          segment.color = "grey",       # default links are rgb(190, 190, 190)
+          segment.size  = .25,          # set to 0 to remove from plot
+          arrow.size = 0,               # set to 0 to remove from plot
+          label.nodes = FALSE,          # add vertex names in small print; can be a list of vertex names
+          quantize.weights = FALSE,     # break weights to quartiles
+          legend.position = "right",    # set to "none" to remove from plot
+          ...)                          # arguments passed to node labels with geom_text()
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
 
@@ -47,10 +47,10 @@ The `ggnet()` function returns a `ggplot` object in which nodes are represented 
 ![](example2.png)
 
     ggnet(net, 
-					size = 6, 
-					segment.size = 0, 
-					weight = "indegree", 
-					legend = "none") + 
+          size = 6, 
+          segment.size = 0, 
+          weight = "indegree", 
+          legend = "none") + 
       geom_density2d()
 
 The node colors are set through a group variable colored by a discrete palette. Node groups can be any vector containing as many items as there are nodes in the network. Hence, to verify that the dual structure shown above corresponds to the left-right party divide, we group nodes by a logical value and let the function select from the default `Set1` scheme to discriminate them:
@@ -59,22 +59,22 @@ The node colors are set through a group variable colored by a discrete palette. 
 
     rightwing = ifelse(mp.groups == "NI", NA, mp.groups %in% c("UDI", "UMP"))
     ggnet(net, 
-					node.group = rightwing, 
-					alpha = .25, 
-					name = "Rightwing group")
+          node.group = rightwing, 
+          alpha = .25, 
+          name = "Rightwing group")
 
 The function can also label all or a selection of nodes, identified by vertex names. See, for example, how party polarization is much less obvious when you look at a single individual's network (Nathalie Kosciusko-Morizet in this example, the rightwing candidate for the mayor of Paris in the next municipal election):
 
 ![](example4.png)
 
-		follows.nkm = ids$Twitter %in% who.follows(df, "nk_m")$followers
-		ggnet(net, 
-		      size = 6, 
-		      node.group = follows.nkm, 
-		      alpha = .25, 
-		      name = "Follows NKM",
-		      label = "nk_m", 
-		      color = "black")
+    follows.nkm = ids$Twitter %in% who.follows(df, "nk_m")$followers
+    ggnet(net, 
+          size = 6, 
+          node.group = follows.nkm, 
+          alpha = .25, 
+          name = "Follows NKM",
+          label = "nk_m", 
+          color = "black")
 
 The function contains a few examples with small random networks, as well as an example using the [city and service firms dataset][cs] that is [also available][pj] in Pajek. The visualization below uses the Kamada-Kawai placement algorithm with no node weighting, a few node labels and a default three-color scheme built from ColorBrewer's `Set1`:
 
@@ -83,16 +83,16 @@ The function contains a few examples with small random networks, as well as an e
 
 ![](http://f.hypotheses.org/wp-content/blogs.dir/42/files/2013/06/cities.png)
 
-		url = url("http://networkdata.ics.uci.edu/netdata/data/cities.RData")
-		print(load(url))
-		close(url)
-		type = network::get.vertex.attribute(cities, "type")
-		type = ifelse(grepl("City|Law", type), gsub("I+", "", type), "Firm")
-		ggnet(cities,
-		      mode = "kamadakawai",
-		      alpha = .2,
-		      node.group = type,
-		      label = c("Paris", "Beijing", "Chicago"),
-		      color = "darkred")
+    url = url("http://networkdata.ics.uci.edu/netdata/data/cities.RData")
+    print(load(url))
+    close(url)
+    type = network::get.vertex.attribute(cities, "type")
+    type = ifelse(grepl("City|Law", type), gsub("I+", "", type), "Firm")
+    ggnet(cities,
+          mode = "kamadakawai",
+          alpha = .2,
+          node.group = type,
+          label = c("Paris", "Beijing", "Chicago"),
+          color = "darkred")
 
 Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].
