@@ -64,4 +64,23 @@ The function can also label all or a selection of nodes, identified by vertex na
     ggnet(net, size = 6, node.group = nkm[[2]], alpha = .25, name = "Follows NKM",
           label = nkm[[1]], color = "black")
 
+The function contains a few examples with small random networks, as well as an example using the [city and service firms dataset][cs] that is [also available][pj] in Pajek. The visualization below uses the Kamada-Kawai placement algorithm with no node weighting, a few node labels and a default three-color scheme built from ColorBrewer's `Set1`:
+
+[cs]: http://networkdata.ics.uci.edu/netdata/html/cities.html
+[pj]: http://vlado.fmf.uni-lj.si/pub/networks/data/
+
+![](http://f.hypotheses.org/wp-content/blogs.dir/42/files/2013/06/cities.png)
+
+		url = url("http://networkdata.ics.uci.edu/netdata/data/cities.RData")
+		print(load(url))
+		close(url)
+		type = network::get.vertex.attribute(cities, "type")
+		type = ifelse(grepl("City|Law", type), gsub("I+", "", type), "Firm")
+		ggnet(cities,
+		      mode = "kamadakawai",
+		      alpha = .2,
+		      node.group = type,
+		      label = c("Paris", "Beijing", "Chicago"),
+		      color = "darkred")
+
 Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].
