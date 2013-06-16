@@ -46,7 +46,11 @@ The `ggnet()` function returns a `ggplot` object in which nodes are represented 
 
 ![](example2.png)
 
-    ggnet(net, size = 6, segment.size = 0, weight = "indegree", legend = "none") + 
+    ggnet(net, 
+					size = 6, 
+					segment.size = 0, 
+					weight = "indegree", 
+					legend = "none") + 
       geom_density2d()
 
 The node colors are set through a group variable colored by a discrete palette. Node groups can be any vector containing as many items as there are nodes in the network. Hence, to verify that the dual structure shown above corresponds to the left-right party divide, we group nodes by a logical value and let the function select from the default `Set1` scheme to discriminate them:
@@ -54,15 +58,23 @@ The node colors are set through a group variable colored by a discrete palette. 
 ![](example3.png)
 
     rightwing = ifelse(mp.groups == "NI", NA, mp.groups %in% c("UDI", "UMP"))
-    ggnet(net, node.group = rightwing, alpha = .25, name = "Rightwing group")
+    ggnet(net, 
+					node.group = rightwing, 
+					alpha = .25, 
+					name = "Rightwing group")
 
 The function can also label all or a selection of nodes, identified by vertex names. See, for example, how party polarization is much less obvious when you look at a single individual's network (Nathalie Kosciusko-Morizet in this example, the rightwing candidate for the mayor of Paris in the next municipal election):
 
 ![](example4.png)
 
-    nkm = list("nk_m", ids$Twitter %in% who.follows(df, "nk_m"))
-    ggnet(net, size = 6, node.group = nkm[[2]], alpha = .25, name = "Follows NKM",
-          label = nkm[[1]], color = "black")
+		follows.nkm = ids$Twitter %in% who.follows(df, "nk_m")$followers
+		ggnet(net, 
+		      size = 6, 
+		      node.group = follows.nkm, 
+		      alpha = .25, 
+		      name = "Follows NKM",
+		      label = "nk_m", 
+		      color = "black")
 
 The function contains a few examples with small random networks, as well as an example using the [city and service firms dataset][cs] that is [also available][pj] in Pajek. The visualization below uses the Kamada-Kawai placement algorithm with no node weighting, a few node labels and a default three-color scheme built from ColorBrewer's `Set1`:
 
