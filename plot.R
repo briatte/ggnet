@@ -12,8 +12,8 @@ net = network(df)
 mps = data.frame(Twitter = network.vertex.names(net))
 
 # colours
-mp.groups  = merge(mps, ids, by = "Twitter")$Groupe
-mp.colors  = brewer.pal(9, "Set1")[c(3, 1, 9, 6, 8, 5, 2)]
+mp.groups = merge(mps, ids, by = "Twitter")$Groupe
+mp.colors = brewer.pal(9, "Set1")[c(3, 1, 9, 6, 8, 5, 2)]
 
 # first example plot
 ggnet(net, 

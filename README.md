@@ -29,7 +29,10 @@ The functions builds on Moritz Marbach's [`plotg()`][mm] function and accepts th
           segment.size  = .25,          # set to 0 to remove from plot
           arrow.size = 0,               # set to 0 to remove from plot
           label.nodes = FALSE,          # add vertex names in small print; can be a list of vertex names
+          top8.nodes  = FALSE,          # color the top 8 nodes by weighting method with ColorBrewer Set1
+          trim.labels = TRUE,           # remove '@', 'http://' and 'www.' from vertex names
           quantize.weights = FALSE,     # break weights to quartiles
+          subset.threshold = 0,         # what nodes to exclude, based on weight.method ≥ subset
           legend.position = "right",    # set to "none" to remove from plot
           ...)                          # arguments passed to node labels with geom_text()
 
@@ -94,5 +97,13 @@ The function contains a few examples with small random networks, as well as an e
           node.group = type,
           label = c("Paris", "Beijing", "Chicago"),
           color = "darkred")
+
+Finally, some of the more experimental arguments like `subset.threshold` and `top8.nodes`, which highlight the most central nodes of a network, are shown in the [code][vo] for a [conference paper][bg] using online network data collected with [VOSON][vs]:
+
+![](https://github.com/briatte/afsp2013/raw/master/figure.png)
+
+[co]: https://github.com/briatte/afsp2013/blob/master/voson.R
+[bg]: https://github.com/briatte/afsp2013
+[vs]: http://voson.anu.edu.au/
 
 Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].

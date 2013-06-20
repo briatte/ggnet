@@ -16,10 +16,10 @@ who.is.followed.by <- function(df, x) {
   return(list(node = x, follows = as.character(f)))
 }
 # examples
-x = who.is.followed.by(df, "JacquesBompard")
-str(x)
-y = who.is.followed.by(df, "Marion_M_Le_Pen")
-str(y)
+# x = who.is.followed.by(df, "JacquesBompard")
+# str(x)
+# y = who.is.followed.by(df, "Marion_M_Le_Pen")
+# str(y)
 
 #
 # who follows...
@@ -30,10 +30,10 @@ who.follows <- function(df, x) {
   return(list(node = x, followers = as.character(f)))
 }
 # examples
-x = who.follows(df, "nk_m")
-str(x)
-y = who.follows(df, "marclefur")
-str(y)
+# x = who.follows(df, "nk_m")
+# str(x)
+# y = who.follows(df, "marclefur")
+# str(y)
 
 #
 # within-group indegree
@@ -45,8 +45,8 @@ top.group.inlinks <- function(df, x) {
   return(head(f[order(f$Freq, decreasing = TRUE), ]))
 }
 # examples
-top.group.inlinks(df, "SRC")
-lapply(levels(ids$Groupe), top.group.inlinks, df = df)
+# top.group.inlinks(df, "SRC")
+# lapply(levels(ids$Groupe), top.group.inlinks, df = df)
 
 #
 # within-group outdegree
@@ -58,5 +58,5 @@ top.group.outlinks <- function(df, x) {
   return(head(f[order(f$Freq, decreasing = TRUE), ]))
 }
 # examples
-top.group.outlinks(df, "Ecolo")
-lapply(levels(ids$Groupe), top.group.outlinks, df = df)
+# top.group.outlinks(df, "Ecolo")
+# lapply(levels(ids$Groupe), top.group.outlinks, df = df)
