@@ -203,7 +203,7 @@ ggnet <- function(net, # an object of class network
                         guide = guide_legend(override.aes = list(size = sqrt(size)))) 
   
   # add text labels
-  pnet <- pnet + geom_text(aes(label = id), ...)
+  if(unique(plotcord$id) != "") pnet <- pnet + geom_text(aes(label = id), ...)
   
   # finalize: remove grid, axes and scales
   pnet <- pnet +
