@@ -89,7 +89,7 @@ ggnet <- function(net, # an object of class network
   # subset
   if(subset.threshold > 0)
     network::delete.vertices(net,
-                             which(degree(net, 
+                             which(sna::degree(net, 
                                           cmode = weight) < subset.threshold))
   
   # get sociomatrix
