@@ -105,5 +105,6 @@ Finally, some of the more experimental arguments like `subset.threshold` and `to
 [co]: https://github.com/briatte/afsp2013/blob/master/voson.R
 [bg]: https://github.com/briatte/afsp2013
 [vs]: http://voson.anu.edu.au/
+[vo]: https://github.com/briatte/afsp2013/blob/master/voson.R
 
 Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].
