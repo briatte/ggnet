@@ -113,7 +113,7 @@ Pedro Jordano has [suggested][issue-3] adding support for bipartite networks. Wh
 
 ![](https://raw.github.com/briatte/neta/master/plots/bipartite.ggnet.png)
 
-[issue-3]: issues/3
+[issue-3]: https://github.com/briatte/ggnet/issues/3
 [neta]: https://github.com/briatte/neta
 
 ## Credits
