@@ -113,6 +113,16 @@ Pedro Jordano has [suggested][issue-3] adding support for bipartite networks. Wh
 
 ![](https://raw.github.com/briatte/neta/master/plots/bipartite.ggnet.png)
 
+    # manipulate vertex labels
+    i = network.vertex.names(net)
+    # remove labels from actor nodes
+    i[1:min(which(!is.na(as.numeric(i)))) - 1] = NA
+    # mock bipartite network
+    ggnet(net, size = 0, node.group = is.na(i)) + 
+      geom_point(alpha = .5, aes(size = ifelse(is.na(i), 1, 3))) + 
+      scale_size_area("", max_size = 6) +
+      theme(legend.position = "none")
+
 [issue-3]: https://github.com/briatte/ggnet/issues/3
 [neta]: https://github.com/briatte/neta
 
