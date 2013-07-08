@@ -190,8 +190,8 @@ ggnet <- function(net, # an object of class network
   }
   
   # default colors
-  n = length(na.omit(unique(node.group)))
-  if(length(node.color) != n &!is.null(node.group)) {
+  n = length(unique(na.omit(node.group)))
+  if(length(node.color) != n & !is.null(node.group)) {
     warning("Node groups and node colors are of unequal length; using default colors.")
     if(n > 0 & n < 10) node.color = brewer.pal(9, "Set1")[1:n]
   }

@@ -1,4 +1,4 @@
-# ggnet: simple network plots with ggplot2
+## ggnet: simple network plots with ggplot2
 
 ![French MPs on Twitter](example1.png)
 
@@ -11,7 +11,7 @@ A plot of Twitter connexions between 339 French MPs currently in office, colored
 [fn]: functions.R
 [pb]: http://politbistro.hypotheses.org/1752
 
-# Syntax
+## Syntax
 
 The functions builds on Moritz Marbach's [`plotg()`][mm] function and accepts the following arguments:
 
@@ -43,7 +43,7 @@ The function needs an object of class `network` and automatically handles the co
 [ig]: http://intergraph.r-forge.r-project.org/
 [gg]: https://github.com/ggobi/ggally
 
-# Options
+## Options
 
 The `ggnet()` function returns a `ggplot` object in which nodes are represented by points that can be colored and/or weighted using proportional scaling. The network above can therefore be set to look like this when the segments are not drawn and the nodes are weighted by indegree and left uncolored:
 
@@ -106,5 +106,16 @@ Finally, some of the more experimental arguments like `subset.threshold` and `to
 [bg]: https://github.com/briatte/afsp2013
 [vs]: http://voson.anu.edu.au/
 [vo]: https://github.com/briatte/afsp2013/blob/master/voson.R
+
+## Improvements
+
+Pedro Jordano has [suggested][issue-3] adding support for bipartite networks. While `ggnet` draws only "simple" one-mode networks at the moment, it can mimick two-mode networks, as shown in this example with [amendment co-sponsorships][neta] in the lower chamber of the French Parliament:
+
+![](https://raw.github.com/briatte/neta/master/plots/bipartite.ggnet.png)
+
+[issue-3]: issues/3
+[neta]: https://github.com/briatte/neta
+
+## Credits
 
 Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].
