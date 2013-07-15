@@ -200,11 +200,11 @@ ggnet <- function(net, # an object of class network
   if(!is.null(node.group)) pnet <- pnet + 
     aes(colour = group) +
     scale_colour_manual(names[1], values = node.color,
-                        guide = guide_legend(override.aes = list(size = sqrt(size)))) 
+                        guide = guide_legend(override.aes = list(size = 1 + sqrt(size)))) 
   
   # add text labels
   if(length(unique(plotcord$id)) > 1 | unique(plotcord$id)[1] != "")
-    pnet <- pnet + geom_text(aes(label = id), ...)
+    pnet <- pnet + geom_text(aes(label = id), size = 1 + sqrt(size), ...)
   
   # finalize: remove grid, axes and scales
   pnet <- pnet +

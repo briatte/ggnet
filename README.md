@@ -111,7 +111,7 @@ Finally, some of the more experimental arguments like `subset.threshold` and `to
 
 Pedro Jordano has [suggested][issue-3] adding support for bipartite networks. While `ggnet` draws only "simple" one-mode networks at the moment, it can mimick two-mode networks, as shown in this example with [amendment co-sponsorships][neta] in the lower chamber of the French Parliament:
 
-![](https://raw.github.com/briatte/neta/master/plots/bipartite.ggnet.png)
+![](example5.png)
 
     # manipulate vertex labels
     i = network.vertex.names(net)
