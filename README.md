@@ -19,7 +19,7 @@ A plot of Twitter connexions between 339 French MPs currently in office, colored
 
 ## HOWTO
 
-The functions builds on Moritz Marbach's [`plotg()`][mm] function and accepts the following arguments:
+The functions builds on [Moritz Marbach][mm-gh]'s [`plotg()`][mm] function and accepts the following arguments:
 
     ggnet(net,                          # an object of class network
           mode = "fruchtermanreingold", # placement algorithm
@@ -43,6 +43,7 @@ The functions builds on Moritz Marbach's [`plotg()`][mm] function and accepts th
           ...)                          # arguments passed to node labels with geom_text()
 
 [mm]: http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/
+[mm-gh]: https://github.com/sumtxt
 
 The function needs an object of class `network` and automatically handles the conversion of objects of class `igraph` by calling the [`intergraph`][ig] package. It supports all placement algorithms available through the `sna` package. The code has been submitted to the [`GGally`][gg] package.
 
