@@ -1,5 +1,11 @@
 ## ggnet: simple network plots with ggplot2
 
+This function is part of the [GGally][ggally] package. Install from GitHub:
+
+    devtools::install_github("ggally", "ggobi")
+
+[ggally]: https://github.com/ggobi/ggally
+
 ![French MPs on Twitter](example1.png)
 
 A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. See [`functions.R`][fn] for network exploration routines. Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. My [blog post at Polit'bistro][pb] has more details.
@@ -124,7 +130,7 @@ Finally, Pedro Jordano has [suggested][issue-3] adding support for bipartite net
 [issue-3]: https://github.com/briatte/ggnet/issues/3
 [neta]: https://github.com/briatte/neta
 
-(There is far better code in the [dedicated repository][neta] for this example.)
+(The code snippet above is a practical hack. There is far better code to produce authentic bipartite plots out of sparse matrix objects in the [dedicated repository][neta] for this example.)
 
 ## CREDITS
 
