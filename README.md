@@ -11,7 +11,7 @@ A plot of Twitter connexions between 339 French MPs currently in office, colored
 [fn]: functions.R
 [pb]: http://politbistro.hypotheses.org/1752
 
-## Syntax
+## HOWTO
 
 The functions builds on Moritz Marbach's [`plotg()`][mm] function and accepts the following arguments:
 
@@ -43,7 +43,7 @@ The function needs an object of class `network` and automatically handles the co
 [ig]: http://intergraph.r-forge.r-project.org/
 [gg]: https://github.com/ggobi/ggally
 
-## Options
+## DEMO
 
 The `ggnet()` function returns a `ggplot` object in which nodes are represented by points that can be colored and/or weighted using proportional scaling. The network above can therefore be set to look like this when the segments are not drawn and the nodes are weighted by indegree and left uncolored:
 
@@ -98,7 +98,7 @@ The function contains a few examples with small random networks, as well as an e
           label = c("Paris", "Beijing", "Chicago"),
           color = "darkred")
 
-Finally, some of the more experimental arguments like `subset.threshold` and `top8.nodes`, which highlight the most central nodes of a network, are shown in the [code][vo] for a [conference paper][bg] using online network data collected with [VOSON][vs]:
+Some of the more experimental arguments like `subset.threshold` and `top8.nodes`, which highlight the most central nodes of a network, are shown in the [code][vo] for a [conference paper][bg] using online network data collected with [VOSON][vs]:
 
 ![](https://github.com/briatte/afsp2013/raw/master/figure.png)
 
@@ -107,9 +107,7 @@ Finally, some of the more experimental arguments like `subset.threshold` and `to
 [vs]: http://voson.anu.edu.au/
 [vo]: https://github.com/briatte/afsp2013/blob/master/voson.R
 
-## Improvements
-
-Pedro Jordano has [suggested][issue-3] adding support for bipartite networks. While `ggnet` draws only "simple" one-mode networks at the moment, it can mimick two-mode networks, as shown in this example with [amendment co-sponsorships][neta] in the lower chamber of the French Parliament:
+Finally, Pedro Jordano has [suggested][issue-3] adding support for bipartite networks. While `ggnet` draws only "simple" one-mode networks at the moment, it can also mimick two-mode networks, as shown in [this example][neta], using amendment co-sponsorships in the lower chamber of the French Parliament:
 
 ![](example5.png)
 
@@ -126,6 +124,8 @@ Pedro Jordano has [suggested][issue-3] adding support for bipartite networks. Wh
 [issue-3]: https://github.com/briatte/ggnet/issues/3
 [neta]: https://github.com/briatte/neta
 
-## Credits
+(There is far better code in the [dedicated repository][neta] for this example.)
+
+## CREDITS
 
 Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].
