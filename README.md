@@ -1,7 +1,8 @@
-## ggnet: simple network plots with ggplot2
+# ggnet: simple network plots with ggplot2
 
-This function is part of the [GGally][ggally] package. Install from GitHub:
+This function is part of the [GGally][ggally] package. Install it from CRAN or from GitHub:
 
+    install.packages("GGally", type = "source")
     devtools::install_github("ggally", "ggobi")
 
 [ggally]: https://github.com/ggobi/ggally
