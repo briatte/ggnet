@@ -2,8 +2,8 @@
 # load data
 #
 
-ids = read.csv("nodes.txt", sep = "\t")
+ids = read.csv("nodes.tsv", sep = "\t")
 names(ids)
 
-df = read.csv("network.txt", sep = "\t")
+df = read.csv("network.tsv", sep = "\t")
 names(df)
