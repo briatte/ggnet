@@ -7,9 +7,11 @@ This function is part of the [GGally][ggally] package. Install it from CRAN or f
 
 [ggally]: https://github.com/ggobi/ggally
 
+Example plot of Twitter unweighted network between 339 French MPs currently in office, colored by parliamentary groups and weighted by degree quartile:
+
 ![French MPs on Twitter](example1.png)
 
-A plot of Twitter connexions between 339 French MPs currently in office, colored by parliamentary groups and quartile-weighted by degree. See [`functions.R`][fn] for network exploration routines. Data assembled by scraping a few web sources in May 2013 with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc]. My [blog post at Polit'bistro][pb] has more details.
+MP Twitter accounts data assembled by scraping a few web sources in May 2013, with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc] (see also his [code to scrape a different source](http://cpc.regardscitoyens.org/trac/browser/cpc/trunk/project/batch/depute/get_twitter_accounts.sh) of MP Twitter accounts). See [`functions.R`][fn] for network exploration helpers and my [blog post at Polit'bistro][pb] for more details.
 
 [bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
 [jc]: http://laspic.hypotheses.org/
@@ -115,7 +117,7 @@ Some of the more experimental arguments like `subset.threshold` and `top8.nodes`
 [vs]: http://voson.anu.edu.au/
 [vo]: https://github.com/briatte/afsp2013/blob/master/voson.R
 
-Finally, Pedro Jordano has [suggested][issue-3] adding support for bipartite networks. While `ggnet` draws only "simple" one-mode networks at the moment, it can also mimick two-mode networks, as shown in [this example][neta], using amendment co-sponsorships in the lower chamber of the French Parliament:
+Finally, Pedro Jordano has [suggested][issue-3] adding support for [bipartite networks](https://github.com/pedroj/bipartite_plots), which `ggnet` can mimick, as shown in [this example][neta], using amendment co-sponsorships in the lower chamber of the French Parliament:
 
 ![](example5.png)
 
