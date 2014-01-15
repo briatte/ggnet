@@ -35,6 +35,7 @@ The functions builds on [Moritz Marbach][mm-gh]'s [`plotg()`][mm] function and a
           node.alpha = NULL,            # transparency for nodes (inherits from alpha)
           segment.alpha = NULL,         # transparency for links (inherits from alpha)
           segment.color = "grey",       # default links are rgb(190, 190, 190)
+          segment.label = NULL,         # label network at mid-edges
           segment.size  = .25,          # set to 0 to remove from plot
           arrow.size = 0,               # set to 0 to remove from plot
           label.nodes = FALSE,          # add vertex names in small print; can be a list of vertex names
@@ -99,7 +100,7 @@ The function contains a few examples with small random networks, as well as an e
     url = url("http://networkdata.ics.uci.edu/netdata/data/cities.RData")
     print(load(url))
     close(url)
-    type = network::get.vertex.attribute(cities, "type")
+    type = cities %v% "type"
     type = ifelse(grepl("City|Law", type), gsub("I+", "", type), "Firm")
     ggnet(cities,
           mode = "kamadakawai",
