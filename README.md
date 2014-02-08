@@ -13,10 +13,8 @@ Example plot of Twitter unweighted network between 339 French MPs currently in o
 
 MP Twitter accounts data assembled by scraping a few web sources in May 2013, with the help of [Jonathan Chibois][jc] and Benjamin Ooghe-Tabanou from [Regards Citoyens][rc] (see also his [code to scrape a different source](http://cpc.regardscitoyens.org/trac/browser/cpc/trunk/project/batch/depute/get_twitter_accounts.sh) of MP Twitter accounts). See [`functions.R`][fn] for network exploration helpers and my [blog post at Polit'bistro][pb] for more details.
 
-[bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
 [jc]: http://laspic.hypotheses.org/
 [rc]: http://www.regardscitoyens.org/
-[eg]: http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes
 [fn]: functions.R
 [pb]: http://politbistro.hypotheses.org/1752
 
@@ -140,3 +138,6 @@ Finally, Pedro Jordano has [suggested][issue-3] adding support for [bipartite ne
 ## CREDITS
 
 Inspired by [Baptiste Coulmont][bc] and [Ewen Gallic][eg].
+
+[bc]: http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s
+[eg]: http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes
