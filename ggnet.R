@@ -123,9 +123,17 @@ ggnet <- function(
   placement <- paste0("gplot.layout.", mode)
   if(!exists(placement)) stop("Unsupported placement method.")
 
-  plotcord <- do.call(placement, list(m, layout.par))
-  plotcord <- data.frame(plotcord)
-  colnames(plotcord) = c("X1", "X2")
+  if(all(c("lat", "lon") %in% list.vertex.attributes(net))) {
+      plotcord = data.frame(X1 = as.numeric(net %v% "lon"), X2 = as.numeric(net %v% "lat"))
+      # remove outliers
+      plotcord$X1[ abs(plotcord$X1) > quantile(abs(plotcord$X1), .9, na.rm = TRUE) ] = NA
+      plotcord$X2[ is.na(plotcord$X1) | abs(plotcord$X2) > quantile(abs(plotcord$X2), .9, na.rm = TRUE) ] = NA
+      plotcord$X1[ is.na(plotcord$X2) ] = NA
+    } else {
+      plotcord <- do.call(placement, list(m, layout.par))
+      plotcord <- data.frame(plotcord)
+      colnames(plotcord) = c("X1", "X2")
+    }
 
   # get edgelist
   edglist <- as.matrix.network.edgelist(net)
