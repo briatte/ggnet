@@ -27,6 +27,8 @@ if(getRversion() >= "2.15.1") {
 #' @param trim.labels removes '@@', 'http://', 'www.' and the ending '/' from vertex names. Cleans up labels for website and Twitter networks. Defaults to \code{TRUE}.
 #' @param quantize.weights break node weights to quartiles. Fails when quartiles do not uniquely identify nodes.
 #' @param subset.threshold delete nodes prior to plotting, based on \code{weight.method} < \code{subset.threshold}. If \code{weight.method} is unspecified, total degree (Freeman's measure) is used. Defaults to 0 (no subsetting).
+#' @param geo.outliers when \code{mode} is set to \code{"geo"}, trim geographic
+#' outliers (10% of most distant nodes). Defaults to \code{TRUE}.
 #' @param legend.position location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
 #' @param ... other arguments supplied to geom_text for the node labels. Arguments pertaining to the title or other items can be achieved through ggplot2 methods.
 #' @seealso \code{\link[sna]{gplot}} in the \link[sna:gplot]{sna} package
@@ -86,6 +88,7 @@ ggnet <- function(
   trim.labels      = TRUE,      # clean vertex names
   quantize.weights = FALSE,     # break weights to quartiles
   subset.threshold = 0,         # what nodes to exclude, based on weight.method ≥ subset
+  geo.outliers = TRUE,          # when mode = "geo", trim geographic outliers
   legend.position  = "right",   # set to "none" to remove from plot
   ...                           # passed to geom_text for node labels
 ){
@@ -131,9 +134,11 @@ ggnet <- function(
       )
 
     # remove outliers
-    plotcord$X1[ abs(plotcord$X1) > quantile(abs(plotcord$X1), .9, na.rm = TRUE) ] = NA
-    plotcord$X2[ is.na(plotcord$X1) | abs(plotcord$X2) > quantile(abs(plotcord$X2), .9, na.rm = TRUE) ] = NA
-    plotcord$X1[ is.na(plotcord$X2) ] = NA
+    if(geo.outliers) {
+      plotcord$X1[ abs(plotcord$X1) > quantile(abs(plotcord$X1), .9, na.rm = TRUE) ] = NA
+      plotcord$X2[ is.na(plotcord$X1) | abs(plotcord$X2) > quantile(abs(plotcord$X2), .9, na.rm = TRUE) ] = NA
+      plotcord$X1[ is.na(plotcord$X2) ] = NA
+    }
 
   } else {
     
