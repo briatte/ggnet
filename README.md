@@ -15,7 +15,7 @@ devtools::install_github("ggobi/ggally")
 
 ## VIGNETTE
 
-The `ggnet2` function is fully documented in [this vignette](/).
+The `ggnet2` function is fully documented in [this vignette](https://briatte.github.io/ggnet/).
 
 ## THANKS
 
