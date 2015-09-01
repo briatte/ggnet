@@ -1,6 +1,7 @@
 if(getRversion() >= "2.15.1") {
-  utils::globalVariables(c("X1", "X2", "Y1", "Y2", "group"))
+  utils::globalVariables(c("X1", "X2", "Y1", "Y2", "group", "id", "midX", "midY"))
 }
+
 
 #' ggnet - Plot a network with ggplot2
 #'
@@ -23,20 +24,19 @@ if(getRversion() >= "2.15.1") {
 #' @param segment.label labels for the vertex links at mid-edges. Label size will be set to 1 / \code{segment.size}, and label alpha will inherit from \code{alpha}.
 #' @param arrow.size size of the vertex arrows for directed network plotting, in centimeters. Defaults to 0.
 #' @param label.nodes label nodes with their vertex names attribute. If set to \code{TRUE}, all nodes are labelled. Also accepts a vector of character strings to match with vertex names.
+#' @param label.size size of the labels.  Defaults to \code{size / 2}.
 #' @param top8.nodes use the top 8 nodes as node groups, colored with \code{"Set1"}. The rest of the network will be plotted as the ninth (grey) group. Experimental.
 #' @param trim.labels removes '@@', 'http://', 'www.' and the ending '/' from vertex names. Cleans up labels for website and Twitter networks. Defaults to \code{TRUE}.
 #' @param quantize.weights break node weights to quartiles. Fails when quartiles do not uniquely identify nodes.
 #' @param subset.threshold delete nodes prior to plotting, based on \code{weight.method} < \code{subset.threshold}. If \code{weight.method} is unspecified, total degree (Freeman's measure) is used. Defaults to 0 (no subsetting).
-#' @param geo.outliers when \code{mode} is set to \code{"geo"}, trim geographic
-#' outliers (10% of most distant nodes). Defaults to \code{TRUE}.
 #' @param legend.position location of the captions for node colors and weights. Accepts all positions supported by ggplot2 themes. Defaults to "right".
 #' @param ... other arguments supplied to geom_text for the node labels. Arguments pertaining to the title or other items can be achieved through ggplot2 methods.
 #' @seealso \code{\link[sna]{gplot}} in the \link[sna:gplot]{sna} package
-#' @author Moritz Marbach \email{mmarbach@@mail.uni-mannheim.de} and Francois Briatte \email{f.briatte@@ed.ac.uk}
-#' @details The \code{weight.method} argument produces visually scaled nodes that are proportionally sized to their unweighted degree. To compute weighted centrality or degree measures, see Tore Opsahl's \code[tnet]{tnet} package.
+#' @author Moritz Marbach \email{mmarbach@@mail.uni-mannheim.de} and Francois Briatte \email{f.briatte@@gmail.com}
+#' @details The \code{weight.method} argument produces visually scaled nodes that are proportionally sized to their unweighted degree. To compute weighted centrality or degree measures, see Tore Opsahl's \code{\link[tnet]{tnet}} package.
 #' @importFrom grid arrow
 #' @examples
-#' require(network)
+#' if(require(network)){
 #' # make toy random network
 #' x                  <- 10
 #' ndyads             <- x * (x - 1)
@@ -45,26 +45,27 @@ if(getRversion() >= "2.15.1") {
 #' dimnames(nw.mat)   <- list(1:x, 1:x)
 #' nw.mat[row(nw.mat) != col(nw.mat)] <- runif(ndyads) < density
 #' nw.mat
-#' rnd <- network(nw.mat)
+#' rnd <- network::network(nw.mat)
 #' rnd
 #'
 #' # random network
-#' ggnet(rnd, label = TRUE, alpha = 1, color = "white", segment.color = "grey10")
+#' pRnd <- ggnet(rnd, label.nodes = TRUE, alpha = 1, color = "white", segment.color = "grey10")
+#' # pRnd
 #'
 #' # random groups
 #' category = LETTERS[rbinom(x, 4, .5)]
-#' ggnet(rnd, label = TRUE, color = "white", segment.color = "grey10", node.group = category)
+#' ggnet(rnd, label.nodes = TRUE, color = "white", segment.color = "grey10", node.group = category)
 #'
 #' # city and service firms data from the UCIrvine Network Data Repository
-#' url = url("http://networkdata.ics.uci.edu/netdata/data/cities.RData")
-#' print(load(url))
-#' close(url)
+#' data(cityServiceFirms, package = "GGally")
 #'
 #' # plot cities, firms and law firms
-#' type = cities %v% "type"
+#' type = cityServiceFirms %v% "type"
 #' type = ifelse(grepl("City|Law", type), gsub("I+", "", type), "Firm")
-#' ggnet(cities, mode = "kamadakawai", alpha = .2, node.group = type,
-#'       label = c("Paris", "Beijing", "Chicago"), color = "darkred")
+#' pRnd <- ggnet(cityServiceFirms, mode = "kamadakawai", alpha = .2, node.group = type,
+#'       label.nodes = c("Paris", "Beijing", "Chicago"), color = "darkred")
+#' # pRnd
+#' }
 
 ggnet <- function(
   net,                          # an object of class network
@@ -88,18 +89,20 @@ ggnet <- function(
   trim.labels      = TRUE,      # clean vertex names
   quantize.weights = FALSE,     # break weights to quartiles
   subset.threshold = 0,         # what nodes to exclude, based on weight.method ≥ subset
-  geo.outliers = TRUE,          # when mode = "geo", trim geographic outliers
   legend.position  = "right",   # set to "none" to remove from plot
   ...                           # passed to geom_text for node labels
 ){
-  require(intergraph   , quietly = TRUE) # igraph conversion
-  require(network      , quietly = TRUE) # vertex attributes
-  require(RColorBrewer , quietly = TRUE) # default colors
-  require(sna          , quietly = TRUE) # placement algorithm
+
+
+  require_pkgs(c("intergraph", "network", "RColorBrewer", "sna"))
+  # intergraph   # igraph conversion
+  # network      # vertex attributes
+  # RColorBrewer # default colors
+  # sna          # placement algorithm
 
   # support for igraph objects
   if(class(net) == "igraph") {
-    net = asNetwork(net)
+    net = intergraph::asNetwork(net)
   }
   if(class(net) != "network")
     stop("net must be a network object of class 'network' or 'igraph'")
@@ -118,27 +121,27 @@ ggnet <- function(
   inherit <- function(x) ifelse(is.null(x), alpha, x)
   # subset
   if(subset.threshold > 0) {
-    x = which(sna::degree(net, cmode = weight) < subset.threshold)
-    network::delete.vertices(net, x)
-    node.group = node.group[ -x ]
+    network::delete.vertices(
+      net,
+      which(sna::degree(net, cmode = weight) < subset.threshold))
   }
 
   # get sociomatrix
-  m <- as.matrix.network.adjacency(net)
+  m <- network::as.matrix.network.adjacency(net)
+  v_function = get("%v%", envir = as.environment("package:network"))
 
   if(mode == "geo" & all(c("lat", "lon") %in% vattr)) {
 
+
     plotcord = data.frame(
-      X1 = as.numeric(net %v% "lon"),
-      X2 = as.numeric(net %v% "lat")
+      X1 = as.numeric(v_function(net, "lon")),
+      X2 = as.numeric(v_function(net, "lat"))
       )
 
     # remove outliers
-    if(geo.outliers) {
-      plotcord$X1[ abs(plotcord$X1) > quantile(abs(plotcord$X1), .9, na.rm = TRUE) ] = NA
-      plotcord$X2[ is.na(plotcord$X1) | abs(plotcord$X2) > quantile(abs(plotcord$X2), .9, na.rm = TRUE) ] = NA
-      plotcord$X1[ is.na(plotcord$X2) ] = NA
-    }
+    plotcord$X1[ abs(plotcord$X1) > quantile(abs(plotcord$X1), .9, na.rm = TRUE) ] = NA
+    plotcord$X2[ is.na(plotcord$X1) | abs(plotcord$X2) > quantile(abs(plotcord$X2), .9, na.rm = TRUE) ] = NA
+    plotcord$X1[ is.na(plotcord$X2) ] = NA
 
   } else {
 
@@ -153,7 +156,7 @@ ggnet <- function(
   }
 
   # get edgelist
-  edglist <- as.matrix.network.edgelist(net)
+  edglist <- network::as.matrix.network.edgelist(net)
   edges   <- data.frame(plotcord[edglist[, 1], ], plotcord[edglist[, 2], ])
 
   # get node groups
@@ -164,21 +167,21 @@ ggnet <- function(
 
   # get node weights
   degrees <- data.frame(
-    id        = network.vertex.names(net),
+    id        = network::network.vertex.names(net),
     indegree  = sapply(net$iel, length),
     outdegree = sapply(net$oel, length)
   )
   degrees$freeman <- with(degrees, indegree + outdegree)
 
   # custom weights: vector of weights
-  if(length(weight.method) == network.size(net)) {
+  if(length(weight.method) == network::network.size(net)) {
     degrees$user = weight.method
     weight = "user"
   }
 
   # custom weights: vertex attribute
   if(weight.method %in% vattr) {
-    degrees$user = net %v% weight.method
+    degrees$user = v_function(net, weight.method)
     names(degrees)[ ncol(degrees) ] = weight.method
     weight = weight.method
   }
@@ -196,7 +199,7 @@ ggnet <- function(
     plotcord$group       = as.character(degrees$id)
     plotcord$group[-top] = paste0("(", weight, " > ", subset.threshold - 1, ")")
     node.group           = plotcord$group
-    node.color           = brewer.pal(9, "Set1")[c(9, 1:8)]
+    node.color           = RColorBrewer::brewer.pal(9, "Set1")[c(9, 1:8)]
   }
 
   colnames(edges) <- c("X1", "Y1", "X2", "Y2")
@@ -290,7 +293,7 @@ ggnet <- function(
   if(length(node.color) != n & !is.null(node.group)) {
     warning("Node groups and node colors are of unequal length; using default colors.")
     if(n > 0 & n < 10) {
-      node.color = brewer.pal(9, "Set1")[1:n]
+      node.color = RColorBrewer::brewer.pal(9, "Set1")[1:n]
     }
   }
 
