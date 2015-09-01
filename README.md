@@ -1,19 +1,21 @@
 # ggnet: quick network visualization with ggplot2
 
+![](demo.jpg)
+
 This repository contains the latest versions of the `ggnet` and `ggnet2` functions, which allow to visualize networks as [`ggplot2`](http://ggplot2.org/) objects.
 
 ## INSTALL
 
 These functions are part of the __GGally__ package. Install it from CRAN or from GitHub:
 
-    install.packages("GGally")
-    devtools::install_github("ggobi/ggally")
+```{r}
+install.packages("GGally")
+devtools::install_github("ggobi/ggally")
+```
 
 ## VIGNETTE
 
 The `ggnet2` function is fully documented in [this vignette](/).
-
-![](demo.jpg)
 
 ## THANKS
 
