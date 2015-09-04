@@ -263,7 +263,7 @@ ggnet2(net, alpha = "phono")
 
 # Example (2): Bipartite network
 
-> The functionalities described in this section were inspired by a discussion over bipartite graphs with [Pedro Jordano](https://github.com/pedroj), who has written [more advanced code](https://pedroj.github.io/bipartite_plots/) to handle bipartite graphs with ggplot2.
+__Note:__ the functionalities described in this section were inspired by a discussion over bipartite graphs with [Pedro Jordano](https://github.com/pedroj), who has written [more advanced code](https://pedroj.github.io/bipartite_plots/) to handle bipartite graphs with ggplot2.
 
 `ggnet2` automatically detects two-mode graphs from their `bipartite` network attribute. To simplify the plotting of each mode, it understands arguments of the form `[alpha, color, shape, size] = "mode"`, which will mark the primary mode as `"actor"` and the secondary mode as `"event"`.
 
