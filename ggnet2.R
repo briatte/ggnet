@@ -1,20 +1,19 @@
 #' ggnet2 - Plot a network with ggplot2
 #'
-#' Function for making a network plot from an object of class
-#' \code{\link[network]{network}} or \code{\link[igraph]{igraph}},
-#' using ggplot2, with additional control over graphical parameters that are not
-#' supported by the \code{\link{ggnet}} function. Please visit
-#' \url{http://github.com/briatte/ggnet} for the latest development of ggnet2,
-#' and \url{https://briatte.github.io/ggnet} for a vignette that contains many
-#' examples and explanations.
+#' Function for plotting network objects using ggplot2, with additional control
+#' over graphical parameters that are not supported by the \code{\link{ggnet}}
+#' function. Please visit \url{http://github.com/briatte/ggnet} for the latest
+#' version of ggnet2, and \url{https://briatte.github.io/ggnet} for a vignette
+#' that contains many examples and explanations.
 #'
 #' @export
 #' @param net an object of class \code{\link[network]{network}}, or any object
 #' that can be coerced to this class, such as an adjacency or incidence matrix,
 #' or an edge list: see \link[network]{edgeset.constructors} and
 #' \link[network]{network} for details. If the object is of class
-#' \code{\link[igraph]{igraph}} and the \code{\link[intergraph]{intergraph}}
-#' package is installed, it will be used to convert the object: see
+#' \code{\link[igraph:igraph-package]{igraph}} and the
+#' \code{\link[intergraph:intergraph-package]{intergraph}} package is installed,
+#' it will be used to convert the object: see
 #' \code{\link[intergraph]{asNetwork}} for details.
 #' @param mode a placement method from those provided in the
 #' \code{\link[sna]{sna}} package: see \link[sna:gplot.layout]{gplot.layout} for
@@ -156,13 +155,14 @@
 #' @param ... other arguments passed to the \code{geom_text} object that sets
 #' the node labels: see \code{\link[ggplot2]{geom_text}} for details.
 #' @seealso \code{\link{ggnet}} in this package,
-#' \code{\link[sna]{gplot}} in the \code{\link{sna}} package, and
-#' \code{\link[network]{plot.network}} in the \code{\link{network}} package
+#' \code{\link[sna]{gplot}} in the \code{\link[sna]{sna}} package, and
+#' \code{\link[network]{plot.network}} in the \code{\link[network]{network}}
+#' package
 #' @author Moritz Marbach and Francois Briatte
 #' @details The degree centrality measures that can be produced through the
 #' \code{size} argument will take the directedness of the network into account,
 #' but will be unweighted. To compute weighted network measures, see the
-#' \code{\link{tnet}} package by Tore Opsahl.
+#' \code{\link[tnet:tnet-package]{tnet}} package by Tore Opsahl.
 #' @importFrom grid arrow
 #' @examples
 #' if(require(network)) {
@@ -817,9 +817,9 @@ ggnet2 <- function(
       color  = edge.color,
       alpha  = edge.alpha,
       lty    = edge.lty,
-      arrow  = arrow(
+      arrow  = grid::arrow(
         type   = arrow.type,
-        length = unit(arrow.size, "pt")
+        length = grid::unit(arrow.size, "pt")
       )
     )
 
@@ -880,22 +880,11 @@ ggnet2 <- function(
 
   } else {
 
-    y = set_name(node.alpha, alpha.legend)
-
-    if (!is.null(alpha.palette)) {
-
-      p = p +
-        scale_alpha_manual(y,
-                           values = alpha.palette,
-                           breaks = names(alpha.palette),
-                           guide = guide_legend(override.aes = x))
-
-    } else {
-
-      p = p +
-        scale_alpha_discrete(y, guide = guide_legend(override.aes = x))
-
-    }
+    p = p +
+      scale_alpha_manual(set_name(node.alpha, alpha.legend),
+                         values = alpha.palette,
+                         breaks = names(alpha.palette),
+                         guide = guide_legend(override.aes = x))
 
   }
 
@@ -931,23 +920,11 @@ ggnet2 <- function(
 
   } else {
 
-    y = set_name(node.shape, shape.legend)
-
-    if (!is.null(shape.palette)) {
-
-      p = p +
-        scale_shape_manual(y,
-                           values = shape.palette,
-                           breaks = names(shape.palette),
-                           guide = guide_legend(override.aes = x))
-
-    } else {
-
-      p = p +
-        scale_shape_discrete(y, guide = guide_legend(override.aes = x))
-
-    }
-
+    p = p +
+      scale_shape_manual(set_name(node.shape, shape.legend),
+                         values = shape.palette,
+                         breaks = names(shape.palette),
+                         guide = guide_legend(override.aes = x))
   }
 
   # -- legend: size ------------------------------------------------------------
