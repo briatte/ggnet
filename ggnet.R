@@ -1,7 +1,6 @@
-if(getRversion() >= "2.15.1") {
+if (getRversion() >= "2.15.1") {
   utils::globalVariables(c("X1", "X2", "Y1", "Y2", "group", "id", "midX", "midY"))
 }
-
 
 #' ggnet - Plot a network with ggplot2
 #'
@@ -36,14 +35,14 @@ if(getRversion() >= "2.15.1") {
 #' @details The \code{weight.method} argument produces visually scaled nodes that are proportionally sized to their unweighted degree. To compute weighted centrality or degree measures, see Tore Opsahl's \code{\link[tnet]{tnet}} package.
 #' @importFrom grid arrow
 #' @examples
-#' if(require(network)){
+#' if (require(network)){
 #' # make toy random network
 #' x                  <- 10
 #' ndyads             <- x * (x - 1)
 #' density            <- x / ndyads
 #' nw.mat             <- matrix(0, nrow = x, ncol = x)
 #' dimnames(nw.mat)   <- list(1:x, 1:x)
-#' nw.mat[row(nw.mat) != col(nw.mat)] <- runif(ndyads) < density
+#' nw.mat[row(nw.mat) != col(nw.mat)] <- runif (ndyads) < density
 #' nw.mat
 #' rnd <- network::network(nw.mat)
 #' rnd
@@ -55,16 +54,6 @@ if(getRversion() >= "2.15.1") {
 #' # random groups
 #' category = LETTERS[rbinom(x, 4, .5)]
 #' ggnet(rnd, label.nodes = TRUE, color = "white", segment.color = "grey10", node.group = category)
-#'
-#' # city and service firms data from the UCIrvine Network Data Repository
-#' data(cityServiceFirms, package = "GGally")
-#'
-#' # plot cities, firms and law firms
-#' type = cityServiceFirms %v% "type"
-#' type = ifelse(grepl("City|Law", type), gsub("I+", "", type), "Firm")
-#' pRnd <- ggnet(cityServiceFirms, mode = "kamadakawai", alpha = .2, node.group = type,
-#'       label.nodes = c("Paris", "Beijing", "Chicago"), color = "darkred")
-#' # pRnd
 #' }
 
 ggnet <- function(
@@ -93,18 +82,14 @@ ggnet <- function(
   ...                           # passed to geom_text for node labels
 ){
 
-
   require_pkgs(c("intergraph", "network", "RColorBrewer", "sna"))
-  # intergraph   # igraph conversion
-  # network      # vertex attributes
-  # RColorBrewer # default colors
-  # sna          # placement algorithm
 
   # support for igraph objects
-  if(class(net) == "igraph") {
+  if (class(net) == "igraph") {
     net = intergraph::asNetwork(net)
   }
-  if(class(net) != "network")
+
+  if (class(net) != "network")
     stop("net must be a network object of class 'network' or 'igraph'")
 
   # vertex attributes for weight detection
@@ -119,8 +104,9 @@ ggnet <- function(
 
   # alpha default
   inherit <- function(x) ifelse(is.null(x), alpha, x)
+
   # subset
-  if(subset.threshold > 0) {
+  if (subset.threshold > 0) {
     network::delete.vertices(
       net,
       which(sna::degree(net, cmode = weight) < subset.threshold))
@@ -130,8 +116,7 @@ ggnet <- function(
   m <- network::as.matrix.network.adjacency(net)
   v_function = get("%v%", envir = as.environment("package:network"))
 
-  if(mode == "geo" & all(c("lat", "lon") %in% vattr)) {
-
+  if (mode == "geo" & all(c("lat", "lon") %in% vattr)) {
 
     plotcord = data.frame(
       X1 = as.numeric(v_function(net, "lon")),
@@ -147,7 +132,7 @@ ggnet <- function(
 
     # get coordinates placement algorithm
     placement <- paste0("gplot.layout.", mode)
-    if(!exists(placement)) stop("Unsupported placement method.")
+    if (!exists(placement)) stop("Unsupported placement method.")
 
     plotcord <- do.call(placement, list(m, layout.par))
     plotcord <- data.frame(plotcord)
@@ -160,9 +145,11 @@ ggnet <- function(
   edges   <- data.frame(plotcord[edglist[, 1], ], plotcord[edglist[, 2], ])
 
   # get node groups
-  if(!is.null(node.group)) {
+  if (!is.null(node.group)) {
+
     network::set.vertex.attribute(net, "elements", as.character(node.group))
     plotcord$group <- as.factor(network::get.vertex.attribute(net, "elements"))
+
   }
 
   # get node weights
@@ -174,25 +161,30 @@ ggnet <- function(
   degrees$freeman <- with(degrees, indegree + outdegree)
 
   # custom weights: vector of weights
-  if(length(weight.method) == network::network.size(net)) {
+  if (length(weight.method) == network::network.size(net)) {
+
     degrees$user = weight.method
     weight = "user"
+
   }
 
   # custom weights: vertex attribute
-  if(weight.method %in% vattr) {
+  if (weight.method %in% vattr) {
+
     degrees$user = v_function(net, weight.method)
     names(degrees)[ ncol(degrees) ] = weight.method
     weight = weight.method
+
   }
 
   # trim vertex names
-  if(trim.labels) {
+  if (trim.labels) {
     degrees$id = gsub("@|http://|www.|/$", "", degrees$id)
   }
 
   # set top 8 nodes as groups
-  if(top8.nodes) {
+  if (top8.nodes) {
+
     all                  = degrees[, weight]
     top                  = degrees$id[order(all, decreasing = TRUE)[1:8]]
     top                  = which(degrees$id %in% top)
@@ -200,16 +192,20 @@ ggnet <- function(
     plotcord$group[-top] = paste0("(", weight, " > ", subset.threshold - 1, ")")
     node.group           = plotcord$group
     node.color           = RColorBrewer::brewer.pal(9, "Set1")[c(9, 1:8)]
+
   }
 
   colnames(edges) <- c("X1", "Y1", "X2", "Y2")
 
   # set vertex names
   plotcord$id <- as.character(degrees$id)
-  if(is.logical(labels)) {
-    if(!labels) {
+
+  if (is.logical(labels)) {
+
+    if (!labels) {
       plotcord$id = ""
     }
+
   } else {
     plotcord$id[ -which(plotcord$id %in% labels) ] = ""
   }
@@ -234,7 +230,8 @@ ggnet <- function(
     )
 
   # label mid-edges
-  if(!is.null(segment.label) & length(segment.label) == nrow(edges)) {
+  if (!is.null(segment.label) & length(segment.label) == nrow(edges)) {
+
     pnet <- pnet + geom_text(
       aes(x = midX, y = midY),
       data   = edges,
@@ -243,17 +240,19 @@ ggnet <- function(
       colour = segment.color,
       alpha  = inherit(segment.alpha)
     )
+
   }
 
   # null weighting
-  if(weight.method == c("none")) {
+  if (weight.method == c("none")) {
+
     pnet <- pnet + geom_point(
       data  = plotcord,
       alpha = inherit(node.alpha),
       size  = size
     )
-  }
-  else {
+
+  } else {
 
     plotcord$weight <- degrees[, weight ]
 
@@ -265,19 +264,22 @@ ggnet <- function(
     sizer <- scale_size_area(names[2], max_size = size)
 
     # quartiles
-    if(quartiles) {
+    if (quartiles) {
+
       plotcord$weight.label <- cut(
         plotcord$weight,
         breaks         = quantile(plotcord$weight),
         include.lowest = TRUE,
         ordered        = TRUE
       )
+
       plotcord$weight <- as.integer(plotcord$weight.label)
       sizer <- scale_size_area(
         names[2],
         max_size = size,
         labels   = levels(plotcord$weight.label)
       )
+
     }
 
     # add to plot
@@ -286,19 +288,25 @@ ggnet <- function(
       data  = plotcord,
       alpha = inherit(node.alpha)
     ) + sizer
+
   }
 
   # default colors
   n = length(unique(suppressWarnings(na.omit(node.group))))
-  if(length(node.color) != n & !is.null(node.group)) {
+
+  if (length(node.color) != n & !is.null(node.group)) {
+
     warning("Node groups and node colors are of unequal length; using default colors.")
-    if(n > 0 & n < 10) {
+
+    if (n > 0 & n < 10) {
       node.color = RColorBrewer::brewer.pal(9, "Set1")[1:n]
     }
+
   }
 
   # color the nodes
-  if(!is.null(node.group)) {
+  if (!is.null(node.group)) {
+
     pnet <- pnet +
       aes(colour = group) +
       scale_colour_manual(
@@ -306,10 +314,11 @@ ggnet <- function(
         values = node.color,
         guide  = guide_legend(override.aes = list(size = label.size))
       )
+
   }
 
   # add text labels
-  if(length(unique(plotcord$id)) > 1 | unique(plotcord$id)[1] != "") {
+  if (length(unique(plotcord$id)) > 1 | unique(plotcord$id)[1] != "") {
     pnet <- pnet + geom_text(aes(label = id), size = label.size, ...)
   }
 
