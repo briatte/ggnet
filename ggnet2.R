@@ -52,9 +52,9 @@
 #' Defaults to \code{NA} (does nothing).
 #' @param palette the palette to color the nodes, when \code{color} is not a
 #' color value or a vector of color values. Accepts named vectors of color
-#' values, or any ColorBrewer palette name available through
-#' \code{\link[RColorBrewer]{RColorBrewer}}: see
-#' \code{\link[RColorBrewer]{brewer.pal}} for details.
+#' values, or if \code{\link[RColorBrewer]{RColorBrewer}} is installed, any
+#' ColorBrewer palette name: see \code{\link[RColorBrewer]{brewer.pal}} and
+#' \url{http://colorbrewer2.org/} for details.
 #' Defaults to \code{NULL}, which will create an array of grayscale color values
 #' if \code{color} is not a color value or a vector of color values.
 #' @param alpha.palette the palette to control the transparency levels of the
@@ -265,14 +265,12 @@ ggnet2 <- function(
   require(sna          , quietly = TRUE) # placement and centrality
 
   require(ggplot2      , quietly = TRUE) # grammar of graphics
-  require(RColorBrewer , quietly = TRUE) # colors
-
   require(grid         , quietly = TRUE) # arrows
   require(scales       , quietly = TRUE) # sizing
 
   # -- conversion to network class ---------------------------------------------
 
-  if (class(net) == "igraph" & require(intergraph, quietly = TRUE)) {
+  if (class(net) == "igraph" && "intergraph" %in% rownames(installed.packages())) {
     net = intergraph::asNetwork(net)
   } else if (class("net") == "igraph") {
     stop("install the 'intergraph' package to use igraph objects with ggnet2")
@@ -584,7 +582,8 @@ ggnet2 <- function(
     x = unique(data$color)
   }
 
-  if (length(x) == 1 && x %in% rownames(RColorBrewer::brewer.pal.info)) {
+  if (length(x) == 1 && "RColorBrewer" %in% rownames(installed.packages()) &&
+      x %in% rownames(RColorBrewer::brewer.pal.info)) {
 
     data$color = factor(data$color)
 
