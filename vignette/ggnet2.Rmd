@@ -1,0 +1,539 @@
+---
+title: "ggnet2: network visualization with ggplot2"
+output:
+  html_document:
+    highlight: default
+    toc: true
+    theme: united
+---
+
+```{r, echo=F}
+source("../ggnet2.R")
+```
+
+The `ggnet2` function is a visualization function to plot network objects as `ggplot2` objects. It accepts any object that can be coerced to the `network` class, including adjacency or incidence matrices, edge lists, or one-mode `igraph` network objects.
+
+`R` already provides many ways to plot static and dynamic networks, many of which are detailed in a [beautiful tutorial by Katherine Ognyanova](http://kateto.net/network-visualization). `R` can also control external network visualization libraries, using tools such as [RNeo4j, by Nicole White](https://github.com/nicolewhite/RNeo4j), or export network objects to external graph formats, using tools such as [rgexf](http://www.rdocumentation.org/packages/rgexf) or [networkD3](http://www.rdocumentation.org/packages/networkD3). Last, Nathan Yau has demonstrated [how to plot geographic networks](http://flowingdata.com/2011/05/11/how-to-map-connections-with-great-circles/) with `R`, using some of its existing spatial packages.
+
+All of these tools, however, require to use a new graph syntax, either within or outside of `R`. Instead, for the many users who are familiar with the [`ggplot2`](http://ggplot2.org/) package, it might be interesting to use a syntax that comes close to its "grammar of graphics" to process and plot network data.
+
+This idea motivated the [very first version of ggnet](https://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/), by Moritz Marbach, and is also motivating the development of [geom_net](https://github.com/sctyner/ggnet), a `geom` object for network data structured as data frames, by Sam Tyner and Heike Hofmann.
+
+The first packaged version of [`ggnet`](http://www.rdocumentation.org/packages/GGally/functions/ggnet) is available from the [`GGally`](http://www.rdocumentation.org/packages/GGally) package. `ggnet2` brings several improvements that convey additional control over all plotting parameters.
+
+# Packages
+
+The package dependencies of `ggnet2` are, on the one hand, the `network` and `sna` packages for network manipulation, and the `ggplot2` and `RColorBrewer` packages for plot construction.
+
+```{r, message=F}
+# networks
+library(sna)
+library(network)
+
+# plotting
+library(ggplot2)
+library(RColorBrewer)
+```
+
+The `ggplot2` package will also load the `grid` and `scales` packages, which are also used internally by `ggnet2`.
+
+If the `intergraph` package is installed, `ggnet2` will be able to process `igraph` objects. The `intergraph` package currently supports conversion between `igraph` and `network` one-mode network objects.
+
+# Example (1): Random graph
+
+Let's start with an undirected [Bernoulli random graph](http://www.rdocumentation.org/packages/sna/functions/rgraph), with 10 nodes named "a", "b", ..., "j", and a rather high likelihood of an edge to exist between them:
+
+```{r}
+# random graph
+net = rgraph(10, mode = "graph", tprob = 0.5)
+net = network(net)
+
+# vertex names
+network.vertex.names(net) = letters[1:10]
+```
+
+This graph can be visualized with `ggnet2` without any further work:
+
+```{r}
+ggnet2(net)
+```
+
+## Node color and size
+
+The most basic properties that one might want to change at that stage are the size and color of the nodes, or the size and color of the edges. Let's modify each of these properties:
+
+```{r}
+ggnet2(net, node.size = 6, node.color = "black", edge.size = 1, edge.color = "grey")
+```
+
+The vertex-related arguments of `ggnet2` start with `node`, and its edge-related arguments start with `edge`. The `node.color` and `node.size` arguments can be abbreviated:
+
+```{r, eval=F}
+ggnet2(net, size = 6, color = "black", edge.size = 1, edge.color = "grey")
+```
+
+It also possible to pass a vector of node colors directly to `ggnet2`, as long as it has the same number of elements as the network has nodes:
+
+```{r}
+ggnet2(net, size = 6, color = rep(c("tomato", "steelblue"), 5))
+```
+
+The color, shape, size and transparency of nodes can all be set through these basic methods, or by passing a vertex attribute to them. Let's first see how to position the nodes.
+
+## Node placement
+
+By default, `ggnet2` places nodes with the [Fruchterman-Reingold force-directed algorithm](http://www.rdocumentation.org/packages/sna/functions/gplot.layout). Just like the [`plot.network`](http://www.rdocumentation.org/packages/network/functions/plot.network) function of the [`network`](http://www.rdocumentation.org/packages/network) package, it supports all node placement algorithms provided by the [`sna`](http://www.rdocumentation.org/packages/sna) package, such as these:
+
+```{r, eval=F}
+ggnet2(net, mode = "circle")
+ggnet2(net, mode = "kamadakawai")
+```
+
+See the documentation of the [`gplot.layout`](http://www.rdocumentation.org/packages/sna/functions/gplot.layout) function for the list of placement algorithms. `ggnet2` also supports passing options to the algorithm through the `layout.par` argument:
+
+```{r, eval=F}
+ggnet2(net, mode = "fruchtermanreingold", layout.par = list(cell.jitter = 0.75))
+ggnet2(net, mode = "target", layout.par = list(niter = 100))
+```
+
+## Node colors
+
+Let's now assign a vertex attribute called `phono`, which indicates whether the name of the vertex is a vowel or a consonant:
+
+```{r}
+net %v% "phono" = ifelse(letters[1:10] %in% c("a", "e", "i"), "vowel", "consonant")
+```
+
+This attribute can be passed to `ggnet2` to indicate that the nodes belong to a group. All the user has to do is to pass the name of the vertex attribute to the `color` argument, which will find it in the list of vertex attributes and use it to map the colors of the nodes:
+
+```{r}
+ggnet2(net, color = "phono")
+```
+
+By default, `ggnet2` assigns a grayscale color to each group. To modify this behavior, let's review three different options. The first one consists in "hard-coding" the colors into the graph by assigning them to a vertex attribute, and then in passing this attribute to `ggnet2`:
+
+```{r}
+net %v% "color" = ifelse(net %v% "phono" == "vowel", "steelblue", "tomato")
+ggnet2(net, color = "color")
+```
+
+Other options are to pass the color legend as a named vector through the `palette` argument, just like `ggplot2` allows through the `values` argument of the [`scale_color_manual`](http://docs.ggplot2.org/current/scale_manual.html) controller, or to generate the color vector "on the fly", directly in the function call:
+
+```{r, eval=F}
+ggnet2(net, color = "phono", palette = c("vowel" = "steelblue", "consonant" = "tomato"))
+ggnet2(net, color = ifelse(net %v% "phono" == "vowel", "steelblue", "tomato"))
+```
+
+A final option is to use pre-defined color palettes. If `palette` refers to the name of any [ColorBrewer](http://colorbrewer2.org/) palette, `ggnet2` will try to use it to color the nodes, or will return an error if there are not enough colors in the palette:
+
+```{r}
+ggnet2(net, color = "phono", palette = "Set2")
+```
+
+## Node sizes
+
+It is common to size the nodes of a network by their centrality or by some other indicator of interest. Just like its `color` argument, the `size` argument of `ggnet2` can take a single numeric value, a vector of values, or a vertex attribute:
+
+```{r, eval=F}
+ggnet2(net, size = "phono")
+```
+
+In similar fashion to how the `color` argument works, the actual size of the nodes can be styled by a 'palette' argument, called `size.palette`. This allows to create nodes of highly unequal sizes that will be more visually distinguishable:
+
+```{r}
+ggnet2(net, size = "phono", size.palette = c("vowel" = 10, "consonant" = 1))
+```
+
+When the `size` attribute is not a single numeric value, the _maximum_ size of the nodes is determined by the `max_size` argument, just like in the [`scale_size_area`](http://docs.ggplot2.org/current/scale_size.html) controller of `ggplot2`, which `ggnet2` emulates to compute the relative size of the nodes:
+
+```{r, eval=F}
+ggnet2(net, size = sample(0:2, 10, replace = TRUE), max_size = 9)
+```
+
+`ggnet2` can also size nodes by calculating their in-degree, out-degree, or total (Freeman) degree, using the [`degree`](http://www.rdocumentation.org/packages/sna/functions/degree) function of the [`sna`](http://www.rdocumentation.org/packages/sna) package. All the user has to do is to pass the `indegree`, `outdegree`, or `freeman` option to the `weight` argument (`degree` is also understood, and is equivalent to `freeman`):
+
+```{r}
+ggnet2(net, size = "degree")
+```
+
+`ggnet2` gives the user further control over the node size by providing a quick way to cut the node sizes into quantiles, using the `size.cut` argument. If set to `TRUE`, it defaults to quartiles, but any numeric value above 1 is acceptable:
+
+```{r}
+ggnet2(net, size = "degree", size.cut = 3)
+```
+
+In the example above, `ggnet2` calculated the total degree of the nodes, and then cut them into tertiles. If there are not enough distinct values to create the number of quantiles passed to `size.cut`, `ggnet2` will use the closest possible number.
+
+When `size` contains numeric values, `ggnet2` can subset the graph based on these, which is useful when plotting large networks. The arguments `size.min` and `size.max` achieve this functionality, and let the user know how many nodes they removed:
+
+```{r}
+# remove any isolated nodes
+x = ggnet2(net, size = "degree", size.min = 1)
+
+# remove all nodes
+x = ggnet2(net, size = "degree", size.max = 1)
+```
+
+Last, the `size.zero` argument controls whether `ggnet2` should accept to plot zero-sized nodes. The argument is `FALSE` by default, which ensures that every node gets plotted as a visible shape. Set it to `TRUE` if you want zero-sized nodes in the plot:
+
+```{r, eval=F}
+ggnet2(net, size = sample(0:2, 10, replace = TRUE), size.zero = TRUE)
+```
+
+## Node legends
+
+The `alpha`, `color`, `shape` and `size` arguments of `ggnet2` produce `ggplot2` legends that are named after the vertex attributes that they carry. These names can be changed with the `alpha.legend`, `color.legend`, `shape.legend` and `size.legend` arguments:
+
+```{r, eval=F}
+ggnet2(net, alpha = "phono", alpha.legend = "Phonetics")
+ggnet2(net, shape = "phono", shape.legend = "Phonetics")
+ggnet2(net, color = "phono", color.legend = "Phonetics")
+ggnet2(net, size = "degree", size.legend = "Centrality")
+```
+
+Another option is to remove these legends completely, as `ggplot2` allows to do:
+
+```{r, eval=F}
+ggnet2(net, color = "phono", size = "degree") +
+  guides(color = FALSE, size = FALSE)
+```
+
+A final option is to replace these legends with any compatible `ggplot2` scale. Due to how `ggnet2` works internally, additional legends have to be [`discrete_scale`](http://docs.ggplot2.org/current/discrete_scale.html) controllers, even when the scale applies to the size of the nodes:
+
+```{r, eval=F}
+# control the colors of the nodes
+ggnet2(net, color = "phono") +
+  scale_color_brewer("", palette = "Set1",
+                     labels = c("consonant" = "C", "vowel" = "V"),
+                     guide = guide_legend(override.aes = list(size = 6)))
+
+# control the size of the nodes
+ggnet2(net, size = "degree") +
+  scale_size_discrete("", range = c(5, 10), breaks = c(10, 6, 2))
+```
+
+The legends can be futher styled by modifying the [`theme`](http://docs.ggplot2.org/current/theme.html) of the plot, or by using the shorthands built into `ggnet2`. The `legend.text` argument controls the size of the legends symbols, text labels and title, and the `legend.position` argument controls its placement:
+
+```{r}
+ggnet2(net, color = "phono", legend.size = 12, legend.position = "bottom") +
+  theme(panel.background = element_rect(color = "grey"))
+```
+
+## Node labels
+
+`ggnet2` can label the nodes of a network by using their vertex names, another vertex attribute, or any other vector of labels. The size of the labels, which is automatically set to half of the node size, is controlled by the `label.size` argument, their color by the `label.color` argument, and their level of transprency by the `label.alpha` argument.
+
+```{r, eval=F}
+ggnet2(net, label = "phono")
+ggnet2(net, size = 12, label = TRUE, label.size = 5)
+ggnet2(net, size = 12, label = 1:10, color = "black", label.color = "white")
+ggnet2(net, label = TRUE, label.alpha = 0.75)
+```
+
+If `label` is a vector of values that does not contain exactly as many elements as the number of nodes in the graph, `ggnet2` will label the nodes that match one of these values:
+
+```{r}
+ggnet2(net, label = c("a", "e", "i"), color = "phono", label.color = "black")
+```
+
+## Node shapes and transparency
+
+The shapes and transparency of the nodes can be set exactly like the color and size of the nodes, either through a single value, a vector of (numeric) values, or a vertex attribute. This allows to create nodes that can be distinguished even in the plot loses its colors:
+
+```{r}
+ggnet2(net, color = "phono", shape = 15)
+ggnet2(net, color = "phono", shape = "phono")
+```
+
+__Note:__ the second example above will return a warning about a duplicated plotting parameter. This is an innocuous warning that is produced by mapping two characteristics of the nodes to the same vertex attribute. It cannot be avoided without modifying `ggplot2`.
+
+Again, just like `color` and `size`, the `alpha` and `shape` arguments can take manual 'palettes' of values through the `alpha.palette` and `shape.palette` arguments, which will bypass the default values assigned to these by `ggplot2`:
+
+```{r}
+ggnet2(net, alpha = "phono", alpha.palette = c("vowel" = 0.2, "consonant" = 1))
+ggnet2(net, shape = "phono", shape.palette = c("vowel" = 19, "consonant" = 15))
+```
+
+Although `ggnet2` is flexible about node shapes and transparency, node shapes are difficult to distinguish when there are more than six different shapes in the plot, and setting the transparency of the nodes to anything too low will also create difficulties for the reader:
+
+```{r, eval=F}
+ggnet2(net, shape = sample(1:10))
+ggnet2(net, alpha = "phono")
+```
+
+# Example (2): Bipartite network
+
+> The functionalities described in this section were inspired by a discussion over bipartite graphs with [Pedro Jordano](https://github.com/pedroj), who has written [more advanced code](https://pedroj.github.io/bipartite_plots/) to handle bipartite graphs with ggplot2.
+
+`ggnet2` automatically detects two-mode graphs from their `bipartite` network attribute. To simplify the plotting of each mode, it understands arguments of the form `[alpha, color, shape, size] = "mode"`, which will mark the primary mode as `"actor"` and the secondary mode as `"event"`.
+
+Let's illustrate this functionality through the same example as shown in the documentation of the `network.bipartite` function:
+
+```{r}
+# weighted adjacency matrix
+bip = data.frame(event1 = c(1, 2, 1, 0),
+                 event2 = c(0, 0, 3, 0),
+                 event3 = c(1, 1, 0, 4),
+                 row.names = letters[1:4])
+
+# weighted bipartite network
+bip = network(bip,
+              matrix.type = "bipartite",
+              ignore.eval = FALSE,
+              names.eval = "weights")
+```
+
+By default, `ggnet2` will not do anything particular to the network, treating it as if it were a one-mode network object:
+
+```{r}
+ggnet2(bip, label = TRUE)
+```
+
+To use the mode of the nodes as the grouping factor, all the user has to do is to pass the `r group = "mode"` argument, and then to style the `"actor"` and `"event"` groups:
+
+```{r}
+# set colors for each mode
+col = c("actor" = "grey", "event" = "gold")
+
+# detect and color the mode
+ggnet2(bip, color = "mode", palette = col, label = TRUE)
+```
+
+Let's use this network to show what `ggnet2` can do to style edges in addition to nodes.
+
+## Edge labels
+
+The `edge.label` argument accepts a character vector or an edge attribute, which will be plotted at midpoint between the nodes that are connected to each other. Let's use this argument to show the edge weights included in the bipartite network example constructed above:
+
+```{r}
+ggnet2(bip, color = "mode", palette = col, label = TRUE, edge.label = "weights")
+```
+
+The color and size of the labels can be controlled with `edge.label.color` and `edge.label.size`. The former argument defaults to `label.color`, the color used for the node labels, and the latter argument defaults to `label.size`, the size of the node labels.
+
+```{r, eval=F}
+ggnet2(bip, shape = "mode", edge.label = "weights", edge.label.color = "darkred")
+ggnet2(bip, shape = "mode", edge.label = "weights", edge.label.size = 6)
+```
+
+Both `edge.label.color` and `edge.label.size` also accept edge attributes. The example below maps the color of the edge labels to the weight of the edges that they are attached to:
+
+```{r}
+set.edge.attribute(bip, "color", ifelse(bip %e% "weights" > 1, "black", "grey75"))
+ggnet2(bip, shape = "mode", edge.label = "weights", edge.label.color = "color")
+```
+
+By default, the `edge.label` argument will add a white background underneath the label, in order to avoid overplotting edges and edge labels. The color of that background, which is draw as a circle with `geom_point`, can be styled with `edge.label.fill`, or removed completely by setting `edge.label.fill` to `NA`.
+
+```{r, eval=F}
+ggnet2(bip, shape = "mode", edge.label = "weights", edge.label.fill = NA)
+```
+
+## Edge size and color
+
+At the very beginning of this vignette, we showed how to size the edges of the network using a single value. However, in the context of a weighted network, the edge weight information might also be used to size the edges proportionally by passing an edge attribute to `edge.size`:
+
+```{r}
+ggnet2(bip, color = "mode", palette = col, edge.size = "weights")
+```
+
+The `edge.size` argument will also accept a vector of edge weights, as long as it contains as many values as there are edges in the network.
+
+Similarly, the `edge.color` argument accepts either a single color value, or a vector of them, as long as it contains as many values as there are edges in the network. Because it also accepts an edge attribute, we can again map the color of the edge to one of its other properties:
+
+```{r}
+set.edge.attribute(bip, "color", ifelse(bip %e% "weights" > 1, "black", "grey75"))
+ggnet2(bip, color = "mode", palette = col, edge.size = "weights", edge.color = "color")
+```
+
+## Edge linetype
+
+Like `edge.color` and `edge.size`, `edge.lty` accepts a single linetype value, or an edge attribute, or a vector of edge linetypes, as long as it contains as many values as there are edges in the network:
+
+```{r}
+set.edge.attribute(bip, "lty", ifelse(bip %e% "weights" > 1, 1, 2))
+ggnet2(bip, color = "mode", palette = col, edge.size = "weights", edge.lty = "lty")
+```
+
+# Additional options
+
+## Coloring edges from node attributes
+
+Some network plotting software, such as the Sigma.js library, allow the user to color the edges of a graph in function of the nodes that they connect. This functionality is useful to detect edges between nodes that belong to a same group, as in commonly in graphs with strong group homophily.
+
+`ggnet2` supports this functionality by allowing the `edge.color` argument to take the `c("color", "grey")` value. The first value will tell `ggnet2` to color edges between nodes of the same group with the color of that group. The second value is the color to use for edges that connect nodes belonging to different groups.
+
+Using the same random graph as we used previously, let's see which edges connect two vowels, and which connect two consonants:
+
+```{r}
+ggnet2(net, color = "phono", palette = "Set1", edge.color = c("color", "grey50"))
+```
+
+## Removing nodes based on missing values
+
+If a vertex attribute name is passed to the `na.rm` argument of `ggnet2`, all nodes for which this vertex attribute is missing (`NA`) will be discarded from the graph. This argument can come in handy in some circumstances, one of which is illustrated below.
+
+## Using fixed placement coordinates
+
+In the special case of temporal networks, it is often useful to plot the nodes at different points in time using the same placement coordinates, while showing some variation on another parameter. Let's show how to do this with `ggnet2`, using a simple example of node activation over $t = 3$ time intervals.
+
+First, let's define the placement coordinates of the full graph as two vertex attributes:
+
+```{r}
+x = gplot.layout.fruchtermanreingold(net, NULL)
+net %v% "x" = x[, 1]
+net %v% "y" = x[, 2]
+```
+
+Next, let's define three binary vertex attributes indicating node activation through time:
+
+```{r}
+net %v% "t1" = c(0, 0, 0, 0, 0, 0, 1, 1, 1, 1)
+net %v% "t2" = c(0, 0, 0, 0, 1, 1, 1, 1, 1, 1)
+net %v% "t3" = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+```
+
+Finally, let's modify these attributes to indicate `NA` if the node is not yet activated:
+
+```{r}
+net %v% "t1" = ifelse(net %v% "t1", 1, NA)
+net %v% "t2" = ifelse(net %v% "t2", 1, NA)
+net %v% "t3" = ifelse(net %v% "t3", 1, NA)
+```
+
+We can now create four `ggnet2` plots, using each attribute in turn, setting `na.rm` to `TRUE` in order to remove nodes that are not yet activated from the graphs.
+
+```{r}
+t1 = ggnet2(net, mode = c("x", "y"), size = 3, color = "black", na.rm = "t1")
+t2 = ggnet2(net, mode = c("x", "y"), size = 3, color = "black", na.rm = "t2")
+t3 = ggnet2(net, mode = c("x", "y"), size = 3, color = "black", na.rm = "t3")
+```
+
+When the `mode` argument is given two vertex attributes, it understands that these attributes contain the placement coordinates to use for plotting. As a result, all three plots will use the same coordinates for the nodes. We can then use the `gridExtra` package to show all plots next to each other:
+
+```{r, message=F, warning=F}
+# common plotting parameters
+b = theme(panel.background = element_rect(color = "grey50"))
+z = guides(color = FALSE)
+y = scale_y_continuous(limits = range(x[, 2] * 1.1), breaks = NULL)
+x = scale_x_continuous(limits = range(x[, 1] * 1.1), breaks = NULL)
+
+# show each temporal network
+library(gridExtra)
+grid.arrange(t1 + x + y + z + ggtitle("t = 1") + b,
+             t2 + x + y + z + ggtitle("t = 2") + b,
+             t3 + x + y + z + ggtitle("t = 3") + b,
+             nrow = 1)
+```
+
+## Expanding the horizontal axis
+
+When `ggnet2` is used to plot a network with node labels, the labels close to the margins of the plot panel might get clipped. This issue can be handled by expanding the horizontal axis of the plot, using the `layout.exp` argument, as in this example:
+
+```{r, eval=F}
+# no horizontal expansion
+ggnet2(net, label = rep("abcdefghijklmnopqrstuvwxyz", 10))
+
+# 50% horizontal expansion
+ggnet2(net, label = rep("abcdefghijklmnopqrstuvwxyz", 10), layout.exp = 0.5)
+```
+
+## Hacking into internal values
+
+`ggnet2` returns a `ggplot` object, so the underlying data can be accessed by requesting the `data` component of the plot. The structure of that component always contains the following columns, which match the names of `ggplot2` arguments:
+
+```{r}
+ggnet2(net, color = "phono", size = 1:10)$data
+```
+
+This means that you can append any `ggplot2` component to the graph by passing additional aesthetics to it, which allows for a fair amount of "plot hacking". In this example, we use `ggnet2` to get the basic data structure in place, while sizing the nodes to 0. The nodes are then plotted manually, by overlaying several `geom` objects:
+
+```{r}
+ggnet2(net, color = "phono", palette = "Set1", size = 0) +
+  geom_point(aes(color = color), size = 12, color = "white") +
+  geom_point(aes(color = color), size = 12, alpha = 0.5) +
+  geom_point(aes(color = color), size = 9) +
+  geom_text(aes(label = toupper(substr(color, 1, 1))), color = "white", fontface = "bold") +
+  guides(color = FALSE)
+```
+
+# Additional examples
+
+Here are two additional examples to further illustrate how to use `ggnet2` with real-life examples. More examples of networks in `R` format can be found at the [UCI Network Data Repository](http://networkdata.ics.uci.edu/).
+
+## Example (3): Icelandic legal code
+
+The network loaded by the shortlink below, which comes from this [Gist](https://gist.github.com/briatte/194f60d1850af836f67a), connects articles of the [Icelandic legal code](http://www.althingi.is/lagasafn/zip-skra-af-lagasafni/) by their cross-references. The data reflect the state of the Icelandic legal code as of August 2015.
+
+```{r}
+source("https://goo.gl/q1JFih")
+```
+
+There are 845 nodes and over 1,500 edges in the network. Let's add a four-level interval variable indicating the period at which each article was introduced, and then assign some colors based on it:
+
+```{r}
+x = cut_number(as.integer(net %v% "year"), 4)
+col = c("#E1AF00", "#EBCC2A", "#78B7C5", "#3B9AB2")
+names(col) = levels(x)
+```
+
+The network is shown below with nodes sized by their out-degree and colored by their period of introduction into Icelandic law, using the variable that we just defined:
+
+```{r}
+ggnet2(net, color = x, color.legend = "period", palette = col,
+       edge.alpha = 1/4, edge.size = "weight",
+       size = "outdegree", max_size = 4, size.cut = 3,
+       legend.size = 12, legend.position = "bottom") +
+  coord_equal()
+```
+
+## Example (4): French MPs on Twitter
+
+The development repository of `ggnet2` contains a dataset of 339 French Members of Parliament (MPs), and the ties that they formed by following each other on Twitter. The data are from May 2013 and come in two files that index the edges and the nodes separately:
+
+```{r}
+# node information
+ids = read.csv("https://raw.githubusercontent.com/briatte/ggnet/master/data/nodes.tsv", sep = "\t")
+names(ids)
+
+# edge list
+df = read.csv("https://raw.githubusercontent.com/briatte/ggnet/master/data/network.tsv", sep = "\t")
+names(df)
+```
+
+The network is constructed by converting the edge list into a `network` object. The party affiliations of the MPs are then used to construct a manual color palette:
+
+```{r}
+# network object
+net = network(df)
+
+# party affiliation
+x = data.frame(Twitter = network.vertex.names(net))
+x = merge(x, ids, by = "Twitter", sort = FALSE)$Groupe
+net %v% "party" = as.character(x)
+
+# colour palette
+y = brewer.pal(9, "Set1")[ c(3, 1, 9, 6, 8, 5, 2) ]
+names(y) = levels(x)
+```
+
+In the previous example, the order of the color legend was determined by the (ordered) levels of the grouping variable. In this example, the same effect is produced instead by the color palette:
+
+```{r}
+ggnet2(net, color = "party", palette = y, alpha = 0.75, size = 4, edge.alpha = 0.5)
+```
+
+Let's further visualize the amount of party homophily by coloring edges between MPs who share the same partisan affiliation, and single out two MPs:
+
+```{r}
+ggnet2(net, color = "party", palette = y, alpha = 0.75, size = 4, edge.alpha = 0.5,
+       edge.color = c("color", "grey50"), label = c("BrunoLeRoux", "nk_m"), label.size = 4)
+```
+
+# Known limitations
+
+`ggnet2` does not support all of the graph plotting options provided by the  `igraph` and `network` packages, and there are a few things that it does not do very well, or not at all. Here is a non-exhaustive list of things that `ggnet2` does not handle, or handles badly:
+
+- __Edge arrows:__ `ggnet2` supports directed graphs, but has only minimal support for adding arrows for edges with the `arrow.size` and `arrow.type` arguments.
+- __Curved edges:__ `ggnet2` does not yet handle curved edges, although the next version of `ggplot2` might make it possible to implement these at some point.
+- __Self-loops and complex graphs:__ `ggnet2` does not know how to handle hypergraphs, multiplex graphs, or self-loops, and will warn the user about it.

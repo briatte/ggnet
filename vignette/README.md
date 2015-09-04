@@ -1,0 +1,1 @@
+This vignette can be read [online](https://briatte.github.io/ggnet/).
