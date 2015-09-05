@@ -109,8 +109,10 @@
 #' @param label.size the size of the node labels.
 #' Defaults to \code{max_size / 2} (half the maximum node size), which defaults
 #' to \code{4.5}.
-#' @param label.trim whether to trim the node labels to a fixed-length
-#' substring: see \code{\link[base]{substr}} for details.
+#' @param label.trim whether to apply some trimming to the node labels. Accepts
+#' any function that can process a character vector, or a strictly positive 
+#' value, in which case the labels are trimmed to a fixed-length substring: see 
+#' \code{\link[base]{substr}} for details.
 #' Defaults to \code{FALSE} (does nothing).
 #' @param node.alpha see \code{alpha}
 #' @param node.color see \code{color}
@@ -695,16 +697,12 @@ ggnet2 <- function(
   
   x = label.trim
   
-  if (is.logical(x) && !x) {
-    x = 0
-  }
-  
-  if (length(x) > 1 || !is.numeric(x)) {
+  if (length(x) > 1) {
     stop("incorrect label.trim value")
-  }
-  
-  if (x > 0) {
-    l[ nchar(l) > x ] = substr(l[ nchar(l) > x ], 1, x)
+  } else if (is.numeric(x) && x > 0) {
+    l = substr(l, 1, x)
+  } else if (is.function(x)) {
+    l = x(l)
   }
   
   # -- node placement ----------------------------------------------------------
