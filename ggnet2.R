@@ -697,7 +697,7 @@ ggnet2 <- function(
   
   x = label.trim
   
-  if (length(x) > 1) {
+  if (length(x) > 1 || (!is.logical(x) & !is.numeric(x) & !is.function(x))) {
     stop("incorrect label.trim value")
   } else if (is.numeric(x) && x > 0) {
     l = substr(l, 1, x)
@@ -775,7 +775,7 @@ ggnet2 <- function(
     edges$midX = (edges$X1 + edges$X2) / 2
     edges$midY = (edges$Y1 + edges$Y2) / 2
     edges$label = set_edge(edge.label, "edge.label")
-   
+    
     edge.label.color = set_edge(edge.label.color, "edge.label.color")
     
     if (!is_col(edge.label.color)) {
