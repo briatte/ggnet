@@ -6,11 +6,18 @@ This repository contains the latest versions of the `ggnet` and `ggnet2` functio
 
 ## INSTALL
 
-These functions are part of the __GGally__ package. Install it from CRAN or from GitHub:
+`ggnet` and `ggnet2` are part of the __GGally__ package. Install it from CRAN or from GitHub:
 
 ```{r}
 install.packages("GGally")
 devtools::install_github("ggobi/ggally")
+```
+
+You can also install `ggnet` and `ggnet2` as standalone functions from this repository:
+
+```{r}
+source("https://raw.githubusercontent.com/briatte/ggnet/master/ggnet.R")
+source("https://raw.githubusercontent.com/briatte/ggnet/master/ggnet2.R")
 ```
 
 ## VIGNETTE
