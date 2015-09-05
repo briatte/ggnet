@@ -24,6 +24,8 @@ source("https://raw.githubusercontent.com/briatte/ggnet/master/ggnet2.R")
 
 The `ggnet2` function is fully documented in [this vignette](https://briatte.github.io/ggnet/).
 
+The data for one of the examples, a Twitter network of French Members of Parliament, is [included in this repository](data), as is the [vignette source](vignette).
+
 ## THANKS
 
 - [Moritz Marbach](https://github.com/sumtxt) coded the [very first version of `ggnet`](http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/)
