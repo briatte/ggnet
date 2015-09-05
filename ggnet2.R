@@ -277,7 +277,7 @@ ggnet2 <- function(
   }
   
   if (!network::is.network(net)) {
-    net = network::network(net)
+    net = try(network::network(net), silent = TRUE)
   }
   
   if (!network::is.network(net)) {
@@ -388,11 +388,11 @@ ggnet2 <- function(
   }
   
   if (network::is.hyper(net)) {
-    warning("ggnet2 does not know how to handle hyper graphs")
+    stop("ggnet2 does not know how to handle hyper graphs")
   }
   
   if (network::is.multiplex(net)) {
-    warning("ggnet2 does not know how to handle multiplex graphs")
+    stop("ggnet2 does not know how to handle multiplex graphs")
   }
   
   if (network::has.loops(net)) {
@@ -418,13 +418,11 @@ ggnet2 <- function(
   
   # -- node removal ------------------------------------------------------------
   
-  if (!is.na(na.rm)) {
+  if (length(na.rm) > 1) {
+    stop("incorrect na.rm value")
+  } else if (!is.na(na.rm)) {
     
-    if (length(na.rm) > 1) {
-      
-      stop("incorrect na.rm value")
-      
-    } else if (!na.rm %in% v_attr) {
+    if (!na.rm %in% v_attr) {
       
       stop(paste("vertex attribute", na.rm, "was not found"))
       
@@ -524,7 +522,7 @@ ggnet2 <- function(
     stop("incorrect size.cut value")
   } else if (isTRUE(x)) {
     x = 4
-  } else if (!x) {
+  } else if (is.logical(x) && !x) {
     x = 0
   } else if (!is.numeric(x)) {
     stop("incorrect size.cut value")
@@ -685,7 +683,7 @@ ggnet2 <- function(
   
   if (isTRUE(l)) {
     l = data$label
-  } else if (length(l) == n_nodes) {
+  } else if (length(l) > 1 & length(l) == n_nodes) {
     data$label = l
   } else if (length(l) == 1 && l %in% v_attr) {
     l = get_v(net, l)
@@ -771,28 +769,27 @@ ggnet2 <- function(
   edges = data.frame(xy[ edges[, 1], ], xy[ edges[, 2], ])
   names(edges) = c("X1", "Y1", "X2", "Y2")
   
-  # -- edge labels -------------------------------------------------------------
+  
+  # -- edge labels, colors and sizes -------------------------------------------
   
   if (!is.null(edge.label)) {
     
     edges$midX = (edges$X1 + edges$X2) / 2
     edges$midY = (edges$Y1 + edges$Y2) / 2
     edges$label = set_edge(edge.label, "edge.label")
+   
+    edge.label.color = set_edge(edge.label.color, "edge.label.color")
     
-  }
-  
-  # -- edge label colors and sizes ---------------------------------------------
-  
-  edge.label.color = set_edge(edge.label.color, "edge.label.color")
-  
-  if (!is_col(edge.label.color)) {
-    stop("incorrect edge.label.color value")
-  }
-  
-  edge.label.size = set_edge(edge.label.size, "edge.label.size")
-  
-  if (!is.numeric(edge.label.size) || any(edge.label.size < 0)) {
-    stop("incorrect edge.label.size value")
+    if (!is_col(edge.label.color)) {
+      stop("incorrect edge.label.color value")
+    }
+    
+    edge.label.size = set_edge(edge.label.size, "edge.label.size")
+    
+    if (!is.numeric(edge.label.size) || any(edge.label.size < 0)) {
+      stop("incorrect edge.label.size value")
+    }
+    
   }
   
   # -- edge linetype -----------------------------------------------------------
@@ -809,21 +806,27 @@ ggnet2 <- function(
   
   # -- plot edges --------------------------------------------------------------
   
-  p = ggplot(data, aes(x = x, y = y)) +
-    geom_segment(
-      data = edges,
-      aes(x = X1, y = Y1, xend = X2, yend = Y2),
-      size   = edge.size,
-      color  = edge.color,
-      alpha  = edge.alpha,
-      lty    = edge.lty,
-      arrow  = grid::arrow(
-        type   = arrow.type,
-        length = grid::unit(arrow.size, "pt")
-      )
-    )
+  p = ggplot(data, aes(x = x, y = y))
   
-  if (!is.null(edge.label)) {
+  if (nrow(edges) > 0) {
+    
+    p = p +
+      geom_segment(
+        data = edges,
+        aes(x = X1, y = Y1, xend = X2, yend = Y2),
+        size   = edge.size,
+        color  = edge.color,
+        alpha  = edge.alpha,
+        lty    = edge.lty,
+        arrow  = grid::arrow(
+          type   = arrow.type,
+          length = grid::unit(arrow.size, "pt")
+        )
+      )
+    
+  }
+  
+  if (nrow(edges) > 0 & !is.null(edge.label)) {
     
     p = p +
       geom_point(
