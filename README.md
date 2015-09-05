@@ -6,7 +6,7 @@ This repository contains the latest versions of the `ggnet` and `ggnet2` functio
 
 ## INSTALL
 
-`ggnet` and `ggnet2` are part of the __GGally__ package. Install it from CRAN or from GitHub:
+`ggnet` and `ggnet2` are part of the __`GGally`__ package. Install it from CRAN or from GitHub:
 
 ```{r}
 install.packages("GGally")
@@ -26,7 +26,7 @@ The `ggnet2` function is fully documented in [this vignette](https://briatte.git
 
 ## THANKS
 
-- [Moritz Marbach](https://github.com/sumtxt) coded the [very first version of the function](http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/)
+- [Moritz Marbach](https://github.com/sumtxt) coded the [very first version of `ggnet`](http://sumtxt.wordpress.com/2011/07/02/visualizing-networks-with-ggplot2-in-r/)
 - [Pedro Jordano](https://github.com/pedroj) suggested adding support for [bipartite networks](https://github.com/pedroj/bipartite_plots)
 - [Baptiste Coulmont](http://coulmont.com/index.php?s=d%C3%A9put%C3%A9s) and [Ewen Gallic](http://freakonometrics.blog.free.fr/index.php?post/Twitter-deputes) provided further inspiration
 - [Barret Schloerke](https://github.com/schloerke) helps by maintaining the `GGally` package
