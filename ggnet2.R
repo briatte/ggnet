@@ -1,3 +1,7 @@
+if (getRversion() >= "2.15.1") {
+  utils::globalVariables(c("X1", "X2", "Y1", "Y2", "midX", "midY"))
+}
+
 #' ggnet2 - Plot a network with ggplot2
 #'
 #' Function for plotting network objects using ggplot2, with additional control
