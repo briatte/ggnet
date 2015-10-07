@@ -420,6 +420,26 @@ ggnet2(bip, color = "mode", palette = col, edge.size = "weights", edge.lty = "lt
 
 # Additional options
 
+## Edge arrows
+
+`ggnet2` supports directed graphs, but has only minimal support for adding arrows for edges with the `arrow.size`, `arrow.gap` and `arrow.type` arguments.
+
+The issue with edge arrows is that they will often get plotted below the nodes, as in this example, which tries to set 12-point edge arrows:
+
+```{r, cache=TRUE, eval=TRUE}
+ggnet2(network(rgraph(10), directed = TRUE), arrow.size = 12)
+```
+
+As a workaround, `ggnet2` lets the user draw shorter edges, so that the arrows get plotted before the nodes, as in this example:
+
+```{r, cache=TRUE, eval=TRUE}
+ggnet2(network(rgraph(10), directed = TRUE), arrow.size = 12, arrow.gap = 0.1)
+```
+
+The `arrow.gap` argument represents the fraction of the edge that will not be drawn, so that a small value will usually be enough to unmask the edge arrows.
+
+The `arrow.type` argument determines the shape of the arrow. It should be set to either `"closed"` (the default), or `"open"`.
+
 ## Coloring edges from node attributes
 
 Some network plotting software, such as the Sigma.js library, allow the user to color the edges of a graph in function of the nodes that they connect. This functionality is useful to detect edges between nodes that belong to a same group, as in commonly in graphs with strong group homophily.
@@ -591,9 +611,8 @@ ggnet2(net, color = "party", palette = y, alpha = 0.75, size = 4, edge.alpha = 0
 
 # Known limitations
 
-`ggnet2` does not support all of the graph plotting options provided by the  [`igraph`][igraph] and [`network`][network] packages, and there are a few things that it does not do very well, or not at all. Here is a non-exhaustive list of things that `ggnet2` does not handle, or handles badly:
+`ggnet2` does not support all of the graph plotting options provided by the  [`igraph`][igraph] and [`network`][network] packages, and there are a few things that it does not do at all. Here is a non-exhaustive list of things that `ggnet2` does not handle:
 
-- __Edge arrows:__ `ggnet2` supports directed graphs, but has only minimal support for adding arrows for edges with the `arrow.size` and `arrow.type` arguments.
 - __Curved edges:__ `ggnet2` does not yet handle curved edges, although the next version of [`ggplot2`][ggplot2] might make it possible to implement these at some point.
 - __Self-loops:__ `ggnet2` does not know how to handle self-loops, and will warn the user about it. Self-loops will not show up in the plots created by `ggnet2`.
 - __Complex graphs:__ `ggnet2` does not know how to handle hypergraphs or multiplex graphs, and will return an error if asked to plot network objects with these properties.
