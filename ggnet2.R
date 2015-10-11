@@ -165,9 +165,10 @@ if (getRversion() >= "2.15.1") {
 #' @param arrow.size the size of the arrows for directed network edges, in
 #' points. See \code{\link[grid]{arrow}} for details.
 #' Defaults to \code{0} (no arrows).
-#' @param arrow.gap the size of the gap to leave between the end of the edges
-#' and the receiving nodes of a directed network, as a fraction of edge length.
-#' This setting aims at improving the display of edge arrows.
+#' @param arrow.gap a setting aimed at improving the display of edge arrows by
+#' plotting slightly shorter edges. Accepts any value between \code{0} and 
+#' \code{1}, where values close to \code{0.95} will generally achieve good 
+#' results if the size of the nodes is small.
 #' Defaults to \code{0} (no gap).
 #' @param arrow.type the type of the arrows for directed network edges. See
 #' \code{\link[grid]{arrow}} for details.
