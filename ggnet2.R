@@ -237,6 +237,9 @@ if (getRversion() >= "2.15.1") {
 #'   n %e% "weight" <- sample(1:3, network.edgecount(n), replace = TRUE)
 #'   ggnet2(n, edge.size = "weight", edge.label = "weight")
 #'
+#'   # edge arrows on a directed network
+#'   ggnet2(network(m, directed = TRUE), arrow.gap = 0.85, arrow.size = 10)
+#'
 #'   # Padgett's Florentine wedding data
 #'   data(flo, package = "network")
 #'   flo
