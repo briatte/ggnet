@@ -425,7 +425,7 @@ ggnet2 <- function(
     arrow.size = 0
   }
 
-  if (!is.numeric(arrow.gap) || arrow.gap < 0) {
+  if (!is.numeric(arrow.gap) || arrow.gap < 0 || arrow.gap > 1) {
     stop("incorrect arrow.gap value")
   } else if (arrow.gap > 0 & is_dir == "graph") {
     warning("network is undirected; arrow.gap ignored")
@@ -859,10 +859,29 @@ ggnet2 <- function(
 
     if (arrow.gap > 0) {
 
-      arrow.gap = with(edges, arrow.gap / sqrt((X2 - X1)^2 + (Y2 - Y1)^2))
+      # edge lengths
+      x.length = with(edges, abs(X2 - X1))
+      y.length = with(edges, abs(Y2 - Y1))
+
+      k = 10
+      x.length = cut_interval(x.length, k, labels = 1:k)
+      y.length = cut_interval(y.length, k, labels = 1:k)
+
+      # generate a arrow gap ratio with the same length as the
+      # number_of_splits for mapping the appropriate ratio later
+      # the longer the distance, the smaller ratio it gets
+      arrow.gap = rev(seq(arrow.gap - 0.05, arrow.gap, length.out = k))
+
+      # obtain the actual gap ratio for each edge
+      x.length = arrow.gap[ x.length ]
+      y.length = arrow.gap[ y.length ]
+
+      # adjust both the head and tail of the edges
       edges = transform(edges,
-                        X2 = X1 + (1 - arrow.gap) * (X2 - X1),
-                        Y2 = Y1 + (1 - arrow.gap) * (Y2 - Y1))
+                        X2 = X1 + x.length * (X2 - X1),
+                        Y2 = Y1 + y.length * (Y2 - Y1),
+                        X1 = X2 + x.length * (X1 - X2),
+                        Y1 = Y2 + y.length * (Y1 - Y2))
 
     }
 
