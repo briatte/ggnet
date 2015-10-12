@@ -126,7 +126,8 @@ if (getRversion() >= "2.15.1") {
 #' \code{\link[sna]{gplot}} in the \code{\link[sna]{sna}} package, and
 #' \code{\link[network]{plot.network}} in the \code{\link[network]{network}}
 #' package
-#' @author Moritz Marbach and Francois Briatte
+#' @author Moritz Marbach and Francois Briatte, with contributions from
+#' Heike Hoffmann and Ming-Yu Liu
 #' @details The degree centrality measures that can be produced through the
 #' \code{weight} argument will take the directedness of the network into account,
 #' but will be unweighted. To compute weighted network measures, see the
@@ -641,7 +642,6 @@ ggnet <- function(net,
         color  = segment.color,
         size   = size / 2
       )
-    
   }
   
   # -- plot nodes --------------------------------------------------------------
@@ -668,7 +668,6 @@ ggnet <- function(net,
         values = node.color,
         guide  = guide_legend(override.aes = list(size = legend.size))
       )
-    
   }
   
   # -- plot node labels --------------------------------------------------------
@@ -695,7 +694,6 @@ ggnet <- function(net,
       geom_text(label = l,
                 size  = label.size,
                 ...)
-    
   }
   
   # -- horizontal scale expansion ----------------------------------------------
