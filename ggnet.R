@@ -693,6 +693,7 @@ ggnet <- function(net,
     p = p +
       geom_text(label = l,
                 size  = label.size,
+                show.legend = FALSE, # required by ggplot2 >= 1.0.1.9003
                 ...)
   }
   
