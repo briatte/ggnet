@@ -858,21 +858,21 @@ ggnet2 <- function(net,
       
     }
     
+    p = p +
+      geom_segment(
+        data = edges,
+        aes(
+          x = X1, y = Y1, xend = X2, yend = Y2
+        ),
+        size   = edge.size,
+        color  = edge.color,
+        alpha  = edge.alpha,
+        lty    = edge.lty,
+        arrow  = grid::arrow(type   = arrow.type,
+                             length = grid::unit(arrow.size, "pt"))
+      )
+    
   }
-  
-  p = p +
-    geom_segment(
-      data = edges,
-      aes(
-        x = X1, y = Y1, xend = X2, yend = Y2
-      ),
-      size   = edge.size,
-      color  = edge.color,
-      alpha  = edge.alpha,
-      lty    = edge.lty,
-      arrow  = grid::arrow(type   = arrow.type,
-                           length = grid::unit(arrow.size, "pt"))
-    )
   
   if (nrow(edges) > 0 && !is.null(edge.label)) {
     p = p +

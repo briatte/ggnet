@@ -602,8 +602,6 @@ ggnet <- function(net,
       
     }
     
-  }
-    
     p = p +
       geom_segment(
         data = edges,
@@ -613,10 +611,8 @@ ggnet <- function(net,
         alpha  = segment.alpha,
         size   = segment.size,
         color  = segment.color,
-        arrow  = grid::arrow(
-          type   = arrow.type,
-          length = grid::unit(arrow.size, "pt")
-        )
+        arrow  = grid::arrow(type   = arrow.type,
+                             length = grid::unit(arrow.size, "pt"))
       )
     
   }
