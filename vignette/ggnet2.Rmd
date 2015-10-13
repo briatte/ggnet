@@ -427,16 +427,17 @@ ggnet2(bip, color = "mode", palette = col, edge.size = "weights", edge.lty = "lt
 The issue with edge arrows is that they will often get plotted below the nodes, as in this example, which tries to set 12-point edge arrows:
 
 ```{r, cache=TRUE, eval=TRUE}
-ggnet2(network(rgraph(10), directed = TRUE), arrow.size = 12)
+ggnet2(network(rgraph(10, tprob = 0.25), directed = TRUE), arrow.size = 12)
 ```
 
 As a workaround, `ggnet2` lets the user draw shorter edges, so that the arrows get plotted before the nodes, as in this example:
 
 ```{r, cache=TRUE, eval=TRUE}
-ggnet2(network(rgraph(10), directed = TRUE), arrow.size = 12, arrow.gap = 0.1)
+ggnet2(network(rgraph(10, tprob = 0.25), directed = TRUE),
+       arrow.size = 12, arrow.gap = 0.05)
 ```
 
-The `arrow.gap` argument represents the fraction of the edge that will not be drawn, so that a small value will usually be enough to unmask the edge arrows.
+The `arrow.gap` argument more or less represents the fraction of the edge that will be removed. Setting it to a value close (but not equal) to 0, such as in the example above, should help to ‘unmask’ the edge arrows if they have been covered by the nodes.
 
 The `arrow.type` argument determines the shape of the arrow. It should be set to either `"closed"` (the default), or `"open"`.
 
