@@ -160,7 +160,7 @@ if (getRversion() >= "2.15.1") {
 #'   ggnet(n, node.group = g, node.color = p, label = TRUE, color = "white")
 #'
 #'   # edge arrows on a directed network
-#'   ggnet(network(m, directed = TRUE), arrow.gap = 0.9, arrow.size = 10)
+#'   ggnet(network(m, directed = TRUE), arrow.gap = 0.0.5, arrow.size = 10)
 #'
 #' }
 ggnet <- function(net,
