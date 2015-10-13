@@ -185,7 +185,7 @@ if (getRversion() >= "2.15.1") {
 #' \code{\link[network]{plot.network}} in the \code{\link[network]{network}}
 #' package
 #' @author Moritz Marbach and Francois Briatte, with help from Heike Hoffmann,
-#' Pedro Jordano and Ming-Yu Liu.
+#' Pedro Jordano and Ming-Yu Liu
 #' @details The degree centrality measures that can be produced through the
 #' \code{size} argument will take the directedness of the network into account,
 #' but will be unweighted. To compute weighted network measures, see the
