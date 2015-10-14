@@ -163,50 +163,49 @@ if (getRversion() >= "2.15.1") {
 #'   ggnet(network(m, directed = TRUE), arrow.gap = 0.05, arrow.size = 10)
 #'
 #' }
-ggnet <- function(net,
-                  mode             = "fruchtermanreingold",
-                  layout.par       = NULL,
-                  layout.exp       = 0,
-                  size             = 9,
-                  alpha            = 1,
-                  weight           = "none",
-                  weight.legend    = NA,
-                  weight.method    = weight,
-                  weight.min       = NA,
-                  weight.max       = NA,
-                  weight.cut       = FALSE,
-                  group            = NULL,
-                  group.legend     = NA,
-                  node.group       = group,
-                  node.color       = NULL,
-                  node.alpha       = alpha,
-                  segment.alpha    = alpha,
-                  segment.color    = "grey50",
-                  segment.label    = NULL,
-                  segment.size     = 0.25,
-                  arrow.size       = 0,
-                  arrow.gap        = 0,
-                  arrow.type       = "closed",
-                  label            = FALSE,
-                  label.nodes      = label,
-                  label.size       = size / 2,
-                  label.trim       = FALSE,
-                  legend.size      = 9,
-                  legend.position  = "right",
-                  # -- deprecated arguments ------------------------------------
-                  names            = c("", ""),
-                  quantize.weights = FALSE,
-                  subset.threshold = 0,
-                  top8.nodes       = FALSE,
-                  trim.labels      = FALSE,
-                  ...) {
+ggnet <- function(
+  net,
+  mode             = "fruchtermanreingold",
+  layout.par       = NULL,
+  layout.exp       = 0,
+  size             = 9,
+  alpha            = 1,
+  weight           = "none",
+  weight.legend    = NA,
+  weight.method    = weight,
+  weight.min       = NA,
+  weight.max       = NA,
+  weight.cut       = FALSE,
+  group            = NULL,
+  group.legend     = NA,
+  node.group       = group,
+  node.color       = NULL,
+  node.alpha       = alpha,
+  segment.alpha    = alpha,
+  segment.color    = "grey50",
+  segment.label    = NULL,
+  segment.size     = 0.25,
+  arrow.size       = 0,
+  arrow.gap        = 0,
+  arrow.type       = "closed",
+  label            = FALSE,
+  label.nodes      = label,
+  label.size       = size / 2,
+  label.trim       = FALSE,
+  legend.size      = 9,
+  legend.position  = "right",
+  # -- deprecated arguments ----------------------------------------------------
+  names            = c("", ""),
+  quantize.weights = FALSE,
+  subset.threshold = 0,
+  top8.nodes       = FALSE,
+  trim.labels      = FALSE,
+  ...
+){
+
   # -- packages ----------------------------------------------------------------
 
-  require(network      , quietly = TRUE) # network objects
-  require(sna          , quietly = TRUE) # placement and centrality
-
-  require(grid         , quietly = TRUE) # arrows
-  require(scales       , quietly = TRUE) # sizing
+  require_pkgs(c("network", "sna", "scales"))
 
   # -- deprecations ------------------------------------------------------------
 
@@ -237,15 +236,12 @@ ggnet <- function(net,
 
   if (isTRUE(trim.labels)) {
     warning("trim.labels is deprecated; please use label.trim instead")
-    label.trim = function(x) {
-      gsub("^@|^http://(www\\.)?|/$", "", x)
-    }
+    label.trim = function(x) gsub("^@|^http://(www\\.)?|/$", "", x)
   }
 
   # -- conversion to network class ---------------------------------------------
 
-  if (class(net) == "igraph" &&
-      "intergraph" %in% rownames(installed.packages())) {
+  if (class(net) == "igraph" && "intergraph" %in% rownames(installed.packages())) {
     net = intergraph::asNetwork(net)
   } else if (class("net") == "igraph") {
     stop("install the 'intergraph' package to use igraph objects with ggnet")
@@ -269,6 +265,7 @@ ggnet <- function(net,
   }
 
   set_node = function(x, value, mode = TRUE) {
+
     if (is.null(x) || is.na(x) || is.infinite(x) || is.nan(x)) {
       stop(paste("incorrect", value, "value"))
     } else if (is.numeric(x) && any(x < 0)) {
@@ -288,6 +285,7 @@ ggnet <- function(net,
   }
 
   set_edge = function(x, value) {
+
     if (is.null(x) || is.na(x) || is.infinite(x) || is.nan(x)) {
       stop(paste("incorrect", value, "value"))
     } else if (is.numeric(x) && any(x < 0)) {
@@ -305,6 +303,7 @@ ggnet <- function(net,
   }
 
   set_attr = function(x) {
+
     if (length(x) == n_nodes) {
       x
     } else if (length(x) > 1) {
@@ -319,17 +318,10 @@ ggnet <- function(net,
 
   }
 
-  set_name = function(x, y) {
-    ifelse(length(x) == 1, x, ifelse(is.na(y), "", y))
-  }
+  set_name = function(x, y) ifelse(length(x) == 1, x, ifelse(is.na(y), "", y))
 
-  is_one = function(x) {
-    length(unique(x)) == 1
-  }
-
-  is_col = function(x) {
-    all(is.numeric(x)) | all(network::is.color(x))
-  }
+  is_one = function(x) length(unique(x)) == 1
+  is_col = function(x) all(is.numeric(x)) | all(network::is.color(x))
 
   # -- network structure -------------------------------------------------------
 
@@ -349,7 +341,7 @@ ggnet <- function(net,
     arrow.size = 0
   }
 
-  if (!is.numeric(arrow.gap) || arrow.gap < 0) {
+  if (!is.numeric(arrow.gap) || arrow.gap < 0 || arrow.gap > 1) {
     stop("incorrect arrow.gap value")
   } else if (arrow.gap > 0 & is_dir == "graph") {
     warning("network is undirected; arrow.gap ignored")
@@ -372,8 +364,7 @@ ggnet <- function(net,
 
   x = size
 
-  if (!is.numeric(x) ||
-      is.infinite(x) || is.nan(x) || x < 0 || length(x) > 1) {
+  if (!is.numeric(x) || is.infinite(x) || is.nan(x) || x < 0 || length(x) > 1) {
     stop("incorrect size value")
   }
 
@@ -385,17 +376,13 @@ ggnet <- function(net,
 
   x = weight.method
 
-  if (length(x) == 1 &&
-      x %in% c("indegree", "outdegree", "degree", "freeman")) {
+  if (length(x) == 1 && x %in% c("indegree", "outdegree", "degree", "freeman")) {
+
     # prevent namespace conflict with igraph
     if ("package:igraph" %in% search()) {
+
       y = ifelse(is_dir == "digraph", "directed", "undirected")
-      z = c(
-        "indegree" = "in",
-        "outdegree" = "out",
-        "degree" = "all",
-        "freeman" = "all"
-      )[x]
+      z = c("indegree" = "in", "outdegree" = "out", "degree" = "all", "freeman" = "all")[ x ]
       data$weight = igraph::degree(igraph::graph.adjacency(as.matrix(net), mode = y), mode = z)
 
     } else {
@@ -416,18 +403,20 @@ ggnet <- function(net,
 
   x = ifelse(is.na(weight.min), 0, weight.min)
 
-  if (length(x) > 1 ||
-      !is.numeric(x) || is.infinite(x) || is.nan(x) || x < 0) {
+  if (length(x) > 1 || !is.numeric(x) || is.infinite(x) || is.nan(x) || x < 0) {
     stop("incorrect weight.min value")
   } else if (x > 0) {
+
     x = which(data$weight < x)
     message(paste("weight.min removed", length(x), "nodes out of", nrow(data)))
 
     if (length(x) > 0) {
-      data = data[-x,]
+
+      data = data[ -x, ]
       network::delete.vertices(net, x)
 
       if (!nrow(data)) {
+
         warning("weight.min removed all nodes; nothing left to plot")
         return(invisible(NULL))
 
@@ -439,18 +428,20 @@ ggnet <- function(net,
 
   x = ifelse(is.na(weight.max), 0, weight.max)
 
-  if (length(x) > 1 ||
-      !is.numeric(x) || is.infinite(x) || is.nan(x) || x < 0) {
+  if (length(x) > 1 || !is.numeric(x) || is.infinite(x) || is.nan(x) || x < 0) {
     stop("incorrect weight.max value")
   } else if (x > 0) {
+
     x = which(data$weight > x)
     message(paste("weight.max removed", length(x), "nodes out of", nrow(data)))
 
     if (length(x) > 0) {
-      data = data[-x,]
+
+      data = data[ -x, ]
       network::delete.vertices(net, x)
 
       if (!nrow(data)) {
+
         warning("weight.max removed all nodes; nothing left to plot")
         return(invisible(NULL))
 
@@ -464,8 +455,7 @@ ggnet <- function(net,
 
   x = weight.cut
 
-  if (length(x) > 1 ||
-      is.null(x) || is.na(x) || is.infinite(x) || is.nan(x)) {
+  if (length(x) > 1 || is.null(x) || is.na(x) || is.infinite(x) || is.nan(x)) {
     stop("incorrect weight.cut value")
   } else if (isTRUE(x)) {
     x = 4
@@ -476,6 +466,7 @@ ggnet <- function(net,
   }
 
   if (x >= 1) {
+
     x = unique(quantile(data$weight, probs = seq(0, 1, by = 1 / as.integer(x))))
 
     if (length(x) > 1) {
@@ -489,28 +480,34 @@ ggnet <- function(net,
   # -- node sizing -------------------------------------------------------------
 
   if (is.factor(data$weight)) {
+
     sizer = scale_size_area(
       set_name(weight.method, weight.legend),
       max_size = size,
       breaks   = sort(unique(as.integer(data$weight))),
-      labels   = levels(data$weight)[sort(unique(as.integer(data$weight)))]
+      labels   = levels(data$weight)[ sort(unique(as.integer(data$weight))) ]
     )
     data$weight = as.integer(data$weight)
 
   } else {
-    sizer = scale_size_area(set_name(weight.method, weight.legend),
-                            max_size = size)
+
+    sizer = scale_size_area(
+      set_name(weight.method, weight.legend),
+      max_size = size
+    )
 
   }
 
   # -- node grouping -----------------------------------------------------------
 
   if (!is.null(node.group)) {
+
     data$group = factor(set_node(node.group, "node.group"))
 
     x = length(unique(na.omit(data$group)))
 
     if (length(node.color) != x) {
+
       if (!is.null(node.color)) {
         warning("node groups and colors are of unequal length; using grayscale colors")
       }
@@ -539,6 +536,7 @@ ggnet <- function(net,
   # -- node placement ----------------------------------------------------------
 
   if (is.character(mode) && length(mode) == 1) {
+
     mode = paste0("gplot.layout.", mode)
     if (!exists(mode)) {
       stop(paste("unsupported placement method:", mode))
@@ -550,14 +548,17 @@ ggnet <- function(net,
     xy = data.frame(x = xy[, 1], y = xy[, 2])
 
   } else if (is.character(mode) && length(mode) == 2) {
+
     # fixed coordinates from vertex attributes
     xy = data.frame(x = set_attr(mode[1]), y = set_attr(mode[2]))
 
   } else if (is.numeric(mode) && is.matrix(mode)) {
+
     # fixed coordinates from matrix
     xy = data.frame(x = set_attr(mode[, 1]), y = set_attr(mode[, 2]))
 
   } else {
+
     stop("incorrect mode value")
 
   }
@@ -570,12 +571,13 @@ ggnet <- function(net,
   # -- edge list ---------------------------------------------------------------
 
   edges = network::as.matrix.network.edgelist(net)
-  edges = data.frame(xy[edges[, 1],], xy[edges[, 2],])
+  edges = data.frame(xy[ edges[, 1], ], xy[ edges[, 2], ])
   names(edges) = c("X1", "Y1", "X2", "Y2")
 
   # -- edge labels -------------------------------------------------------------
 
   if (!is.null(segment.label)) {
+
     edges$midX = (edges$X1 + edges$X2) / 2
     edges$midY = (edges$Y1 + edges$Y2) / 2
     edges$label = set_edge(segment.label, "segment.label")
@@ -587,36 +589,39 @@ ggnet <- function(net,
   p = ggplot(data, aes(x = x, y = y))
 
   if (nrow(edges) > 0) {
+
     if (arrow.gap > 0) {
-      x.length = with(edges, X2 - X1)
-      y.length = with(edges, Y2 - Y1)
+
+      x.length = with(edges, abs(X2 - X1))
+      y.length = with(edges, abs(Y2 - Y1))
+
       arrow.gap = with(edges, arrow.gap / sqrt(x.length ^ 2 + y.length ^ 2))
-      edges = transform(
-        edges,
-        X1 = X1 + arrow.gap * x.length,
-        Y1 = Y1 + arrow.gap * y.length,
-        X2 = X1 + (1 - arrow.gap) * x.length,
-        Y2 = Y1 + (1 - arrow.gap) * y.length
-      )
+
+      edges = transform(edges,
+                        X1 = X1 + arrow.gap * x.length,
+                        Y1 = Y1 + arrow.gap * y.length,
+                        X2 = X1 + (1 - arrow.gap) * x.length,
+                        Y2 = Y1 + (1 - arrow.gap) * y.length)
 
     }
 
     p = p +
       geom_segment(
         data = edges,
-        aes(
-          x = X1, y = Y1, xend = X2, yend = Y2
-        ),
+        aes(x = X1, y = Y1, xend = X2, yend = Y2),
         alpha  = segment.alpha,
         size   = segment.size,
         color  = segment.color,
-        arrow  = grid::arrow(type   = arrow.type,
-                             length = grid::unit(arrow.size, "pt"))
+        arrow  = grid::arrow(
+          type   = arrow.type,
+          length = grid::unit(arrow.size, "pt")
+        )
       )
 
   }
 
   if (nrow(edges) > 0 && !is.null(segment.label)) {
+
     p = p +
       geom_point(
         data = edges,
@@ -631,18 +636,25 @@ ggnet <- function(net,
         color  = segment.color,
         size   = size / 2
       )
+
   }
 
   # -- plot nodes --------------------------------------------------------------
 
   if (length(weight.method) == 1 && weight.method == "none") {
-    p = p + geom_point(alpha = node.alpha,
-                       size  = size)
+
+    p = p + geom_point(
+      alpha = node.alpha,
+      size  = size
+    )
 
   } else {
+
     p = p +
-      geom_point(aes(size = weight),
-                 alpha = node.alpha) +
+      geom_point(
+        aes(size = weight),
+        alpha = node.alpha
+      ) +
       sizer
 
   }
@@ -650,6 +662,7 @@ ggnet <- function(net,
   # -- plot node colors --------------------------------------------------------
 
   if (!is.null(node.group)) {
+
     p = p +
       aes(color = group) +
       scale_color_manual(
@@ -657,11 +670,13 @@ ggnet <- function(net,
         values = node.color,
         guide  = guide_legend(override.aes = list(size = legend.size))
       )
+
   }
 
   # -- plot node labels --------------------------------------------------------
 
   if (!is_one(l) || unique(l) != "") {
+
     label.size = set_node(label.size, "label.size", mode = FALSE)
 
     if (!is.numeric(label.size)) {
@@ -670,8 +685,7 @@ ggnet <- function(net,
 
     x = label.trim
 
-    if (length(x) > 1 ||
-        (!is.logical(x) & !is.numeric(x) & !is.function(x))) {
+    if (length(x) > 1 || (!is.logical(x) & !is.numeric(x) & !is.function(x))) {
       stop("incorrect label.trim value")
     } else if (is.numeric(x) && x > 0) {
       l = substr(l, 1, x)
@@ -680,10 +694,13 @@ ggnet <- function(net,
     }
 
     p = p +
-      geom_text(label = l,
-                size  = label.size,
-                show.legend = FALSE, # required by ggplot2 >= 1.0.1.9003
-                ...)
+      geom_text(
+        label = l,
+        size  = label.size,
+        show.legend = FALSE, # required by ggplot2 >= 1.0.1.9003
+        ...
+      )
+
   }
 
   # -- horizontal scale expansion ----------------------------------------------
@@ -712,4 +729,5 @@ ggnet <- function(net,
     )
 
   return(p)
+
 }
