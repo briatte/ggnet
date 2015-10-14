@@ -1,6 +1,6 @@
 # ggnet: network visualization with ggplot2
 
-![](demo.png)
+![](inst/demo.png)
 
 This repository contains the latest versions of the `ggnet` and `ggnet2` functions, which allow to visualize networks as [`ggplot2`](http://ggplot2.org/) objects.
 
