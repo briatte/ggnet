@@ -1,14 +1,14 @@
 #' Require packages
 #'
-#' Requires packages or yells at user... loudly
+#' This function is taken from the \code{GGally} package.
 #'
 #' @param pkgs vector of character values
-#' @author Barret Schloerke \email{schloerke@@gmail.com}
+#' @author Barret Schloerke
 #' @keywords internal
 require_pkgs = function(pkgs) {
   for (pkg in pkgs) {
-    if (! require(pkg, character.only = TRUE)) {
-      stop(str_c("please install the package '", pkg, "'.  install.packages('", pkg, "') "))
+    if (!require(pkg, character.only = TRUE)) {
+      stop(paste("please install the package '", pkg, "'.  install.packages('", pkg, "') "))
     }
   }
 }
