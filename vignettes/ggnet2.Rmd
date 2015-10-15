@@ -7,10 +7,6 @@ output:
     theme: united
 ---
 
-```{r, echo=F}
-source("../ggnet2.R")
-```
-
 # Introduction
 
 The `ggnet2` function is a visualization function to plot network objects as [`ggplot2`][ggplot2] objects. It accepts any object that can be coerced to the [`network`][network] class, including adjacency or incidence matrices, edge lists, or one-mode [`igraph`][igraph] network objects.
@@ -39,12 +35,18 @@ This idea motivated the [very first version of `ggnet`](https://sumtxt.wordpress
 
 ```{r, eval=F}
 install.packages("GGally")
+library(GGally)
 ```
 
-It can also be used as a standalone function:
+Or it can also be installed from its standalone package:
 
 ```{r, eval=F}
-source("https://raw.githubusercontent.com/briatte/ggnet/master/ggnet2.R")
+devtools::install_github("briatte/ggnet")
+library(ggnet)
+```
+
+```{r, echo=F, include=F}
+devtools::load_all()
 ```
 
 ## Dependencies
@@ -52,12 +54,16 @@ source("https://raw.githubusercontent.com/briatte/ggnet/master/ggnet2.R")
 The package dependencies of `ggnet2` are, on the one hand, the [`network`][network] and [`sna`][sna] packages for network manipulation, and the [`ggplot2`][ggplot2] package for plot construction.
 
 ```{r, message=F}
-library(sna)
 library(network)
+library(sna)
 library(ggplot2)
 ```
 
-The [`ggplot2`][ggplot2] package will also load the [`grid`](http://www.rdocumentation.org/packages/grid) and [`scales`](http://www.rdocumentation.org/packages/scales) packages, which are used internally by `ggnet2`.
+The [`ggplot2`][ggplot2] package will also load the [`scales`](http://www.rdocumentation.org/packages/scales) package, which is used internally by `ggnet2`.
+
+```{r, echo=F, include=F}
+require(scales, quietly = TRUE)
+```
 
 Additionally, `ggnet2` suggests the following packages:
 
@@ -258,7 +264,7 @@ ggnet2(net, color = "phono") +
 
 # control the size of the nodes
 ggnet2(net, size = "degree") +
-  scale_size_discrete("", range = c(5, 10), breaks = c(10, 6, 2))
+  scale_size_discrete("", range = c(5, 10), breaks = seq(10, 2, -2))
 ```
 
 The legends can be futher styled by modifying the [`theme`](http://docs.ggplot2.org/current/theme.html) of the plot, or by using the shorthands built into `ggnet2`. The `legend.text` argument controls the size of the legends symbols, text labels and title, and the `legend.position` argument controls its placement:
@@ -434,7 +440,7 @@ As a workaround, `ggnet2` lets the user draw shorter edges, so that the arrows g
 
 ```{r, cache=TRUE, eval=TRUE}
 ggnet2(network(rgraph(10, tprob = 0.25), directed = TRUE),
-       arrow.size = 12, arrow.gap = 0.05)
+       arrow.size = 12, arrow.gap = 0.025)
 ```
 
 The `arrow.gap` argument more or less represents the fraction of the edge that will be removed. Setting it to a value close (but not equal) to 0, such as in the example above, should help to ‘unmask’ the edge arrows if they have been covered by the nodes.
@@ -574,29 +580,45 @@ ggnet2(net, color = x, color.legend = "period", palette = col,
 
 The development repository of `ggnet2` contains a dataset of 339 French Members of Parliament (MPs), and the ties that they formed by following each other on Twitter. The data are from May 2013 and come in two files that index the edges and the nodes separately:
 
-```{r, cache=TRUE, eval=TRUE}
-# node information
-ids = read.csv("https://raw.githubusercontent.com/briatte/ggnet/master/data/nodes.tsv", sep = "\t")
-names(ids)
+```{r, eval=F}
+# root URL
+r = "https://raw.githubusercontent.com/briatte/ggnet/master/"
 
-# edge list
-df = read.csv("https://raw.githubusercontent.com/briatte/ggnet/master/data/network.tsv", sep = "\t")
-names(df)
+# read nodes
+v = read.csv(paste0(r, "inst/extdata/nodes.tsv"), sep = "\t")
+names(v)
+
+# read edges
+e = read.csv(paste0(r, "inst/extdata/network.tsv"), sep = "\t")
+names(e)
+```
+
+```{r, echo=F, include=F}
+# local path
+r = "../"
+
+# read nodes
+v = read.csv(paste0(r, "inst/extdata/nodes.tsv"), sep = "\t")
+names(v)
+
+# read edges
+e = read.csv(paste0(r, "inst/extdata/network.tsv"), sep = "\t")
+names(e)
 ```
 
 The network is constructed by converting the edge list into a [`network`][network] object. The party affiliations of the MPs are then used to construct a manual color palette:
 
 ```{r, cache=TRUE, eval=TRUE}
 # network object
-net = network(df)
+net = network(e, directed = TRUE)
 
 # party affiliation
 x = data.frame(Twitter = network.vertex.names(net))
-x = merge(x, ids, by = "Twitter", sort = FALSE)$Groupe
+x = merge(x, v, by = "Twitter", sort = FALSE)$Groupe
 net %v% "party" = as.character(x)
 
-# colour palette
-y = brewer.pal(9, "Set1")[ c(3, 1, 9, 6, 8, 5, 2) ]
+# color palette
+y = RColorBrewer::brewer.pal(9, "Set1")[ c(3, 1, 9, 6, 8, 5, 2) ]
 names(y) = levels(x)
 
 # network plot
@@ -622,8 +644,10 @@ If you find other limitations to `ggnet2`, please [submit an issue](https://gith
 
 ---
 
-```{r, results='asis', echo=F, cache=TRUE, eval=TRUE}
-cat("Last printed ", gsub("\\s+", " ", format(Sys.time(), "%b %e, %Y")), ".", sep = "")
+```{r, results='asis', echo=FALSE, cache=TRUE, eval=TRUE}
+cat("Last printed on ", gsub("\\s+", " ", format(Sys.time(), "%b %e, %Y")), 
+    ", using ggnet version ", as.character(packageVersion("ggnet")),
+    ".", sep = "")
 ```
 
 [colorbrewer]: http://colorbrewer2.org/
