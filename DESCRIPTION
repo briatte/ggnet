@@ -2,6 +2,8 @@ Package: ggnet
 Title: Functions to plot networks with ggplot2
 Version: 0.1
 Authors@R: person("Francois", "Briatte", email = "f.briatte@gmail.com", role = c("aut", "cre"))
+URL: https://github.com/briatte/ggnet
+BugReports: https://github.com/briatte/ggnet/issues
 Description: This package provides two different functions, called ggnet and ggnet2, to plot networks as ggplot2 objects. The package vignette provides a complete guide to the most flexible of the two functions, ggnet2.
 License: GPL-3
 LazyData: true
