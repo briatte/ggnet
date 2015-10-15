@@ -777,8 +777,10 @@ ggnet2 <- function(
 
   }
 
-  xy$x = scale(xy$x, min(xy$x), diff(range(xy$x)))
-  xy$y = scale(xy$y, min(xy$y), diff(range(xy$y)))
+  if (length(mode) == 1) {
+    xy$x = scale(xy$x, min(xy$x), diff(range(xy$x)))
+    xy$y = scale(xy$y, min(xy$y), diff(range(xy$y)))
+  }
 
   data = cbind(data, xy)
 
