@@ -12,18 +12,17 @@ This repository contains the latest versions of the `ggnet` and `ggnet2` functio
 install.packages("GGally")
 ```
 
-You can also use `ggnet` and `ggnet2` as standalone functions:
+Alternately, you can also use `ggnet` and `ggnet2` as a small standalone package:
 
 ```{r}
-source("https://raw.githubusercontent.com/briatte/ggnet/master/ggnet.R")
-source("https://raw.githubusercontent.com/briatte/ggnet/master/ggnet2.R")
+devtools::install_github("briatte/ggnet")
 ```
 
 ## VIGNETTE
 
 The `ggnet2` function is fully documented in [this vignette](https://briatte.github.io/ggnet/).
 
-The data for one of the examples, a Twitter network of French Members of Parliament, is [included in this repository](data), as is the [vignette source](vignette).
+The data for one of the examples, a Twitter network of French Members of Parliament, is [included in this repository](inst/extdata), as is the [vignette source](vignettes).
 
 ## THANKS
 
