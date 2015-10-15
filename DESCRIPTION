@@ -2,16 +2,16 @@ Package: ggnet
 Title: Functions to plot networks with ggplot2
 Version: 0.1
 Authors@R: person("Francois", "Briatte", email = "f.briatte@gmail.com", role = c("aut", "cre"))
-Description: The ggnet and ggnet2 functions provide two different ways to plot networks as ggplot2 objects.
+Description: This package provides two different functions, called ggnet and ggnet2, to plot networks as ggplot2 objects. The package vignette provides a complete guide to the most flexible of the two functions, ggnet2.
 License: GPL-3
 LazyData: true
-Depends:
-  ggplot2,
-  R (>= 2.1.4)
 Imports:
+  ggplot2,
   network,
+  scales,
   sna
 Suggests:
+  igraph,
   intergraph,
   knitr,
   RColorBrewer,
