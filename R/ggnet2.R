@@ -196,7 +196,8 @@ if (getRversion() >= "2.15.1") {
 #' \code{size}, in which case the nodes of the primary mode will be mapped as
 #' \code{"actor"}, and the nodes of the secondary mode will be mapped as
 #' \code{"event"}.
-#' @importFrom grid arrow unit
+#' @import ggplot2
+#' @importFrom scales expand_range rescale_max abs_area shape_pal
 #' @examples
 #' if(require(network)) {
 #'
@@ -859,8 +860,8 @@ ggnet2 <- function(
 
     if (arrow.gap > 0) {
 
-      x.length = with(edges, abs(X2 - X1))
-      y.length = with(edges, abs(Y2 - Y1))
+      x.length = with(edges, X2 - X1)
+      y.length = with(edges, Y2 - Y1)
 
       arrow.gap = with(edges, arrow.gap / sqrt(x.length ^ 2 + y.length ^ 2))
 
@@ -880,9 +881,9 @@ ggnet2 <- function(
         color  = edge.color,
         alpha  = edge.alpha,
         lty    = edge.lty,
-        arrow  = grid::arrow(
+        arrow  = arrow(
           type   = arrow.type,
-          length = grid::unit(arrow.size, "pt")
+          length = unit(arrow.size, "pt")
         )
       )
 
@@ -942,7 +943,8 @@ ggnet2 <- function(
     names(v_alpha) = unique(data$alpha)
 
     p = p +
-      scale_alpha_manual("", values = v_alpha) + guides(alpha = FALSE)
+      scale_alpha_manual("", values = v_alpha) +
+      guides(alpha = FALSE)
 
   } else {
 
@@ -962,7 +964,7 @@ ggnet2 <- function(
       scale_color_manual(set_name(node.color, color.legend),
                          values = color.palette,
                          breaks = names(color.palette),
-                         guide = guide_legend(override.aes = x))
+                         guide  = guide_legend(override.aes = x))
 
   } else {
 
@@ -970,7 +972,8 @@ ggnet2 <- function(
     names(v_color) = unique(data$color)
 
     p = p +
-      scale_color_manual("", values = v_color) + guides(color = FALSE)
+      scale_color_manual("", values = v_color) +
+      guides(color = FALSE)
 
   }
 
@@ -982,7 +985,8 @@ ggnet2 <- function(
     names(v_shape) = unique(data$shape)
 
     p = p +
-      scale_shape_manual("", values = v_shape) + guides(shape = FALSE)
+      scale_shape_manual("", values = v_shape) +
+      guides(shape = FALSE)
 
   } else {
 
@@ -990,7 +994,7 @@ ggnet2 <- function(
       scale_shape_manual(set_name(node.shape, shape.legend),
                          values = shape.palette,
                          breaks = names(shape.palette),
-                         guide = guide_legend(override.aes = x))
+                         guide  = guide_legend(override.aes = x))
   }
 
   # -- legend: size ------------------------------------------------------------
@@ -1005,7 +1009,8 @@ ggnet2 <- function(
 
       v_size = as.numeric(names(v_size))
       p = p +
-        scale_size_manual("", values = v_size) + guides(size = FALSE)
+        scale_size_manual("", values = v_size) +
+        guides(size = FALSE)
 
     } else {
 
@@ -1021,7 +1026,7 @@ ggnet2 <- function(
     p = p +
       scale_size_manual(set_name(node.size, size.legend),
                         values = set_size(size.palette),
-                        guide = guide_legend(override.aes = x))
+                        guide  = guide_legend(override.aes = x))
 
   }
 

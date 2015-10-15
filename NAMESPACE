@@ -2,5 +2,8 @@
 
 export(ggnet)
 export(ggnet2)
-importFrom(grid,arrow)
-importFrom(grid,unit)
+import(ggplot2)
+importFrom(scales,abs_area)
+importFrom(scales,expand_range)
+importFrom(scales,rescale_max)
+importFrom(scales,shape_pal)

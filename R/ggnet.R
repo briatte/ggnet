@@ -132,7 +132,8 @@ if (getRversion() >= "2.15.1") {
 #' \code{weight} argument will take the directedness of the network into account,
 #' but will be unweighted. To compute weighted network measures, see the
 #' \code{\link[tnet:tnet-package]{tnet}} package by Tore Opsahl.
-#' @importFrom grid arrow unit
+#' @import ggplot2
+#' @importFrom scales expand_range
 #' @examples
 #' if (require(network)){
 #'
@@ -592,8 +593,8 @@ ggnet <- function(
 
     if (arrow.gap > 0) {
 
-      x.length = with(edges, abs(X2 - X1))
-      y.length = with(edges, abs(Y2 - Y1))
+      x.length = with(edges, X2 - X1)
+      y.length = with(edges, Y2 - Y1)
 
       arrow.gap = with(edges, arrow.gap / sqrt(x.length ^ 2 + y.length ^ 2))
 
@@ -612,9 +613,9 @@ ggnet <- function(
         alpha  = segment.alpha,
         size   = segment.size,
         color  = segment.color,
-        arrow  = grid::arrow(
+        arrow  = arrow(
           type   = arrow.type,
-          length = grid::unit(arrow.size, "pt")
+          length = unit(arrow.size, "pt")
         )
       )
 
