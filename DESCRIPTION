@@ -1,6 +1,6 @@
 Package: ggnet
 Title: Functions to plot networks with ggplot2
-Version: 0.1
+Version: 0.1.0
 Authors@R: person("Francois", "Briatte", email = "f.briatte@gmail.com", role = c("aut", "cre"))
 URL: https://github.com/briatte/ggnet
 BugReports: https://github.com/briatte/ggnet/issues
