@@ -305,7 +305,7 @@ ggnet2 <- function(
 
   # -- packages ----------------------------------------------------------------
 
-  require_pkgs(c("network", "sna", "scales"))
+  require_pkgs(c("network", "sna", "scales", "grid"))
 
   # -- conversion to network class ---------------------------------------------
 
@@ -883,9 +883,9 @@ ggnet2 <- function(
         color  = edge.color,
         alpha  = edge.alpha,
         lty    = edge.lty,
-        arrow  = arrow(
+        arrow  = grid::arrow(
           type   = arrow.type,
-          length = unit(arrow.size, "pt")
+          length = grid::unit(arrow.size, "pt")
         )
       )
 

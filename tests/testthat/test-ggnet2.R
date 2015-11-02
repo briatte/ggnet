@@ -1,68 +1,25 @@
-
+library(ggnet)
+library(testthat)
 context("ggnet2")
 
-if ("package:igraph" %in% search()) {
-  detach("package:igraph")
-}
 
-require(network      , quietly = TRUE) # network objects
-require(sna          , quietly = TRUE) # placement and centrality
+require(network, quietly = TRUE) # network object manipulation
+x           <- 10
+ndyads      <- x * (x - 1)
+density     <- x / ndyads
+m           <- matrix(0, nrow = x, ncol = x)
+dimnames(m) <- list(letters[ 1:x ], letters[ 1:x ])
+m[ row(m) != col(m) ] <- runif(ndyads) < density
+n <- network::network(m, directed = FALSE)
+x <- network::network.vertex.names(n)
+x <- ifelse(x %in% c("a", "e", "i"), "vowel", "consonant")
+n %v% "phono" = x
 
-require(ggplot2      , quietly = TRUE) # grammar of graphics
-require(grid         , quietly = TRUE) # arrows
-require(scales       , quietly = TRUE) # sizing
 
-require(intergraph   , quietly = TRUE) # test igraph conversion
-require(RColorBrewer , quietly = TRUE) # test ColorBrewer palettes
 
-test_that("examples", {
 
-  ### --- start: documented examples
 
-  # random adjacency matrix
-  x           <- 10
-  ndyads      <- x * (x - 1)
-  density     <- x / ndyads
-  m           <- matrix(0, nrow = x, ncol = x)
-  dimnames(m) <- list(letters[ 1:x ], letters[ 1:x ])
-  m[ row(m) != col(m) ] <- runif(ndyads) < density
-  m
-
-  # random undirected network
-  n <- network::network(m, directed = FALSE)
-  n
-
-  ggnet2(n, label = TRUE)
-  # ggnet2(n, label = TRUE, shape = 15)
-  # ggnet2(n, label = TRUE, shape = 15, color = "black", label.color = "white")
-
-  # add vertex attribute
-  x = network.vertex.names(n)
-  x = ifelse(x %in% c("a", "e", "i"), "vowel", "consonant")
-  n %v% "phono" = x
-
-  ggnet2(n, color = "phono")
-  ggnet2(n, color = "phono", palette = c("vowel" = "gold", "consonant" = "grey"))
-  ggnet2(n, shape = "phono", color = "phono")
-
-  # random groups
-  n %v% "group" <- sample(LETTERS[1:3], 10, replace = TRUE)
-  ggnet2(n, color = "group", palette = "Set2")
-
-  # random weights
-  n %e% "weight" <- sample(1:3, network.edgecount(n), replace = TRUE)
-  ggnet2(n, edge.size = "weight", edge.label = "weight")
-
-  # Padgett's Florentine wedding data
-  data(flo, package = "network")
-  flo
-
-  ggnet2(flo, label = TRUE)
-  ggnet2(flo, label = TRUE, label.trim = 4, vjust = -1, size = 3, color = 1)
-  # ggnet2(flo, label = TRUE, size = 12, color = "white")
-
-  ### --- end: documented examples
-
+test_that("node and edge assignments don't throw errors", {
   # test node assignment errors
   expect_error(ggnet2(n, color = NA))
   expect_error(ggnet2(n, color = -1))
@@ -95,7 +52,7 @@ test_that("examples", {
 
   # test arrow.gap
 
-  expect_error(ggnet2(n, arrow.size = 12, arrow.gap = -1), "incorrect arrow.gap")
+  expect_error(suppressWarnings(ggnet2(n, arrow.size = 12, arrow.gap = -1)), "incorrect arrow.gap")
   expect_warning(ggnet2(n, arrow.size = 12, arrow.gap = 0.1), "arrow.gap ignored")
 
   m <- network::network(m, directed = TRUE)
@@ -218,19 +175,26 @@ test_that("examples", {
 
   # test bipartite mode
   ggnet2(bip, color = "mode")
+})
 
-  ### --- test network coercion
+
+
+
+test_that("test network coercion", {
 
   expect_warning(ggnet2(network(matrix(1, nrow = 2, ncol = 2), loops = TRUE)), "self-loops")
 
   expect_error(ggnet2(1:2), "network object")
   expect_error(ggnet2(network(data.frame(1:2, 3:4), hyper = TRUE)), "hyper graphs")
   expect_error(ggnet2(network(data.frame(1:2, 3:4), multiple = TRUE)), "multiplex graphs")
+})
 
-  ### --- test igraph functionality
 
+
+
+test_that("test igraph functionality", {
   # test igraph conversion
-  p = ggnet2(asIgraph(n), color = "group")
+  p = ggnet2(intergraph::asIgraph(n), color = "group")
   expect_null(p$guides$colour)
 
   # test igraph degree
