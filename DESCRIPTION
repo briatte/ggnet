@@ -11,7 +11,8 @@ Imports:
   ggplot2,
   network,
   scales,
-  sna
+  sna,
+  grid
 Suggests:
   igraph,
   intergraph,

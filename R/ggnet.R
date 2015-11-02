@@ -204,9 +204,11 @@ ggnet <- function(
   ...
 ){
 
+
+
   # -- packages ----------------------------------------------------------------
 
-  require_pkgs(c("network", "sna", "scales"))
+  require_pkgs(c("network", "sna", "scales", "grid"))
 
   # -- deprecations ------------------------------------------------------------
 
@@ -377,24 +379,29 @@ ggnet <- function(
 
   x = weight.method
 
-  if (length(x) == 1 && x %in% c("indegree", "outdegree", "degree", "freeman")) {
+  if (length(x) == 1) {
+     if (x %in% c("indegree", "outdegree", "degree", "freeman")) {
 
-    # prevent namespace conflict with igraph
-    if ("package:igraph" %in% search()) {
+        # prevent namespace conflict with igraph
+        if ("package:igraph" %in% search()) {
+           y = ifelse(is_dir == "digraph", "directed", "undirected")
+           z = c("indegree" = "in", "outdegree" = "out", "degree" = "all", "freeman" = "all")[ x ]
+           data$weight = igraph::degree(igraph::graph.adjacency(as.matrix(net), mode = y), mode = z)
 
-      y = ifelse(is_dir == "digraph", "directed", "undirected")
-      z = c("indegree" = "in", "outdegree" = "out", "degree" = "all", "freeman" = "all")[ x ]
-      data$weight = igraph::degree(igraph::graph.adjacency(as.matrix(net), mode = y), mode = z)
-
-    } else {
-      data$weight = sna::degree(net, gmode = is_dir, cmode = ifelse(x == "degree", "freeman", x))
-    }
+        } else {
+           data$weight = sna::degree(net, gmode = is_dir, cmode = ifelse(x == "degree", "freeman", x))
+        }
+     } else if (x %in% v_attr) {
+        data$weight = get_v(net, x)
+     } else if (x != "none" && !(x %in% v_attr)) {
+        stop("incorrect weight.method value")
+     }
 
   } else if (length(x) > 1 && length(x) == n_nodes) {
-    data$weight = x
-  } else if (length(x) == 1 && x %in% v_attr) {
-    data$weight = get_v(net, x)
+     data$weight = x
   }
+
+
 
   if (!is.null(data$weight) && !is.numeric(data$weight)) {
     stop("incorrect weight.method value")
@@ -615,9 +622,9 @@ ggnet <- function(
         alpha  = segment.alpha,
         size   = segment.size,
         color  = segment.color,
-        arrow  = arrow(
+        arrow  = grid::arrow(
           type   = arrow.type,
-          length = unit(arrow.size, "pt")
+          length = grid::unit(arrow.size, "pt")
         )
       )
 
