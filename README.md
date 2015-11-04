@@ -6,15 +6,10 @@ This repository contains the latest versions of the `ggnet` and `ggnet2` functio
 
 ## INSTALL
 
-`ggnet` and `ggnet2` are part of the __`GGally`__ package. Install it [from CRAN](https://cran.r-project.org/web/packages/GGally/):
+Right now, `ggnet` and `ggnet2` have to be installed as a small standalone package, which in turn requires the __latest version of `ggplot2`__. You will need to install _both_ packages from GitHub:
 
 ```{r}
-install.packages("GGally")
-```
-
-Alternately, you can also use `ggnet` and `ggnet2` as a small standalone package:
-
-```{r}
+devtools::install_github("hadley/ggplot2")
 devtools::install_github("briatte/ggnet")
 ```
 
