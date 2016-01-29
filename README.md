@@ -6,12 +6,19 @@ This repository contains the latest versions of the `ggnet` and `ggnet2` functio
 
 ## INSTALL
 
-Right now, `ggnet` and `ggnet2` have to be installed as a small standalone package, which in turn requires the __latest version of `ggplot2`__. You will need to install _both_ packages from GitHub:
+`ggnet` and `ggnet2` are part of the [`GGally`](https://cran.r-project.org/web/packages/GGally/) package. Install it from CRAN:
 
 ```{r}
-devtools::install_github("hadley/ggplot2")
+install.packages("GGally")
+```
+
+You can also install `ggnet` and `ggnet2` alone as a small standalone package:
+
+```{r}
 devtools::install_github("briatte/ggnet")
 ```
+
+Note that you will need the latest version of `ggplot2` (2.0.0) for any of the functions to work properly.
 
 ## VIGNETTE
 
