@@ -12,13 +12,13 @@ This repository contains the latest versions of the `ggnet` and `ggnet2` functio
 install.packages("GGally")
 ```
 
-You can also install `ggnet` and `ggnet2` alone as a small standalone package:
+You can also install `ggnet` and `ggnet2` as a small standalone package:
 
 ```{r}
 devtools::install_github("briatte/ggnet")
 ```
 
-Note that you will need the latest version of `ggplot2` (2.0.0) for any of the functions to work properly.
+Note that you will need the latest version of [`ggplot2`](http://docs.ggplot2.org/current/) (2.0.0) for any of the functions to work properly.
 
 ## VIGNETTE
 
